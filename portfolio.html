@@ -196,8 +196,12 @@
 
   /* Screenshot */
   .project-img {
-    width: 100%; aspect-ratio: 16/9;
-    object-fit: cover; display: block;
+    width: 100%;
+    display: block;
+    object-fit: contain;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    background: #f0f7f3;
   }
 
   .project-img-placeholder {
@@ -430,7 +434,7 @@
 
     <div class="intro-panel">
       <div class="intro-text">
-        A collection of <strong>data visualisation and analytics projects</strong> built across commercial, e-commerce and FP&A environments.
+        A collection of <strong>data visualisation and analytics projects</strong> built across commercial, e-commerce and FP&A environments. Each project includes a write-up covering the brief, the approach, and the business impact. Screenshots and blog posts are being added progressively.
       </div>
       <a href="index.html" class="intro-link">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;">
@@ -445,10 +449,6 @@
 
       <!-- 1: Commercial Trading Reports -->
       <div class="project-card" id="commercial-trading">
-        <!--
-          TO ADD SCREENSHOT: replace the placeholder div below with:
-          <img class="project-img" src="images/commercial-trading.png" alt="Commercial Trading Reports screenshot">
-        -->
         <img class="project-img" src="images/Retail_Project_Page_1.jpg" alt="Commercial Trading Reports screenshot">
         <div class="project-body">
           <div class="project-meta">

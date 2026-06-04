@@ -4,604 +4,861 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nathan Wallis — Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
-    --green-dark: #1a5c3a;
-    --green-mid: #2d8653;
-    --green-bright: #3aaa6b;
-    --green-light: #a8d5bc;
-    --green-subtle: #e8f5ee;
-    --sidebar: #0f2d1e;
-    --text-primary: #0f1f16;
-    --text-muted: #5a7a66;
-    --text-light: #8aab96;
-    --bg: #f5faf7;
-    --white: #ffffff;
-    --border: #d4e8dc;
-    --mono: 'DM Mono', monospace;
-    --sans: 'DM Sans', sans-serif;
-  }
+:root {
+  --white: #ffffff;
+  --gray-50: #F9F9F9;
+  --gray-100: #F2F2F2;
+  --gray-200: #E5E5E5;
+  --gray-300: #D1D1D1;
+  --gray-400: #ABABAB;
+  --gray-500: #737373;
+  --gray-700: #3D3D3D;
+  --gray-900: #1A1A1A;
+  --green: #2D6A4F;
+  --green-mid: #3A8566;
+  --green-light: #EAF3EE;
+  --green-border: #C2DDD1;
+  --text-primary: #1A1A1A;
+  --text-secondary: #737373;
+  --text-muted: #ABABAB;
+  --border: #E5E5E5;
+  --border-light: #F0F0F0;
+  --radius: 12px;
+  --radius-sm: 8px;
+}
 
-  html, body {
-    font-family: var(--sans);
-    background: var(--bg);
-    color: var(--text-primary);
-    min-height: 100vh;
-    font-size: 13px;
-  }
+html { scroll-behavior: smooth; }
 
-  .layout {
-    display: grid;
-    grid-template-columns: 220px 1fr;
-    min-height: 100vh;
-  }
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--white);
+  color: var(--text-primary);
+  line-height: 1.6;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+}
 
-  /* SIDEBAR */
-  .sidebar {
-    background: var(--sidebar);
-    padding: 32px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    overflow-y: auto;
-  }
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
 
-  .sidebar-logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding-bottom: 24px;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-  }
+/* ─── NAV ─── */
+nav {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+}
 
-  .logo-icon {
-    width: 38px; height: 38px;
-    background: var(--green-bright);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-  .logo-icon svg { width: 22px; height: 22px; }
-  .logo-text { flex: 1; }
+.nav-name {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
 
-  .logo-name {
-    font-size: 13px; font-weight: 600; color: #fff;
-    line-height: 1.2; letter-spacing: -0.01em;
-  }
+.nav-links {
+  display: flex;
+  gap: 6px;
+}
 
-  .logo-title {
-    font-size: 10px; color: var(--green-light); margin-top: 2px;
-    font-weight: 400; letter-spacing: 0.04em; text-transform: uppercase;
-  }
+.nav-link {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 8px;
+  transition: all 0.15s;
+}
 
-  .nav-section { display: flex; flex-direction: column; gap: 4px; }
+.nav-link:hover {
+  color: var(--text-primary);
+  background: var(--gray-50);
+}
 
-  .nav-label {
-    font-size: 9px; font-weight: 500; color: var(--green-light);
-    letter-spacing: 0.1em; text-transform: uppercase;
-    margin-bottom: 6px; padding-left: 4px;
-  }
+.nav-link.active {
+  color: var(--green);
+  background: var(--green-light);
+}
 
-  .nav-item {
-    display: flex; align-items: center; gap: 9px;
-    padding: 8px 10px; border-radius: 6px;
-    color: rgba(255,255,255,0.55); font-size: 12px; font-weight: 400;
-    cursor: pointer; transition: all 0.15s ease; text-decoration: none;
-  }
+/* ─── HEADER ─── */
+header {
+  padding: 64px 0 56px;
+  border-bottom: 1px solid var(--border);
+}
 
-  .nav-item:hover { background: rgba(58,170,107,0.15); color: #fff; }
-  .nav-item.active { background: rgba(58,170,107,0.15); color: var(--green-bright); font-weight: 500; }
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  margin-bottom: 16px;
+}
 
-  .nav-dot {
-    width: 6px; height: 6px; border-radius: 50%;
-    background: rgba(255,255,255,0.2); flex-shrink: 0;
-  }
-  .nav-item.active .nav-dot { background: var(--green-bright); }
+.header-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
 
-  .sidebar-contact {
-    margin-top: auto; padding-top: 20px;
-    border-top: 1px solid rgba(255,255,255,0.08);
-  }
+header h1 {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 46px;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: var(--gray-900);
+  margin-bottom: 10px;
+}
 
-  .contact-item {
-    display: flex; align-items: center; gap: 8px;
-    color: rgba(255,255,255,0.45); font-size: 10.5px;
-    margin-bottom: 8px; font-family: var(--mono);
-  }
+header h1 strong { font-weight: 600; }
 
-  .contact-item a { color: var(--green-light); text-decoration: none; }
-  .contact-item a:hover { color: var(--green-bright); }
+.header-summary {
+  font-size: 15.5px;
+  line-height: 1.75;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin-top: 20px;
+}
 
-  /* MAIN */
-  .main { padding: 32px 28px; display: flex; flex-direction: column; gap: 28px; }
+.project-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--gray-50);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 7px 14px;
+  border-radius: 100px;
+  white-space: nowrap;
+  margin-top: 4px;
+}
 
-  /* PAGE HEADER */
-  .page-header {
-    display: flex; justify-content: space-between;
-    align-items: flex-end; padding-bottom: 20px;
-    border-bottom: 1px solid var(--border);
-  }
+.project-count strong {
+  color: var(--green);
+  font-weight: 600;
+}
 
-  .page-title {
-    font-size: 22px; font-weight: 600; color: var(--text-primary);
-    letter-spacing: -0.03em; line-height: 1.1;
-  }
-  .page-title span { color: var(--green-mid); }
+/* ─── FILTER BAR ─── */
+.filter-bar {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
 
-  .page-subtitle { font-size: 12px; color: var(--text-muted); margin-top: 5px; font-weight: 400; }
+.filter-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-right: 4px;
+}
 
-  .header-badge {
-    font-size: 10px; font-weight: 600; color: var(--green-dark);
-    background: var(--green-subtle); border: 1px solid var(--border);
-    padding: 5px 12px; border-radius: 20px;
-    letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap;
-  }
+.filter-btn {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: var(--gray-50);
+  border: 1px solid var(--border);
+  padding: 5px 13px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: 'Inter', sans-serif;
+}
 
-  /* INTRO PANEL */
-  .intro-panel {
-    background: var(--sidebar); border-radius: 10px;
-    padding: 16px 22px; display: flex;
-    align-items: center; justify-content: space-between; gap: 24px;
-    animation: fadeUp 0.4s ease 0.05s both;
-  }
+.filter-btn:hover {
+  border-color: var(--green-border);
+  color: var(--green);
+  background: var(--green-light);
+}
 
-  .intro-text { font-size: 12px; color: rgba(255,255,255,0.55); line-height: 1.7; flex: 1; }
-  .intro-text strong { color: var(--green-light); font-weight: 500; }
+.filter-btn.active {
+  border-color: var(--green-border);
+  color: var(--green);
+  background: var(--green-light);
+}
 
-  .intro-link {
-    display: flex; align-items: center; gap: 6px;
-    background: var(--green-bright); color: #fff;
-    font-size: 11px; font-weight: 600;
-    padding: 9px 16px; border-radius: 8px;
-    text-decoration: none; white-space: nowrap;
-    transition: opacity 0.15s; flex-shrink: 0;
-  }
-  .intro-link:hover { opacity: 0.88; }
+/* ─── PROJECTS GRID ─── */
+.projects-section {
+  padding: 48px 0 72px;
+}
 
-  /* PROJECT GRID */
-  .project-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
 
-  /* PROJECT CARD */
-  .project-card {
-    background: var(--white); border: 1px solid var(--border);
-    border-radius: 12px; overflow: hidden;
-    display: flex; flex-direction: column;
-    transition: box-shadow 0.2s ease, transform 0.2s ease;
-    animation: fadeUp 0.4s ease both;
-    text-decoration: none; color: inherit;
-  }
+/* ─── PROJECT CARD ─── */
+.project-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
 
-  .project-card:hover {
-    box-shadow: 0 8px 32px rgba(26,92,58,0.12);
-    transform: translateY(-2px);
-  }
+.project-card:hover {
+  border-color: var(--green-border);
+  box-shadow: 0 4px 24px rgba(45, 106, 79, 0.07);
+}
 
-  .project-card:nth-child(1) { animation-delay: 0.1s; }
-  .project-card:nth-child(2) { animation-delay: 0.15s; }
-  .project-card:nth-child(3) { animation-delay: 0.2s; }
-  .project-card:nth-child(4) { animation-delay: 0.25s; }
+/* Hero image area */
+.project-hero {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--gray-50);
+  position: relative;
+  flex-shrink: 0;
+}
 
-  /* Screenshot */
-  .project-img {
-    width: 100%;
-    aspect-ratio: 16/9;
-    display: block;
-    object-fit: cover;
-    object-position: top center;
-    background: var(--bg);
-    border-radius: 11px 11px 0 0;
-  }
+.project-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
 
-  .project-img-placeholder {
-    width: 100%; aspect-ratio: 16/9;
-    background: linear-gradient(135deg, var(--green-subtle) 0%, #d0eadb 100%);
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    gap: 8px; color: var(--green-light);
-  }
+.project-card:hover .project-hero img {
+  transform: scale(1.03);
+}
 
-  .project-img-placeholder svg { width: 36px; height: 36px; opacity: 0.5; }
+/* Placeholder hero when no image */
+.project-hero-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
 
-  .project-img-placeholder span {
-    font-size: 10px; font-family: var(--mono);
-    color: var(--text-light); letter-spacing: 0.04em;
-  }
+.hero-powerbi {
+  background: linear-gradient(135deg, #F3F3F3 0%, #E8EDF2 100%);
+}
 
-  /* Card body */
-  .project-body {
-    padding: 18px 20px 20px;
-    display: flex; flex-direction: column; gap: 10px; flex: 1;
-  }
+.hero-excel {
+  background: linear-gradient(135deg, #F0F5F2 0%, #E4EFE9 100%);
+}
 
-  .project-meta { display: flex; align-items: center; justify-content: space-between; }
+.hero-scenario {
+  background: linear-gradient(135deg, #F5F3F0 0%, #EEE9E4 100%);
+}
 
-  .project-type {
-    font-size: 9px; font-weight: 600; color: var(--green-dark);
-    background: var(--green-subtle); padding: 3px 8px;
-    border-radius: 4px; letter-spacing: 0.06em; text-transform: uppercase;
-  }
+.hero-forecast {
+  background: linear-gradient(135deg, #F2F2F5 0%, #E8E8F0 100%);
+}
 
-  .project-tool { font-size: 9px; font-family: var(--mono); color: var(--text-light); letter-spacing: 0.04em; }
+/* SVG chart illustrations for placeholders */
+.hero-svg {
+  width: 90%;
+  height: 90%;
+}
 
-  .project-title {
-    font-size: 15px; font-weight: 600; color: var(--text-primary);
-    letter-spacing: -0.02em; line-height: 1.3;
-  }
+/* Card body */
+.project-body {
+  padding: 22px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 10px;
+}
 
-  .project-desc { font-size: 12px; color: var(--text-muted); line-height: 1.65; flex: 1; }
+.project-category {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
 
-  .project-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.cat-tag {
+  font-size: 10.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--green);
+  background: var(--green-light);
+  border: 1px solid var(--green-border);
+  padding: 3px 9px;
+  border-radius: 6px;
+}
 
-  .tag {
-    font-size: 9px; background: var(--green-subtle);
-    color: var(--green-dark); padding: 3px 8px;
-    border-radius: 4px; font-weight: 500;
-  }
+.project-title {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
 
-  .project-footer {
-    display: flex; align-items: center; justify-content: space-between;
-    padding-top: 12px; border-top: 1px solid var(--border); margin-top: 4px;
-  }
+.project-subtitle {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+}
 
-  .project-status { font-size: 10px; color: var(--text-light); font-family: var(--mono); }
+.project-description {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  flex: 1;
+}
 
-  .project-link {
-    display: flex; align-items: center; gap: 5px;
-    font-size: 11px; font-weight: 600; color: var(--green-mid);
-    text-decoration: none; transition: color 0.15s;
-  }
+.project-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-light);
+  margin-top: 4px;
+}
 
-  .project-link:hover { color: var(--green-dark); }
-  .project-link svg { width: 13px; height: 13px; }
+.skill-pill {
+  font-size: 12px;
+  color: var(--text-secondary);
+  background: var(--gray-50);
+  border: 1px solid var(--border);
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-weight: 400;
+}
 
-  .project-link.soon {
-    color: var(--text-light); pointer-events: none;
-    font-weight: 400; font-style: italic;
-  }
+/* ─── COMING SOON CARD ─── */
+.project-card-placeholder {
+  background: var(--gray-50);
+  border: 1px dashed var(--gray-300);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 300px;
+  padding: 32px;
+  text-align: center;
+}
 
-  /* MOBILE HEADER */
-  .mobile-header {
-    display: none; position: sticky; top: 0; z-index: 100;
-    background: var(--sidebar); padding: 12px 16px;
-    align-items: center; justify-content: space-between;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-  }
+.placeholder-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--gray-200);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  .mobile-logo { display: flex; align-items: center; gap: 9px; text-decoration: none; }
-  .mobile-logo .logo-icon { width: 32px; height: 32px; }
-  .mobile-logo .logo-icon svg { width: 18px; height: 18px; }
-  .mobile-logo .logo-name { font-size: 13px; font-weight: 600; color: #fff; }
-  .mobile-logo .logo-title { font-size: 9px; color: var(--green-light); text-transform: uppercase; letter-spacing: 0.04em; }
+.placeholder-icon svg {
+  width: 18px;
+  height: 18px;
+  color: var(--gray-400);
+}
 
-  .hamburger {
-    background: none; border: none; cursor: pointer;
-    padding: 4px; display: flex; flex-direction: column; gap: 5px;
-  }
+.placeholder-text {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
 
-  .hamburger span {
-    display: block; width: 22px; height: 2px;
-    background: rgba(255,255,255,0.7); border-radius: 2px; transition: all 0.2s ease;
-  }
+.placeholder-sub {
+  font-size: 12px;
+  color: var(--gray-300);
+}
 
-  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-  .hamburger.open span:nth-child(2) { opacity: 0; }
-  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+/* ─── FOOTER ─── */
+footer {
+  padding: 36px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border);
+}
 
-  .mobile-drawer {
-    display: none; position: fixed;
-    top: 57px; left: 0; right: 0; bottom: 0;
-    background: var(--sidebar); z-index: 99;
-    padding: 24px 20px; overflow-y: auto;
-    transform: translateX(-100%); transition: transform 0.25s ease;
-  }
+.footer-text {
+  font-size: 12px;
+  color: var(--text-muted);
+}
 
-  .mobile-drawer.open { transform: translateX(0); }
-  .mobile-drawer .nav-section { margin-bottom: 24px; }
-  .mobile-drawer .nav-item { font-size: 14px; padding: 10px 12px; }
+.cv-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--green);
+  text-decoration: none;
+  padding: 8px 18px;
+  border: 1px solid var(--green-border);
+  border-radius: 8px;
+  background: var(--green-light);
+  transition: all 0.15s;
+}
 
-  .mobile-drawer .contact-item {
-    display: flex; align-items: center; gap: 8px;
-    color: rgba(255,255,255,0.45); font-size: 12px;
-    margin-bottom: 10px; font-family: var(--mono);
-  }
+.cv-link:hover {
+  background: var(--green);
+  color: white;
+  border-color: var(--green);
+}
 
-  .mobile-drawer .contact-item a { color: var(--green-light); text-decoration: none; }
+.cv-link svg { width: 13px; height: 13px; }
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(10px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  /* RESPONSIVE */
-  @media (max-width: 768px) {
-    .layout { grid-template-columns: 1fr; }
-    .sidebar { display: none; }
-    .mobile-header { display: flex; }
-    .mobile-drawer { display: block; }
-    .main { padding: 20px 16px; gap: 20px; }
-    .page-header { flex-direction: column; align-items: flex-start; gap: 10px; }
-    .project-grid { grid-template-columns: 1fr; }
-    .intro-panel { flex-direction: column; align-items: flex-start; }
-    .intro-link { width: 100%; justify-content: center; }
-  }
+/* ─── RESPONSIVE ─── */
+@media (max-width: 680px) {
+  .container { padding: 0 20px; }
+  header { padding: 48px 0 40px; }
+  header h1 { font-size: 34px; }
+  .header-inner { flex-direction: column; gap: 16px; }
+  .projects-grid { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
 
-<!-- Mobile header -->
-<header class="mobile-header">
-  <a href="/resume" class="mobile-logo">
-    <div class="logo-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
-        <rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 17.5h7M17.5 14v7"/>
-      </svg>
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <a href="nathan-wallis-cv.html" class="nav-name">Nathan Wallis</a>
+      <div class="nav-links">
+        <a href="nathan-wallis-cv.html" class="nav-link">CV</a>
+        <a href="#" class="nav-link active">Portfolio</a>
+        <a href="mailto:nathangw.11@gmail.com" class="nav-link">Contact</a>
+      </div>
     </div>
-    <div>
-      <div class="logo-name">Nathan Wallis</div>
-      <div class="logo-title">Portfolio</div>
+  </div>
+</nav>
+
+<!-- HEADER -->
+<header>
+  <div class="container">
+    <div class="header-inner">
+      <div>
+        <div class="header-eyebrow">Portfolio</div>
+        <h1><strong>Selected</strong> Work</h1>
+      </div>
+      <div class="project-count">
+        <strong>4</strong> projects &nbsp;·&nbsp; More coming soon
+      </div>
     </div>
-  </a>
-  <button class="hamburger" id="hamburger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+    <p class="header-summary">A selection of commercial analytics and financial modelling work — covering Power BI reporting, FP&A modelling, and scenario planning tools built across retail, airports and e-commerce environments.</p>
+  </div>
 </header>
 
-<!-- Mobile drawer -->
-<div class="mobile-drawer" id="drawer">
-  <nav class="nav-section">
-    <div class="nav-label">Navigate</div>
-    <a href="/resume" class="nav-item"><div class="nav-dot"></div> CV</a>
-    <a href="/portfolio" class="nav-item active"><div class="nav-dot"></div> Portfolio</a>
-  </nav>
-  <nav class="nav-section">
-    <div class="nav-label">Projects</div>
-    <a href="#commercial-trading" class="nav-item"><div class="nav-dot"></div> Trading Dashboards</a>
-    <a href="#commercial-performance" class="nav-item"><div class="nav-dot"></div> Commercial Performance</a>
-    <a href="#scenario-modelling" class="nav-item"><div class="nav-dot"></div> Scenario Modelling</a>
-    <a href="#fpanda" class="nav-item"><div class="nav-dot"></div> Three Statement Model</a>
-  </nav>
-  <div style="padding-top:20px;border-top:1px solid rgba(255,255,255,0.08);margin-top:8px;">
-    <div class="nav-label" style="margin-bottom:10px;">Contact</div>
-    <div class="contact-item">✉&nbsp; <a href="mailto:nathangw.11@gmail.com">nathangw.11@gmail.com</a></div>
-    <div class="contact-item">📞&nbsp; +61 433 254 944</div>
-    <div class="contact-item">📍&nbsp; Sydney, Australia</div>
+<!-- FILTER BAR -->
+<div class="container">
+  <div class="filter-bar">
+    <span class="filter-label">Filter</span>
+    <button class="filter-btn active" onclick="filterProjects('all', this)">All</button>
+    <button class="filter-btn" onclick="filterProjects('Power BI', this)">Power BI</button>
+    <button class="filter-btn" onclick="filterProjects('Excel', this)">Excel</button>
+    <button class="filter-btn" onclick="filterProjects('FP&A', this)">FP&A</button>
+    <button class="filter-btn" onclick="filterProjects('Financial Modelling', this)">Financial Modelling</button>
   </div>
 </div>
 
-<div class="layout">
+<!-- PROJECTS -->
+<div class="container">
+  <div class="projects-section">
+    <div class="projects-grid" id="projects-grid">
 
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <div class="sidebar-logo">
-      <div class="logo-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
-          <rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 17.5h7M17.5 14v7"/>
-        </svg>
-      </div>
-      <div class="logo-text">
-        <div class="logo-name">Nathan Wallis</div>
-        <div class="logo-title">Commercial Analyst</div>
-      </div>
-    </div>
-
-    <nav class="nav-section">
-      <div class="nav-label">Navigate</div>
-      <a href="/resume" class="nav-item"><div class="nav-dot"></div> CV</a>
-      <a href="/portfolio" class="nav-item active"><div class="nav-dot"></div> Portfolio</a>
-    </nav>
-
-    <nav class="nav-section">
-      <div class="nav-label">Projects</div>
-      <a href="/portfolio/commercial_trading_reports" class="nav-item"><div class="nav-dot"></div> Trading Dashboard</a>
-      <a href="/portfolio/performance_dashboard" class="nav-item"><div class="nav-dot"></div> Commercial Performance</a>
-      <a href="/portfolio/scenario_modelling" class="nav-item"><div class="nav-dot"></div> Scenario Modelling</a>
-      <a href="/portfolio/three_statement_model" class="nav-item"><div class="nav-dot"></div> Three Statement Model</a>
-    </nav>
-
-    <div class="sidebar-contact">
-      <div class="nav-label" style="margin-bottom:10px;">Contact</div>
-      <div class="contact-item">✉&nbsp; <a href="mailto:nathangw.11@gmail.com">nathangw.11@gmail.com</a></div>
-      <div class="contact-item">📞&nbsp; +61 433 254 944</div>
-      <div class="contact-item">📍&nbsp; Sydney, Australia</div>
-      <div class="contact-item">🌐&nbsp; <a href="https://nathan-wallis.com" target="_blank">nathan-wallis.com</a></div>
-    </div>
-  </aside>
-
-  <!-- MAIN -->
-  <main class="main">
-
-    <div class="page-header">
-      <div>
-        <div class="page-title">Portfolio</div>
-        <div class="page-subtitle">Power BI dashboards &nbsp;·&nbsp; Scenario models &nbsp;·&nbsp; Financial forecasting</div>
-      </div>
-      <div class="header-badge">4 Projects</div>
-    </div>
-
-    <div class="intro-panel">
-      <div class="intro-text">
-        A collection of <strong>data visualisation and analytics projects</strong> built across commercial, e-commerce and FP&A environments. Each project includes a write-up covering the brief, the approach, and the business impact.
-      </div>
-      <a href="/resume" class="intro-link">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;">
-          <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
-          <rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 17.5h7M17.5 14v7"/>
-        </svg>
-        View CV
-      </a>
-    </div>
-
-    <div class="project-grid">
-
-      <!-- 1: Commercial Trading Reports -->
-      <div class="project-card" id="commercial-trading">
-        <img class="project-img" src="/images/Market_Analysis.png" alt="Commercial Trading Reports screenshot">
+      <!-- PROJECT 1 -->
+      <div class="project-card" data-tags="Power BI,DAX,Commercial Reporting,KPI Tracking">
+        <div class="project-hero">
+          <div class="project-hero-placeholder hero-powerbi">
+            <svg class="hero-svg" viewBox="0 0 420 236" xmlns="http://www.w3.org/2000/svg">
+              <!-- Background panels -->
+              <rect x="16" y="16" width="188" height="108" rx="8" fill="#ffffff" stroke="#E5E5E5" stroke-width="1"/>
+              <rect x="216" y="16" width="188" height="108" rx="8" fill="#ffffff" stroke="#E5E5E5" stroke-width="1"/>
+              <rect x="16" y="136" width="388" height="84" rx="8" fill="#ffffff" stroke="#E5E5E5" stroke-width="1"/>
+              <!-- KPI card 1 -->
+              <text x="30" y="38" font-family="Inter, sans-serif" font-size="9" fill="#ABABAB" font-weight="600" letter-spacing="1">REVENUE</text>
+              <text x="30" y="60" font-family="Inter Tight, sans-serif" font-size="22" fill="#1A1A1A" font-weight="600">£4.2m</text>
+              <text x="30" y="76" font-family="Inter, sans-serif" font-size="9" fill="#2D6A4F">▲ 12.4% vs PY</text>
+              <!-- Sparkline 1 -->
+              <polyline points="30,110 55,100 80,104 105,94 130,98 155,86 180,80" fill="none" stroke="#2D6A4F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <polyline points="30,110 55,100 80,104 105,94 130,98 155,86 180,80 180,116 30,116" fill="#2D6A4F" fill-opacity="0.08" stroke="none"/>
+              <!-- KPI card 2 -->
+              <text x="230" y="38" font-family="Inter, sans-serif" font-size="9" fill="#ABABAB" font-weight="600" letter-spacing="1">MARGIN</text>
+              <text x="230" y="60" font-family="Inter Tight, sans-serif" font-size="22" fill="#1A1A1A" font-weight="600">38.6%</text>
+              <text x="230" y="76" font-family="Inter, sans-serif" font-size="9" fill="#ABABAB">▼ 1.2pp vs PY</text>
+              <!-- Sparkline 2 -->
+              <polyline points="230,110 255,106 280,108 305,103 330,107 355,101 380,104" fill="none" stroke="#ABABAB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- Bar chart -->
+              <text x="30" y="152" font-family="Inter, sans-serif" font-size="8" fill="#ABABAB" font-weight="600" letter-spacing="0.8">MONTHLY REVENUE VS FORECAST</text>
+              <rect x="30" y="172" width="28" height="36" rx="3" fill="#EAF3EE"/>
+              <rect x="30" y="160" width="28" height="48" rx="3" fill="#2D6A4F"/>
+              <rect x="72" y="168" width="28" height="40" rx="3" fill="#EAF3EE"/>
+              <rect x="72" y="158" width="28" height="50" rx="3" fill="#2D6A4F"/>
+              <rect x="114" y="174" width="28" height="34" rx="3" fill="#EAF3EE"/>
+              <rect x="114" y="165" width="28" height="43" rx="3" fill="#2D6A4F"/>
+              <rect x="156" y="170" width="28" height="38" rx="3" fill="#EAF3EE"/>
+              <rect x="156" y="156" width="28" height="52" rx="3" fill="#2D6A4F"/>
+              <rect x="198" y="166" width="28" height="42" rx="3" fill="#EAF3EE"/>
+              <rect x="198" y="162" width="28" height="46" rx="3" fill="#2D6A4F"/>
+              <rect x="240" y="172" width="28" height="36" rx="3" fill="#EAF3EE"/>
+              <rect x="240" y="159" width="28" height="49" rx="3" fill="#2D6A4F"/>
+              <rect x="282" y="168" width="28" height="40" rx="3" fill="#EAF3EE"/>
+              <rect x="282" y="163" width="28" height="45" rx="3" fill="#2D6A4F"/>
+              <rect x="324" y="174" width="28" height="34" rx="3" fill="#EAF3EE"/>
+              <rect x="324" y="157" width="28" height="51" rx="3" fill="#2D6A4F"/>
+              <rect x="366" y="166" width="28" height="42" rx="3" fill="#C2DDD1" opacity="0.6"/>
+              <rect x="366" y="164" width="28" height="44" rx="3" fill="#C2DDD1" opacity="0.5" stroke="#2D6A4F" stroke-width="1" stroke-dasharray="3,2"/>
+              <text x="30" y="220" font-family="Inter, sans-serif" font-size="7.5" fill="#ABABAB">Jan</text>
+              <text x="72" y="220" font-family="Inter, sans-serif" font-size="7.5" fill="#ABABAB">Feb</text>
+              <text x="114" y="220" font-family="Inter, sans-serif" font-size="7.5" fill="#ABABAB">Mar</text>
+              <text x="156" y="220" font-family="Inter, sans-serif" font-size="7.5" fill="#ABABAB">Apr</text>
+              <text x="198" y="220" font-family="Inter, sans-serif" font-size="7.5" fill="#ABABAB">May</text>
+              <text x="240" y="220" font-family="Inter, sans-serif" font-size="7.5" fill="#ABABAB">Jun</text>
+              <text x="282" y="220" font-family="Inter, sans-serif" font-size="7.5" fill="#ABABAB">Jul</text>
+              <text x="324" y="220" font-family="Inter, sans-serif" font-size="7.5" fill="#ABABAB">Aug</text>
+              <text x="366" y="220" font-family="Inter, sans-serif" font-size="7.5" fill="#C2DDD1">Sep</text>
+            </svg>
+          </div>
+        </div>
         <div class="project-body">
-          <div class="project-meta">
-            <span class="project-type">Power BI</span>
-            <span class="project-tool">Commercial Analytics</span>
+          <div class="project-category">
+            <span class="cat-tag">Power BI</span>
+            <span class="cat-tag">DAX</span>
           </div>
-          <div class="project-title">A Collection of Power BI Reports for Commercial Trading</div>
-          <div class="project-desc">
-            <!-- TO UPDATE: replace this text with your blog description -->
-            A suite of Power BI reports built to support day-to-day commercial trading decisions across multiple sales channels and regions. Covers revenue performance, margin analysis, KPI tracking and comparative reporting against forecast and prior year.
+          <div>
+            <div class="project-title">Commercial Analytics Suite</div>
+            <div class="project-subtitle">A Collection of Power BI Reports for Commercial Trading</div>
           </div>
-          <div class="project-tags">
-            <span class="tag">Power BI</span>
-            <span class="tag">DAX</span>
-            <span class="tag">Commercial Reporting</span>
-            <span class="tag">KPI Tracking</span>
-            <span class="tag">Multi-channel</span>
-          </div>
+          <p class="project-description">A suite of Power BI reports built to support day-to-day commercial trading decisions across multiple sales channels and regions. Covers revenue performance, margin analysis, KPI tracking and comparative reporting against forecast and prior year.</p>
           <div class="project-footer">
-            <!--
-              TO ADD BLOG LINK: replace the span below with:
-              <a href="blog/commercial-trading" class="project-link">
-                Read write-up
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </a>
-            -->
-              <a href="portfolio/commercial_trading_reports" class="project-link">
-                Read write-up
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </a>
+            <span class="skill-pill">Power BI</span>
+            <span class="skill-pill">DAX</span>
+            <span class="skill-pill">Commercial Reporting</span>
+            <span class="skill-pill">KPI Tracking</span>
+            <span class="skill-pill">Multi-channel</span>
           </div>
         </div>
       </div>
 
-      <!-- 2: Commercial Performance Dashboard -->
-      <div class="project-card" id="commercial-performance">
-        <!--
-          TO ADD SCREENSHOT: replace the placeholder div below with:
-          <img class="project-img" src="/images/commercial-performance.png" alt="Commercial Performance Dashboard screenshot">
-        -->
-<img class="project-img" src="/images/Performance_Dashboard.png" alt="Commercial Performance Dashboard screenshot">
+      <!-- PROJECT 2 -->
+      <div class="project-card" data-tags="Power BI,DAX,ETL,Variance Analysis">
+        <div class="project-hero">
+          <div class="project-hero-placeholder hero-powerbi">
+            <svg class="hero-svg" viewBox="0 0 420 236" xmlns="http://www.w3.org/2000/svg">
+              <!-- Top row KPIs -->
+              <rect x="16" y="16" width="88" height="68" rx="8" fill="#ffffff" stroke="#E5E5E5" stroke-width="1"/>
+              <rect x="114" y="16" width="88" height="68" rx="8" fill="#ffffff" stroke="#E5E5E5" stroke-width="1"/>
+              <rect x="212" y="16" width="88" height="68" rx="8" fill="#ffffff" stroke="#E5E5E5" stroke-width="1"/>
+              <rect x="310" y="16" width="94" height="68" rx="8" fill="#2D6A4F"/>
+              <!-- KPI text -->
+              <text x="28" y="34" font-family="Inter" font-size="8" fill="#ABABAB" font-weight="600" letter-spacing="0.8">REVENUE</text>
+              <text x="28" y="54" font-family="Inter Tight" font-size="18" fill="#1A1A1A" font-weight="600">£2.8m</text>
+              <text x="28" y="68" font-family="Inter" font-size="8" fill="#2D6A4F">▲ 9.1%</text>
+              <text x="126" y="34" font-family="Inter" font-size="8" fill="#ABABAB" font-weight="600" letter-spacing="0.8">PROFIT</text>
+              <text x="126" y="54" font-family="Inter Tight" font-size="18" fill="#1A1A1A" font-weight="600">£940k</text>
+              <text x="126" y="68" font-family="Inter" font-size="8" fill="#2D6A4F">▲ 6.4%</text>
+              <text x="224" y="34" font-family="Inter" font-size="8" fill="#ABABAB" font-weight="600" letter-spacing="0.8">UNITS</text>
+              <text x="224" y="54" font-family="Inter Tight" font-size="18" fill="#1A1A1A" font-weight="600">18.4k</text>
+              <text x="224" y="68" font-family="Inter" font-size="8" fill="#ABABAB">▼ 0.8%</text>
+              <text x="322" y="34" font-family="Inter" font-size="8" fill="rgba(255,255,255,0.6)" font-weight="600" letter-spacing="0.8">AVG BASKET</text>
+              <text x="322" y="54" font-family="Inter Tight" font-size="18" fill="#ffffff" font-weight="600">£152</text>
+              <text x="322" y="68" font-family="Inter" font-size="8" fill="rgba(255,255,255,0.7)">▲ 10.1%</text>
+              <!-- Main chart area -->
+              <rect x="16" y="96" width="252" height="124" rx="8" fill="#ffffff" stroke="#E5E5E5" stroke-width="1"/>
+              <!-- Area chart -->
+              <text x="30" y="114" font-family="Inter" font-size="8" fill="#ABABAB" font-weight="600" letter-spacing="0.8">REVENUE TREND</text>
+              <polyline points="30,198 65,182 100,188 135,170 170,176 205,158 240,150" fill="none" stroke="#2D6A4F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <polygon points="30,198 65,182 100,188 135,170 170,176 205,158 240,150 240,206 30,206" fill="#2D6A4F" fill-opacity="0.1"/>
+              <polyline points="30,202 65,194 100,197 135,186 170,192 205,180 240,174" fill="none" stroke="#C2DDD1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4,3"/>
+              <!-- Right panel -->
+              <rect x="280" y="96" width="124" height="58" rx="8" fill="#ffffff" stroke="#E5E5E5" stroke-width="1"/>
+              <rect x="280" y="162" width="124" height="58" rx="8" fill="#ffffff" stroke="#E5E5E5" stroke-width="1"/>
+              <!-- Channel breakdown -->
+              <text x="294" y="114" font-family="Inter" font-size="8" fill="#ABABAB" font-weight="600" letter-spacing="0.8">CHANNEL MIX</text>
+              <rect x="294" y="120" width="60" height="6" rx="3" fill="#2D6A4F"/>
+              <text x="358" y="127" font-family="Inter" font-size="8" fill="#1A1A1A">62%</text>
+              <rect x="294" y="130" width="36" height="6" rx="3" fill="#C2DDD1"/>
+              <text x="334" y="137" font-family="Inter" font-size="8" fill="#737373">38%</text>
+              <text x="294" y="148" font-family="Inter" font-size="7.5" fill="#ABABAB">Direct</text>
+              <text x="338" y="148" font-family="Inter" font-size="7.5" fill="#ABABAB">Marketplace</text>
+              <!-- Variance table -->
+              <text x="294" y="180" font-family="Inter" font-size="8" fill="#ABABAB" font-weight="600" letter-spacing="0.8">VARIANCE</text>
+              <text x="294" y="196" font-family="Inter" font-size="8" fill="#737373">vs Forecast</text>
+              <text x="364" y="196" font-family="Inter" font-size="8" fill="#2D6A4F" font-weight="600">+£124k</text>
+              <text x="294" y="210" font-family="Inter" font-size="8" fill="#737373">vs Prior Year</text>
+              <text x="364" y="210" font-family="Inter" font-size="8" fill="#2D6A4F" font-weight="600">+£231k</text>
+            </svg>
+          </div>
+        </div>
         <div class="project-body">
-          <div class="project-meta">
-            <span class="project-type">Power BI</span>
-            <span class="project-tool">E-Commerce</span>
+          <div class="project-category">
+            <span class="cat-tag">Power BI</span>
+            <span class="cat-tag">E-Commerce</span>
           </div>
-          <div class="project-title">Commercial Performance Dashboard</div>
-          <div class="project-desc">
-            <!-- TO UPDATE: replace this text with your blog description -->
-            An end-to-end commercial performance dashboard tracking revenue, profit, units sold and average transaction value across e-commerce channels. Built with a comparative framework allowing users to benchmark current performance against forecast and prior year, with filters for region, sales channel and product category.
+          <div>
+            <div class="project-title">Commercial Performance Dashboard</div>
+            <div class="project-subtitle">Power BI E-Commerce Analytics</div>
           </div>
-          <div class="project-tags">
-            <span class="tag">Power BI</span>
-            <span class="tag">Star Schema</span>
-            <span class="tag">DAX</span>
-            <span class="tag">ETL</span>
-            <span class="tag">Variance Analysis</span>
-          </div>
+          <p class="project-description">An end-to-end commercial performance dashboard tracking revenue, profit, units sold and average transaction value across e-commerce channels. Built with a comparative framework allowing users to benchmark current performance against forecast and prior year, with filters for region, sales channel and product category.</p>
           <div class="project-footer">
-              <a href="portfolio/performance_dashboard" class="project-link">
-                Read write-up
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </a>
+            <span class="skill-pill">Power BI</span>
+            <span class="skill-pill">Star Schema</span>
+            <span class="skill-pill">DAX</span>
+            <span class="skill-pill">ETL</span>
+            <span class="skill-pill">Variance Analysis</span>
           </div>
         </div>
       </div>
 
-      <!-- 3: Scenario & Sensitivity Modelling -->
-      <div class="project-card" id="scenario-modelling">
-        <!--
-          TO ADD SCREENSHOT: replace the placeholder div below with:
-          <img class="project-img" src="/images/scenario-modelling.png" alt="Scenario and Sensitivity Modelling screenshot">
-        -->
-<img class="project-img" src="/images/Scenario_Model.png" alt="Scenario and Sensitivity Modelling screenshot">
+      <!-- PROJECT 3 -->
+      <div class="project-card" data-tags="Excel,Power BI,FP&A,Scenario Modelling,Budgeting">
+        <div class="project-hero">
+          <div class="project-hero-placeholder hero-scenario">
+            <svg class="hero-svg" viewBox="0 0 420 236" xmlns="http://www.w3.org/2000/svg">
+              <!-- Header -->
+              <rect x="16" y="16" width="388" height="36" rx="8" fill="#ffffff" stroke="#E5E5E5" stroke-width="1"/>
+              <text x="30" y="29" font-family="Inter" font-size="8" fill="#ABABAB" font-weight="600" letter-spacing="0.8">SCENARIO SELECTOR</text>
+              <rect x="110" y="20" width="72" height="28" rx="6" fill="#2D6A4F"/>
+              <text x="146" y="36" font-family="Inter" font-size="9" fill="#ffffff" font-weight="600" text-anchor="middle">Base Case</text>
+              <rect x="190" y="20" width="72" height="28" rx="6" fill="#F9F9F9" stroke="#E5E5E5" stroke-width="1"/>
+              <text x="226" y="36" font-family="Inter" font-size="9" fill="#ABABAB" text-anchor="middle">Best Case</text>
+              <rect x="270" y="20" width="72" height="28" rx="6" fill="#F9F9F9" stroke="#E5E5E5" stroke-width="1"/>
+              <text x="306" y="36" font-family="Inter" font-size="9" fill="#ABABAB" text-anchor="middle">Worst Case</text>
+              <!-- Scenario fan chart -->
+              <rect x="16" y="62" width="260" height="158" rx="8" fill="#ffffff" stroke="#E5E5E5" stroke-width="1"/>
+              <text x="30" y="80" font-family="Inter" font-size="8" fill="#ABABAB" font-weight="600" letter-spacing="0.8">REVENUE SCENARIOS — 5 YEAR</text>
+              <!-- Worst case area -->
+              <polygon points="40,188 100,180 160,176 220,170 250,165 250,200 40,200" fill="#F9F9F9" stroke="none"/>
+              <!-- Best case area -->
+              <polygon points="40,188 100,162 160,148 220,132 250,120 250,200 40,200" fill="#EAF3EE" stroke="none"/>
+              <!-- Base line -->
+              <polyline points="40,188 100,172 160,162 220,150 250,142" fill="none" stroke="#2D6A4F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- Best line -->
+              <polyline points="40,188 100,162 160,148 220,132 250,120" fill="none" stroke="#2D6A4F" stroke-width="1.5" stroke-dasharray="5,3" stroke-linecap="round"/>
+              <!-- Worst line -->
+              <polyline points="40,188 100,180 160,176 220,170 250,165" fill="none" stroke="#ABABAB" stroke-width="1.5" stroke-dasharray="5,3" stroke-linecap="round"/>
+              <!-- Year markers -->
+              <text x="40" y="210" font-family="Inter" font-size="7.5" fill="#ABABAB" text-anchor="middle">FY1</text>
+              <text x="100" y="210" font-family="Inter" font-size="7.5" fill="#ABABAB" text-anchor="middle">FY2</text>
+              <text x="160" y="210" font-family="Inter" font-size="7.5" fill="#ABABAB" text-anchor="middle">FY3</text>
+              <text x="220" y="210" font-family="Inter" font-size="7.5" fill="#ABABAB" text-anchor="middle">FY4</text>
+              <text x="250" y="210" font-family="Inter" font-size="7.5" fill="#ABABAB" text-anchor="middle">FY5</text>
+              <!-- Right panel: driver sliders -->
+              <rect x="286" y="62" width="118" height="158" rx="8" fill="#ffffff" stroke="#E5E5E5" stroke-width="1"/>
+              <text x="298" y="80" font-family="Inter" font-size="8" fill="#ABABAB" font-weight="600" letter-spacing="0.8">KEY DRIVERS</text>
+              <!-- Slider 1 -->
+              <text x="298" y="98" font-family="Inter" font-size="8" fill="#737373">Revenue Growth</text>
+              <rect x="298" y="102" width="90" height="4" rx="2" fill="#EAF3EE"/>
+              <rect x="298" y="102" width="58" height="4" rx="2" fill="#2D6A4F"/>
+              <circle cx="356" cy="104" r="5" fill="#2D6A4F"/>
+              <text x="380" y="107" font-family="Inter" font-size="8" fill="#2D6A4F" font-weight="600">8%</text>
+              <!-- Slider 2 -->
+              <text x="298" y="122" font-family="Inter" font-size="8" fill="#737373">Cost Base</text>
+              <rect x="298" y="126" width="90" height="4" rx="2" fill="#EAF3EE"/>
+              <rect x="298" y="126" width="40" height="4" rx="2" fill="#2D6A4F"/>
+              <circle cx="338" cy="128" r="5" fill="#2D6A4F"/>
+              <text x="380" y="131" font-family="Inter" font-size="8" fill="#2D6A4F" font-weight="600">5%</text>
+              <!-- Slider 3 -->
+              <text x="298" y="146" font-family="Inter" font-size="8" fill="#737373">Gross Margin</text>
+              <rect x="298" y="150" width="90" height="4" rx="2" fill="#EAF3EE"/>
+              <rect x="298" y="150" width="70" height="4" rx="2" fill="#2D6A4F"/>
+              <circle cx="368" cy="152" r="5" fill="#2D6A4F"/>
+              <text x="380" y="155" font-family="Inter" font-size="8" fill="#2D6A4F" font-weight="600">38%</text>
+              <!-- Output box -->
+              <rect x="298" y="170" width="90" height="38" rx="6" fill="#EAF3EE" stroke="#C2DDD1" stroke-width="1"/>
+              <text x="343" y="184" font-family="Inter" font-size="7.5" fill="#2D6A4F" text-anchor="middle" font-weight="600">BASE EBITDA Y5</text>
+              <text x="343" y="200" font-family="Inter Tight" font-size="14" fill="#2D6A4F" text-anchor="middle" font-weight="700">£6.4m</text>
+            </svg>
+          </div>
+        </div>
         <div class="project-body">
-          <div class="project-meta">
-            <span class="project-type">Excel · Power BI</span>
-            <span class="project-tool">FP&amp;A</span>
+          <div class="project-category">
+            <span class="cat-tag">Excel</span>
+            <span class="cat-tag">Power BI</span>
+            <span class="cat-tag">FP&A</span>
           </div>
-          <div class="project-title">Scenario &amp; Sensitivity Modelling</div>
-          <div class="project-desc">
-            <!-- TO UPDATE: replace this text with your blog description -->
-            A scenario and sensitivity modelling tool built to support commercial planning and budgeting decisions. Allows stakeholders to model best, base and worst case outcomes across key revenue and cost drivers, with outputs visualised in Power BI for easy communication to senior leadership.
+          <div>
+            <div class="project-title">Scenario & Sensitivity Model</div>
+            <div class="project-subtitle">Commercial Planning & Budgeting Tool</div>
           </div>
-          <div class="project-tags">
-            <span class="tag">Excel</span>
-            <span class="tag">Power BI</span>
-            <span class="tag">Scenario Modelling</span>
-            <span class="tag">Sensitivity Analysis</span>
-            <span class="tag">Budgeting</span>
-          </div>
+          <p class="project-description">A scenario and sensitivity modelling tool built to support commercial planning and budgeting decisions. Allows stakeholders to model best, base and worst case outcomes across key revenue and cost drivers, with outputs visualised in Power BI for easy communication to senior leadership.</p>
           <div class="project-footer">
-              <a href="portfolio/scenario_modelling" class="project-link">
-                Read write-up
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </a>
+            <span class="skill-pill">Excel</span>
+            <span class="skill-pill">Power BI</span>
+            <span class="skill-pill">Scenario Modelling</span>
+            <span class="skill-pill">Sensitivity Analysis</span>
+            <span class="skill-pill">Budgeting</span>
           </div>
         </div>
       </div>
 
-      <!-- 4: FP&A Excel to Power BI -->
-      <div class="project-card" id="fpanda">
-        <!--
-          TO ADD SCREENSHOT: replace the placeholder div below with:
-          <img class="project-img" src="/images/fpanda-dashboard.png" alt="Three Statement Model screenshot">
-        -->
-       <img class="project-img" src="/images/3_Statement_Model.png" alt="FP&A Model screenshot">
-        <div class="project-body">
-          <div class="project-meta">
-            <span class="project-type">Excel</span>
-            <span class="project-tool">Financial Planning</span>
-          </div>
-          <div class="project-title">Three Statement Forecast Model</div>
-          <div class="project-desc">
-            <!-- TO UPDATE: replace this text with your blog description -->
-            A fully integrated financial model built for a fictional multi-channel outdoor retailer, covering five years of historical results and a five-year forecast across the income statement, balance sheet and cash flow statement.
-          </div>
-          <div class="project-tags">
-            <span class="tag">Excel</span>
-            <span class="tag">Forecasting</span>
-            <span class="tag">Financial Modelling</span>
-            <span class="tag">FP&A</span>
-            <span class="tag">Retail Finance</span>
-          </div>
-          <div class="project-footer">
-              <a href="portfolio/three_statement_model" class="project-link">
-                Read write-up
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </a>
+      <!-- PROJECT 4 -->
+      <div class="project-card" data-tags="Excel,FP&A,Financial Modelling,Forecasting">
+        <div class="project-hero">
+          <div class="project-hero-placeholder hero-forecast">
+            <svg class="hero-svg" viewBox="0 0 420 236" xmlns="http://www.w3.org/2000/svg">
+              <!-- Three statement tabs -->
+              <rect x="16" y="16" width="388" height="28" rx="0" fill="none"/>
+              <rect x="16" y="16" width="100" height="28" rx="6" fill="#2D6A4F"/>
+              <text x="66" y="31" font-family="Inter" font-size="8.5" fill="#ffffff" font-weight="600" text-anchor="middle">Income Statement</text>
+              <rect x="122" y="16" width="86" height="28" rx="6" fill="#F9F9F9" stroke="#E5E5E5" stroke-width="1"/>
+              <text x="165" y="31" font-family="Inter" font-size="8.5" fill="#ABABAB" text-anchor="middle">Balance Sheet</text>
+              <rect x="214" y="16" width="82" height="28" rx="6" fill="#F9F9F9" stroke="#E5E5E5" stroke-width="1"/>
+              <text x="255" y="31" font-family="Inter" font-size="8.5" fill="#ABABAB" text-anchor="middle">Cash Flow</text>
+              <!-- Table -->
+              <rect x="16" y="54" width="388" height="166" rx="8" fill="#ffffff" stroke="#E5E5E5" stroke-width="1"/>
+              <!-- Column headers -->
+              <rect x="16" y="54" width="388" height="22" rx="0" fill="#F9F9F9"/>
+              <rect x="16" y="54" width="388" height="22" rx="8" fill="#F9F9F9"/>
+              <text x="30" y="68" font-family="Inter" font-size="7.5" fill="#ABABAB" font-weight="600">LINE ITEM</text>
+              <text x="164" y="68" font-family="Inter" font-size="7.5" fill="#ABABAB" font-weight="600" text-anchor="middle">FY1A</text>
+              <text x="204" y="68" font-family="Inter" font-size="7.5" fill="#ABABAB" font-weight="600" text-anchor="middle">FY2A</text>
+              <text x="244" y="68" font-family="Inter" font-size="7.5" fill="#ABABAB" font-weight="600" text-anchor="middle">FY3A</text>
+              <text x="284" y="68" font-family="Inter" font-size="7.5" fill="#2D6A4F" font-weight="700" text-anchor="middle">FY4F</text>
+              <text x="324" y="68" font-family="Inter" font-size="7.5" fill="#2D6A4F" font-weight="700" text-anchor="middle">FY5F</text>
+              <text x="370" y="68" font-family="Inter" font-size="7.5" fill="#2D6A4F" font-weight="700" text-anchor="middle">FY6F</text>
+              <!-- Divider line -->
+              <line x1="16" y1="76" x2="404" y2="76" stroke="#E5E5E5" stroke-width="0.5"/>
+              <!-- Row 1 – Revenue -->
+              <rect x="16" y="76" width="388" height="18" rx="0" fill="none"/>
+              <text x="30" y="88" font-family="Inter" font-size="8" fill="#1A1A1A" font-weight="500">Revenue</text>
+              <text x="164" y="88" font-family="Inter" font-size="8" fill="#737373" text-anchor="middle">£14.2m</text>
+              <text x="204" y="88" font-family="Inter" font-size="8" fill="#737373" text-anchor="middle">£16.1m</text>
+              <text x="244" y="88" font-family="Inter" font-size="8" fill="#737373" text-anchor="middle">£18.4m</text>
+              <text x="284" y="88" font-family="Inter" font-size="8" fill="#2D6A4F" text-anchor="middle">£20.9m</text>
+              <text x="324" y="88" font-family="Inter" font-size="8" fill="#2D6A4F" text-anchor="middle">£23.8m</text>
+              <text x="370" y="88" font-family="Inter" font-size="8" fill="#2D6A4F" text-anchor="middle">£27.2m</text>
+              <line x1="16" y1="94" x2="404" y2="94" stroke="#F0F0F0" stroke-width="0.5"/>
+              <!-- Row 2 – Gross Profit -->
+              <text x="30" y="108" font-family="Inter" font-size="8" fill="#1A1A1A" font-weight="500">Gross Profit</text>
+              <text x="164" y="108" font-family="Inter" font-size="8" fill="#737373" text-anchor="middle">£5.4m</text>
+              <text x="204" y="108" font-family="Inter" font-size="8" fill="#737373" text-anchor="middle">£6.2m</text>
+              <text x="244" y="108" font-family="Inter" font-size="8" fill="#737373" text-anchor="middle">£7.1m</text>
+              <text x="284" y="108" font-family="Inter" font-size="8" fill="#2D6A4F" text-anchor="middle">£8.2m</text>
+              <text x="324" y="108" font-family="Inter" font-size="8" fill="#2D6A4F" text-anchor="middle">£9.4m</text>
+              <text x="370" y="108" font-family="Inter" font-size="8" fill="#2D6A4F" text-anchor="middle">£10.9m</text>
+              <line x1="16" y1="114" x2="404" y2="114" stroke="#F0F0F0" stroke-width="0.5"/>
+              <!-- Row 3 – EBITDA (highlighted) -->
+              <rect x="16" y="114" width="388" height="20" fill="#EAF3EE" fill-opacity="0.5"/>
+              <text x="30" y="128" font-family="Inter" font-size="8" fill="#2D6A4F" font-weight="600">EBITDA</text>
+              <text x="164" y="128" font-family="Inter" font-size="8" fill="#737373" text-anchor="middle">£2.1m</text>
+              <text x="204" y="128" font-family="Inter" font-size="8" fill="#737373" text-anchor="middle">£2.5m</text>
+              <text x="244" y="128" font-family="Inter" font-size="8" fill="#737373" text-anchor="middle">£3.0m</text>
+              <text x="284" y="128" font-family="Inter" font-size="8" fill="#2D6A4F" font-weight="600" text-anchor="middle">£3.6m</text>
+              <text x="324" y="128" font-family="Inter" font-size="8" fill="#2D6A4F" font-weight="600" text-anchor="middle">£4.2m</text>
+              <text x="370" y="128" font-family="Inter" font-size="8" fill="#2D6A4F" font-weight="600" text-anchor="middle">£4.9m</text>
+              <line x1="16" y1="134" x2="404" y2="134" stroke="#E5E5E5" stroke-width="0.5"/>
+              <!-- Row 4 -->
+              <text x="30" y="148" font-family="Inter" font-size="8" fill="#1A1A1A">EBIT</text>
+              <text x="164" y="148" font-family="Inter" font-size="8" fill="#737373" text-anchor="middle">£1.6m</text>
+              <text x="204" y="148" font-family="Inter" font-size="8" fill="#737373" text-anchor="middle">£1.9m</text>
+              <text x="244" y="148" font-family="Inter" font-size="8" fill="#737373" text-anchor="middle">£2.3m</text>
+              <text x="284" y="148" font-family="Inter" font-size="8" fill="#2D6A4F" text-anchor="middle">£2.8m</text>
+              <text x="324" y="148" font-family="Inter" font-size="8" fill="#2D6A4F" text-anchor="middle">£3.2m</text>
+              <text x="370" y="148" font-family="Inter" font-size="8" fill="#2D6A4F" text-anchor="middle">£3.8m</text>
+              <line x1="16" y1="154" x2="404" y2="154" stroke="#F0F0F0" stroke-width="0.5"/>
+              <!-- Row 5 – Net income -->
+              <text x="30" y="168" font-family="Inter" font-size="8" fill="#1A1A1A" font-weight="500">Net Income</text>
+              <text x="164" y="168" font-family="Inter" font-size="8" fill="#737373" text-anchor="middle">£1.1m</text>
+              <text x="204" y="168" font-family="Inter" font-size="8" fill="#737373" text-anchor="middle">£1.3m</text>
+              <text x="244" y="168" font-family="Inter" font-size="8" fill="#737373" text-anchor="middle">£1.6m</text>
+              <text x="284" y="168" font-family="Inter" font-size="8" fill="#2D6A4F" text-anchor="middle">£1.9m</text>
+              <text x="324" y="168" font-family="Inter" font-size="8" fill="#2D6A4F" text-anchor="middle">£2.2m</text>
+              <text x="370" y="168" font-family="Inter" font-size="8" fill="#2D6A4F" text-anchor="middle">£2.6m</text>
+              <!-- Forecast divider -->
+              <line x1="262" y1="54" x2="262" y2="220" stroke="#C2DDD1" stroke-width="1" stroke-dasharray="3,3"/>
+              <rect x="268" y="60" width="40" height="14" rx="3" fill="#EAF3EE" stroke="#C2DDD1" stroke-width="1"/>
+              <text x="288" y="70" font-family="Inter" font-size="6.5" fill="#2D6A4F" text-anchor="middle" font-weight="600">FORECAST →</text>
+            </svg>
           </div>
         </div>
+        <div class="project-body">
+          <div class="project-category">
+            <span class="cat-tag">Excel</span>
+            <span class="cat-tag">Financial Planning</span>
+          </div>
+          <div>
+            <div class="project-title">Three Statement Forecast Model</div>
+            <div class="project-subtitle">Integrated 5-Year Financial Model</div>
+          </div>
+          <p class="project-description">A fully integrated financial model built for a fictional multi-channel outdoor retailer, covering five years of historical results and a five-year forecast across the income statement, balance sheet and cash flow statement.</p>
+          <div class="project-footer">
+            <span class="skill-pill">Excel</span>
+            <span class="skill-pill">Forecasting</span>
+            <span class="skill-pill">Financial Modelling</span>
+            <span class="skill-pill">FP&A</span>
+            <span class="skill-pill">Retail Finance</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PLACEHOLDER -->
+      <div class="project-card-placeholder">
+        <div class="placeholder-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <div class="placeholder-text">More projects coming soon</div>
+        <div class="placeholder-sub">SQL · Python · Financial Modelling</div>
       </div>
 
     </div>
-  </main>
+  </div>
 </div>
 
+<!-- FOOTER -->
+<footer>
+  <div class="container" style="width:100%; display:flex; justify-content:space-between; align-items:center;">
+    <span class="footer-text">© 2026 Nathan Wallis · Sydney, AU</span>
+    <a href="nathan-wallis-cv.html" class="cv-link">
+      View CV
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+    </a>
+  </div>
+</footer>
+
 <script>
-  const hamburger = document.getElementById('hamburger');
-  const drawer = document.getElementById('drawer');
-
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('open');
-    drawer.classList.toggle('open');
+function filterProjects(tag, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.project-card').forEach(card => {
+    if (tag === 'all') {
+      card.style.display = '';
+      return;
+    }
+    const tags = card.dataset.tags || '';
+    card.style.display = tags.toLowerCase().includes(tag.toLowerCase()) ? '' : 'none';
   });
-
-  drawer.querySelectorAll('.nav-item').forEach(item => {
-    item.addEventListener('click', () => {
-      hamburger.classList.remove('open');
-      drawer.classList.remove('open');
-    });
-  });
+  const placeholder = document.querySelector('.project-card-placeholder');
+  if (placeholder) placeholder.style.display = tag === 'all' ? '' : 'none';
+}
 </script>
 </body>
 </html>

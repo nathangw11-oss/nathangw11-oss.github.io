@@ -67,9 +67,6 @@
   /* HERO SCREENSHOT */
   .screenshot-hero { width: 100%; border-radius: 10px; overflow: hidden; margin-bottom: 36px; border: 1px solid var(--border); }
   .screenshot-hero img { width: 100%; display: block; }
-  .screenshot-placeholder { width: 100%; aspect-ratio: 16/9; background: linear-gradient(135deg, var(--green-subtle) 0%, #d0eadb 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
-  .screenshot-placeholder svg { width: 40px; height: 40px; opacity: 0.4; color: var(--text-light); }
-  .screenshot-placeholder span { font-size: 11px; font-family: var(--mono); color: var(--text-light); letter-spacing: 0.04em; }
 
   /* WRITE-UP BODY */
   .writeup { display: flex; flex-direction: column; gap: 0; }
@@ -84,7 +81,6 @@
   /* INLINE SCREENSHOT */
   .screenshot-inline { width: 100%; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); background: var(--green-subtle); }
   .screenshot-inline img { width: 100%; display: block; }
-  .screenshot-inline .screenshot-placeholder { aspect-ratio: 16/9; }
   .screenshot-caption { font-size: 11px; color: var(--text-light); font-style: italic; margin-top: 6px; text-align: center; font-family: var(--mono); }
 
   /* KEY POINTS */
@@ -230,12 +226,7 @@
 
     <!-- HERO SCREENSHOT -->
     <div class="screenshot-hero">
-      <!--
-        TO ADD HERO SCREENSHOT replace the placeholder below with:
-        <img src="../images/scenario-modelling.png" alt="Scenario and Sensitivity Modelling Dashboard">
-      -->
-        <img src="images/Scenario_Modelv1.png" alt="Scenario and Sensitivity Modelling Dashboard">
-      </div>
+      <img src="images/Scenario_Modelv1.png" alt="Scenario and Sensitivity Modelling Dashboard">
     </div>
 
     <div class="writeup">
@@ -253,14 +244,10 @@
         <p>Interactive sliders allow users to adjust assumptions across session growth, conversion rate uplift, average transaction value growth and margin impact. As each assumption changes, the forecast model recalculates automatically across the full reporting layer including KPIs, cumulative revenue forecasts, revenue bridge analysis and channel-level uplift reporting.</p>
         <p>This exposes the underlying drivers influencing commercial performance and makes scenario testing genuinely accessible for senior stakeholders who want to understand the numbers without needing to open a spreadsheet.</p>
 
-        <!-- INLINE SCREENSHOT -->
         <div class="screenshot-inline">
-          <!--
-            TO ADD SCREENSHOT replace the placeholder below with:
-            <img src="../images/scenario-sliders.png" alt="Scenario modelling sliders">
-          -->
-        <img src="images/Scenario_Modelv2.png" alt="Scenario and Sensitivity Modelling Dashboard">        
+          <img src="images/Scenario_Modelv2.png" alt="Scenario modelling sliders and waterfall chart">
         </div>
+        <div class="screenshot-caption">Replace with a caption describing what this screenshot shows</div>
 
         <p>In the example above, session growth was reduced to -6% while conversion rate, average transaction value and margin growth were all increased. The rest of the visuals recalculated instantly to reflect the new scenario. The waterfall chart highlights the net impact to the forecast as each assumption shifts, making it straightforward to see which drivers are helping performance and which are holding it back.</p>
       </div>

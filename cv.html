@@ -50,7 +50,7 @@ body {
 
 /* ─── HEADER ─── */
 header {
-  padding: 80px 0 64px;
+  padding: 56px 0 48px;
   border-bottom: 1px solid var(--border);
 }
 
@@ -59,7 +59,7 @@ header {
   justify-content: space-between;
   align-items: flex-start;
   gap: 40px;
-  margin-bottom: 40px;
+  margin-bottom: 28px;
 }
 
 .header-left h1 {
@@ -154,9 +154,58 @@ header {
   font-weight: 400;
 }
 
+/* ─── CTA BANNER ─── */
+.cta-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: var(--green-light);
+  border: 1px solid var(--green-border);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin-top: 28px;
+}
+
+.cta-text {
+  font-size: 13.5px;
+  color: var(--green);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.cta-text strong {
+  font-weight: 600;
+}
+
+.cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--white);
+  background: var(--green);
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.15s;
+}
+
+.cta-link:hover {
+  background: var(--green-mid);
+}
+
+.cta-link svg {
+  width: 13px;
+  height: 13px;
+}
+
 /* ─── SECTION WRAPPER ─── */
 section {
-  padding: 60px 0;
+  padding: 40px 0;
   border-bottom: 1px solid var(--border-light);
 }
 
@@ -168,7 +217,7 @@ section:last-of-type { border-bottom: none; }
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin-bottom: 28px;
+  margin-bottom: 20px;
 }
 
 /* ─── ACHIEVEMENTS ─── */
@@ -629,7 +678,7 @@ footer {
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
         Sydney, Australia
       </a>
-      <a href="https://www.linkedin.com/in/nathan-wallis-991129125/" target="_blank" class="meta-pill">
+      <a href="https://linkedin.com/in/nathangwallis" target="_blank" class="meta-pill">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
         LinkedIn
       </a>
@@ -646,6 +695,7 @@ footer {
   <section>
     <div class="section-title">Experience</div>
 
+
     <div class="experience-item">
       <div class="exp-left">
         <div class="exp-company">International Travel &amp; Relocation</div>
@@ -653,7 +703,8 @@ footer {
       </div>
       <div class="exp-right">
         <ul class="exp-bullets">
-          <li>Embarked on international travel across Asia while relocating to Sydney, Australia. Now available for <strong>immediate full-time employment</strong>.</li>
+          <li>Embarked on international travel across Asia while relocating to Sydney, Australia.</strong>.</li>
+          <li>Now available for <strong>immediate full-time employment</strong>.</li>
         </ul>
       </div>
     </div>
@@ -662,8 +713,7 @@ footer {
       <div class="exp-left">
         <div class="exp-company">Manchester Airports Group — CAVU</div>
         <div class="exp-period">Aug 2022 – Dec 2025</div>
-        <div class="exp-context">Digital travel services division of Manchester Airports Group, the UK’s largest airport group. c.£1.3bn annual revenue.
-        </div>
+        <div class="exp-context">Digital travel services division. c.£1.3bn annual revenue. UK's largest airport group.</div>
       </div>
       <div class="exp-right">
         <div class="exp-role">Commercial Analyst &nbsp;Jun 2023 – Dec 2025</div>
@@ -712,6 +762,15 @@ footer {
       </div>
     </div>
   </section>
+
+  <!-- CTA BANNER -->
+  <div class="cta-banner">
+    <p class="cta-text">Explore examples of my work including <strong>Power BI dashboards</strong>, <strong>scenario models</strong> and <strong>financial forecasting</strong>.</p>
+    <a href="nathan-wallis-portfolio.html" class="cta-link">
+      View Portfolio
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+    </a>
+  </div>
 
   <!-- SKILLS -->
   <section>
@@ -874,7 +933,7 @@ footer {
           <div class="contact-value">+61 433 254 944</div>
         </div>
       </a>
-      <a href="https://www.linkedin.com/in/nathan-wallis-991129125/" target="_blank" class="contact-item">
+      <a href="https://linkedin.com/in/nathangwallis" target="_blank" class="contact-item">
         <div class="contact-icon-wrap">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
         </div>

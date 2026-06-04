@@ -3,485 +3,925 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nathan Wallis — CV</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>Nathan Wallis — Commercial Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-:root{
-  --g-dark:#1a5c3a;
-  --g-mid:#2d8653;
-  --g-bright:#3aaa6b;
-  --g-light:#a8d5bc;
-  --g-subtle:#eef7f2;
-  --g-border:#cfe8d8;
-  --ink:#111c16;
-  --ink-mid:#3d5c47;
-  --ink-muted:#6b8f76;
-  --ink-light:#9ab8a4;
-  --page:#ffffff;
-  --bg:#f7fbf9;
-  --border:#e2ede7;
-  --mono:'DM Mono',monospace;
-  --sans:'DM Sans',sans-serif;
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --white: #ffffff;
+  --gray-50: #F9F9F9;
+  --gray-100: #F2F2F2;
+  --gray-200: #E5E5E5;
+  --gray-300: #D1D1D1;
+  --gray-400: #ABABAB;
+  --gray-500: #737373;
+  --gray-700: #3D3D3D;
+  --gray-900: #1A1A1A;
+  --green: #2D6A4F;
+  --green-mid: #3A8566;
+  --green-light: #EAF3EE;
+  --green-border: #C2DDD1;
+  --text-primary: #1A1A1A;
+  --text-secondary: #737373;
+  --text-muted: #ABABAB;
+  --border: #E5E5E5;
+  --border-light: #F0F0F0;
+  --radius: 12px;
+  --radius-sm: 8px;
 }
-html,body{font-family:var(--sans);background:var(--page);color:var(--ink);font-size:14px;-webkit-font-smoothing:antialiased;}
 
-/* ── PAGE WRAPPER ── */
-.page{max-width:820px;margin:0 auto;padding:0 0 80px;}
+html { scroll-behavior: smooth; }
 
-/* ── BANNER ── */
-.banner{background:#0f2d1e;padding:44px 52px 40px;}
-.banner-name{font-size:34px;font-weight:600;color:#fff;letter-spacing:-0.04em;line-height:1;}
-.banner-title{font-size:13px;color:var(--g-light);font-weight:400;margin-top:8px;letter-spacing:0.03em;}
-.banner-divider{height:1px;background:rgba(255,255,255,0.1);margin:20px 0;}
-.banner-meta{display:flex;align-items:center;flex-wrap:wrap;gap:20px;}
-.banner-contact{display:flex;align-items:center;flex-wrap:wrap;gap:16px;}
-.b-item{display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,0.6);}
-.b-item a{color:var(--g-light);text-decoration:none;}
-.b-item a:hover{color:#fff;}
-.b-icon{width:14px;height:14px;flex-shrink:0;stroke:rgba(255,255,255,0.4);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
-.banner-links{display:flex;align-items:center;gap:10px;margin-left:auto;}
-.b-link{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:500;color:var(--g-dark);background:var(--g-bright);padding:6px 14px;border-radius:20px;text-decoration:none;transition:opacity .15s;}
-.b-link:hover{opacity:.88;}
-.b-link.outline{background:transparent;color:var(--g-light);border:1px solid rgba(255,255,255,0.2);}
-.b-link.outline:hover{background:rgba(255,255,255,0.06);}
-.avail{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:600;color:var(--g-bright);background:rgba(58,170,107,0.12);border:1px solid rgba(58,170,107,0.3);padding:4px 10px;border-radius:20px;letter-spacing:.05em;text-transform:uppercase;}
-.pulse{width:5px;height:5px;border-radius:50%;background:var(--g-bright);animation:pulse 2s infinite;}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.8);}}
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--white);
+  color: var(--text-primary);
+  line-height: 1.6;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+}
 
-/* ── CONTENT ── */
-.content{padding:0 52px;}
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
 
-/* ── SECTION ── */
-.section{padding:40px 0;border-bottom:1px solid var(--border);}
-.section:last-child{border-bottom:none;}
-.section-title{font-size:11px;font-weight:600;color:var(--ink-light);letter-spacing:.1em;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
-.section-title::after{content:'';flex:1;height:1px;background:var(--border);}
+/* ─── HEADER ─── */
+header {
+  padding: 80px 0 64px;
+  border-bottom: 1px solid var(--border);
+}
 
-/* ── SUMMARY ── */
-.summary-text{font-size:13.5px;color:var(--ink-mid);line-height:1.85;margin-bottom:20px;}
-.ach-label{font-size:11px;font-weight:600;color:var(--ink-light);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;}
-.ach-list{display:flex;flex-direction:column;gap:6px;}
-.ach-item{display:flex;align-items:flex-start;gap:10px;padding:9px 13px;background:var(--g-subtle);border-radius:6px;border-left:2px solid var(--g-bright);}
-.ach-text{font-size:12.5px;color:var(--ink);line-height:1.55;}
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  margin-bottom: 40px;
+}
 
-/* ── EXPERIENCE ── */
-.exp-list{display:flex;flex-direction:column;gap:36px;}
-.exp-company-header{margin-bottom:5px;}
-.exp-role{font-size:16px;font-weight:600;color:var(--g-mid);letter-spacing:-0.01em;}
-.exp-role-stack{display:flex;flex-direction:column;gap:2px;margin-bottom:10px;}
-.exp-role-line-sm{font-size:13px;font-weight:400;color:var(--ink);line-height:1.6;}
-.exp-role-line{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:3px;}
-.exp-dates{font-size:12px;color:var(--ink-muted);font-family:var(--mono);font-weight:400;}
-.exp-company{font-size:13px;color:var(--g-mid);font-weight:500;margin-bottom:8px;}
-.exp-context{font-size:12px;color:var(--ink-muted);line-height:1.65;font-style:italic;margin-bottom:12px;padding-left:12px;border-left:2px solid var(--g-border);}
-.exp-bullets{display:flex;flex-direction:column;gap:7px;}
-.exp-bullet{display:flex;align-items:flex-start;gap:9px;font-size:13px;color:var(--ink-mid);line-height:1.65;}
-.exp-bullet::before{content:'•';color:var(--g-bright);font-size:15px;line-height:1.45;flex-shrink:0;}
+.header-left h1 {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 52px;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.0;
+  color: var(--gray-900);
+  margin-bottom: 10px;
+}
 
-/* ── EDUCATION ── */
-.edu-list{display:flex;flex-direction:column;gap:18px;}
-.edu-item{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding-bottom:18px;border-bottom:1px solid var(--border);}
-.edu-item:last-child{border-bottom:none;padding-bottom:0;}
-.edu-qual{font-size:14px;font-weight:600;color:var(--ink);}
-.edu-inst{font-size:12.5px;color:var(--ink-muted);margin-top:2px;}
-.edu-dates{font-size:11.5px;color:var(--ink-light);font-family:var(--mono);margin-top:3px;}
-.edu-grade{font-size:11px;font-weight:600;color:var(--g-dark);background:var(--g-subtle);padding:4px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0;border:1px solid var(--g-border);}
+.header-left h1 strong {
+  font-weight: 600;
+}
 
-/* ── SKILLS ── */
-.skills-group{margin-bottom:18px;}
-.skills-group:last-child{margin-bottom:0;}
-.skills-group-label{font-size:11px;font-weight:500;color:var(--ink-muted);margin-bottom:8px;}
-.chips{display:flex;flex-wrap:wrap;gap:6px;}
-.chip{font-size:11.5px;font-weight:500;color:var(--g-dark);background:var(--g-subtle);border:1px solid var(--g-border);padding:4px 12px;border-radius:20px;}
+.header-role {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  letter-spacing: 0.01em;
+}
 
-/* ── PORTFOLIO BANNER ── */
-.portfolio-banner{background:var(--g-dark);border-radius:10px;padding:24px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;margin:40px 0 0;text-decoration:none;transition:opacity .15s;}
-.portfolio-banner:hover{opacity:.92;}
-.pb-label{font-size:10px;font-weight:600;color:var(--g-light);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;}
-.pb-url{font-family:var(--mono);font-size:14px;color:#fff;font-weight:500;}
-.pb-desc{font-size:11.5px;color:rgba(255,255,255,.45);margin-top:3px;}
-.pb-arrow{width:38px;height:38px;background:var(--g-bright);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px;flex-shrink:0;}
+.available-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--green-light);
+  border: 1px solid var(--green-border);
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 7px 14px;
+  border-radius: 100px;
+  white-space: nowrap;
+  margin-top: 4px;
+}
 
-/* ── TESTIMONIAL ── */
-.testimonial{background:var(--g-subtle);border:1px solid var(--g-border);border-radius:10px;padding:24px 28px;}
-.t-quote{font-size:13px;color:var(--ink-mid);line-height:1.85;font-style:italic;position:relative;padding-left:20px;}
-.t-quote::before{content:'\201C';position:absolute;left:0;top:-6px;font-size:34px;color:var(--g-bright);line-height:1;font-style:normal;}
-.t-author{display:flex;align-items:center;gap:12px;margin-top:16px;}
-.t-avatar{width:36px;height:36px;border-radius:50%;background:var(--g-bright);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#fff;flex-shrink:0;}
-.t-name{font-size:12.5px;font-weight:600;color:var(--ink);}
-.t-role{font-size:11.5px;color:var(--ink-muted);margin-top:1px;}
+.available-badge::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  background: var(--green);
+  border-radius: 50%;
+  animation: pulse 2.5s infinite;
+  flex-shrink: 0;
+}
 
-/* ── HOBBIES ── */
-.hobby-chips{display:flex;flex-wrap:wrap;gap:6px;}
-.hobby-chip{font-size:12px;color:var(--ink-muted);background:var(--bg);border:1px solid var(--border);padding:5px 13px;border-radius:20px;}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.75); }
+}
 
-/* ── CONTACT SECTION ── */
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
-.contact-details{display:flex;flex-direction:column;gap:12px;}
-.c-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-muted);}
-.c-item a{color:var(--g-mid);text-decoration:none;font-weight:500;}
-.c-item a:hover{color:var(--g-dark);}
-.c-icon{width:16px;height:16px;flex-shrink:0;stroke:var(--ink-light);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.header-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 32px;
+}
 
-/* contact form */
-.contact-form{display:flex;flex-direction:column;gap:12px;}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.form-field{display:flex;flex-direction:column;gap:4px;}
-.form-field label{font-size:11px;font-weight:500;color:var(--ink-muted);letter-spacing:.04em;}
-.form-field input,.form-field textarea{font-family:var(--sans);font-size:13px;color:var(--ink);background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:9px 12px;width:100%;transition:border-color .15s;outline:none;resize:none;}
-.form-field input:focus,.form-field textarea:focus{border-color:var(--g-bright);}
-.form-field textarea{min-height:90px;}
-.form-submit{align-self:flex-start;background:var(--g-dark);color:#fff;font-family:var(--sans);font-size:13px;font-weight:500;border:none;border-radius:6px;padding:10px 22px;cursor:pointer;transition:background .15s;}
-.form-submit:hover{background:var(--g-mid);}
+.meta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--gray-50);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: all 0.15s;
+}
 
-/* ── SCROLL ANIMATIONS ── */
-.fade-in{opacity:0;transform:translateY(22px);transition:opacity 0.55s ease,transform 0.55s ease;}
-.fade-in.visible{opacity:1;transform:translateY(0);}
-.fade-in:nth-child(2){transition-delay:0.08s;}
-.fade-in:nth-child(3){transition-delay:0.16s;}
-.fade-in:nth-child(4){transition-delay:0.24s;}
+.meta-pill:hover {
+  border-color: var(--green-border);
+  color: var(--green);
+  background: var(--green-light);
+}
 
-/* ── MOBILE ── */
-@media(max-width:640px){
-  .banner{padding:32px 24px 28px;}
-  .banner-name{font-size:26px;}
-  .banner-links{margin-left:0;margin-top:4px;}
-  .banner-meta{gap:12px;}
-  .content{padding:0 24px;}
-  .section{padding:30px 0;}
-  .contact-grid{grid-template-columns:1fr;}
-  .form-row{grid-template-columns:1fr;}
-  .edu-item{flex-direction:column;gap:8px;}
-  .portfolio-banner{flex-direction:column;align-items:flex-start;}
+.meta-pill svg {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+}
+
+.header-summary {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--text-secondary);
+  max-width: 680px;
+  font-weight: 400;
+}
+
+/* ─── SECTION WRAPPER ─── */
+section {
+  padding: 60px 0;
+  border-bottom: 1px solid var(--border-light);
+}
+
+section:last-of-type { border-bottom: none; }
+
+.section-title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 28px;
+}
+
+/* ─── ACHIEVEMENTS ─── */
+.achievements-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+
+.achievement-card {
+  background: var(--gray-50);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 100px;
+}
+
+.achievement-card .icon {
+  width: 32px;
+  height: 32px;
+  background: var(--green-light);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.achievement-card .icon svg {
+  width: 15px;
+  height: 15px;
+  color: var(--green);
+}
+
+.achievement-card p {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.achievement-card p strong {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* ─── EXPERIENCE ─── */
+.experience-item {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 32px;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.experience-item:first-child { padding-top: 0; }
+.experience-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+.exp-left {
+  padding-top: 2px;
+}
+
+.exp-company {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.exp-period {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.exp-context {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.exp-role {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--green);
+  margin-bottom: 12px;
+}
+
+.exp-role-secondary {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--gray-400);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.exp-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.exp-bullets li {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  padding-left: 14px;
+  position: relative;
+}
+
+.exp-bullets li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 4px;
+  height: 4px;
+  background: var(--gray-300);
+  border-radius: 50%;
+}
+
+.exp-bullets li strong {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* ─── SKILLS ─── */
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.skill-group {
+  background: var(--gray-50);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+}
+
+.skill-group-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.skill-tag {
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  background: var(--white);
+  border: 1px solid var(--border);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-weight: 400;
+  transition: all 0.15s;
+}
+
+.skill-tag:hover {
+  border-color: var(--green-border);
+  color: var(--green);
+  background: var(--green-light);
+}
+
+/* ─── EDUCATION ─── */
+.education-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.edu-card {
+  background: var(--gray-50);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 120px;
+}
+
+.edu-qual {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.4;
+  margin-bottom: 5px;
+}
+
+.edu-school {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.edu-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+
+.edu-year {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.edu-grade {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--green);
+  background: var(--green-light);
+  padding: 3px 10px;
+  border-radius: 100px;
+  border: 1px solid var(--green-border);
+}
+
+/* ─── TESTIMONIAL ─── */
+.testimonial {
+  background: var(--gray-50);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+}
+
+.testimonial blockquote {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  font-style: italic;
+  margin-bottom: 22px;
+}
+
+.testimonial-attr {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.testimonial-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--green-light);
+  border: 1px solid var(--green-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--green);
+  flex-shrink: 0;
+}
+
+.testimonial-name {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.testimonial-role {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ─── HOBBIES ─── */
+.hobbies-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+}
+
+.hobby-card {
+  background: var(--gray-50);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.hobby-card .hobby-icon {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.hobby-card span {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* ─── CONTACT ─── */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.contact-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  background: var(--gray-50);
+  border: 1px solid var(--border);
+  padding: 18px 18px;
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: all 0.15s;
+  min-height: 88px;
+}
+
+.contact-item:hover {
+  border-color: var(--green-border);
+  background: var(--green-light);
+}
+
+.contact-item:hover .contact-icon-wrap {
+  background: var(--green-border);
+}
+
+.contact-icon-wrap {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background: var(--gray-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+
+.contact-icon-wrap svg {
+  width: 14px;
+  height: 14px;
+  color: var(--gray-700);
+}
+
+.contact-item:hover .contact-icon-wrap svg {
+  color: var(--green);
+}
+
+.contact-label {
+  font-size: 10.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 1px;
+}
+
+.contact-value {
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  font-weight: 400;
+  word-break: break-all;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  padding: 36px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border);
+}
+
+.footer-text {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.portfolio-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--green);
+  text-decoration: none;
+  padding: 8px 18px;
+  border: 1px solid var(--green-border);
+  border-radius: 8px;
+  background: var(--green-light);
+  transition: all 0.15s;
+}
+
+.portfolio-link:hover {
+  background: var(--green);
+  color: white;
+  border-color: var(--green);
+}
+
+.portfolio-link svg {
+  width: 13px;
+  height: 13px;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 720px) {
+  .container { padding: 0 20px; }
+  header { padding: 48px 0 40px; }
+  .header-inner { flex-direction: column; gap: 20px; }
+  .header-left h1 { font-size: 38px; }
+  .achievements-grid { grid-template-columns: 1fr; }
+  .experience-item { grid-template-columns: 1fr; gap: 8px; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .education-grid { grid-template-columns: 1fr; }
+  .hobbies-grid { grid-template-columns: repeat(3, 1fr); }
+  .contact-grid { grid-template-columns: 1fr 1fr; }
+  footer { flex-direction: column; gap: 16px; }
 }
 </style>
 </head>
 <body>
-<div class="page">
+<div class="container">
 
-  <!-- BANNER -->
-  <header class="banner">
-    <div class="banner-name">Nathan Wallis</div>
-    <div class="banner-title">Commercial Analyst &nbsp;|&nbsp; Power BI &nbsp;|&nbsp; Excel &nbsp;|&nbsp; SQL &nbsp;|&nbsp; Forecasting &amp; Modelling</div>
-    <div class="banner-divider"></div>
-    <div class="banner-meta">
-      <div class="banner-contact">
-        <div class="b-item">
-          <svg class="b-icon" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
-          <a href="mailto:nathangw.11@gmail.com">nathangw.11@gmail.com</a>
-        </div>
-        <div class="b-item">
-          <svg class="b-icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.9 12 19.79 19.79 0 0 1 1.87 3.35 2 2 0 0 1 3.85 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          +61 433 254 944
-        </div>
-        <div class="b-item">
-          <svg class="b-icon" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          Sydney, Australia
-        </div>
-        <div class="avail"><div class="pulse"></div> Available Now</div>
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <div class="header-left">
+        <h1><strong>Nathan</strong> Wallis</h1>
+        <div class="header-role">Commercial Analyst &nbsp;·&nbsp; Power BI &nbsp;·&nbsp; SQL &nbsp;·&nbsp; Forecasting</div>
       </div>
-      <div class="banner-links">
-        <a href="https://www.linkedin.com/in/nathan-wallis-991129125/" target="_blank" class="b-link outline">LinkedIn</a>
-        <a href="/portfolio" class="b-link">Portfolio &rarr;</a>
-      </div>
+      <div class="available-badge">Available Now — June 2026</div>
     </div>
+
+    <div class="header-meta">
+      <a href="mailto:nathangw.11@gmail.com" class="meta-pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        nathangw.11@gmail.com
+      </a>
+      <a href="tel:+61433254944" class="meta-pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.4 3.14 2 2 0 012 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        +61 433 254 944
+      </a>
+      <a class="meta-pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        Sydney, Australia
+      </a>
+      <a href="https://linkedin.com/in/nathangwallis" target="_blank" class="meta-pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://nathan-wallis.com/portfolio" target="_blank" class="meta-pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        Portfolio
+      </a>
+    </div>
+
+    <p class="header-summary">Results-driven Commercial Analyst with 3+ years turning complex data into commercial decisions across retail, airports, and e-commerce. Proven track record building forecasting models, Power BI reporting suites and SQL-driven analysis that directly influence business planning, pricing and growth strategy.</p>
   </header>
 
-  <div class="content">
-
-    <!-- SUMMARY -->
-    <div class="section fade-in" id="summary">
-      <div class="section-title">Summary</div>
-      <div class="summary-text">
-        Results-driven Commercial Analyst with 3+ years of experience turning complex data into commercial decisions across retail, airports, and e-commerce environments. Proven track record of building forecasting models, Power BI reporting suites and SQL-driven analysis that directly influence business planning, pricing and growth strategy. A collaborative partner to finance, trading, and marketing teams — now based in Sydney and available for immediate full-time employment.
+  <!-- ACHIEVEMENTS -->
+  <section>
+    <div class="section-title">Key Achievements</div>
+    <div class="achievements-grid">
+      <div class="achievement-card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <p>Owned end-to-end reporting and insight across a <strong>c.£70m EBITDA business area</strong> at Manchester Airports Group.</p>
       </div>
-      <div class="ach-label">Key Achievements</div>
-      <div class="ach-list">
-        <div class="ach-item"><div class="ach-text">Owned end-to-end reporting and insight across a c.£70m EBITDA business area at Manchester Airports Group.</div></div>
-        <div class="ach-item"><div class="ach-text">40% reduction in manual reporting effort through Power BI automation, with dashboards ranking top 10 most-viewed business-wide.</div></div>
-        <div class="ach-item"><div class="ach-text">Built a market-level ROI framework across a multi-million-pound Google Ads portfolio, establishing profitability-adjusted bidding guardrails to protect return.</div></div>
-        <div class="ach-item"><div class="ach-text">Led investment appraisal for a potential acquisition, with multi-year financial modelling directly informing the executive decision not to proceed and avoiding a poor-return investment.</div></div>
-        <div class="ach-item"><div class="ach-text">Identified 5 high-potential airport product opportunities across AMER — 3 converted into live markets following business development activity.</div></div>
+      <div class="achievement-card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div>
+        <p><strong>40% reduction</strong> in manual reporting effort through Power BI automation — dashboards ranked top 10 most-viewed business-wide.</p>
+      </div>
+      <div class="achievement-card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+        <p>Led <strong>investment appraisal for a potential acquisition</strong> — multi-year financial modelling directly informed the executive decision not to proceed.</p>
+      </div>
+      <div class="achievement-card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg></div>
+        <p>Built a <strong>market-level ROI framework</strong> across a multi-million-pound Google Ads portfolio with profitability-adjusted bidding guardrails.</p>
+      </div>
+      <div class="achievement-card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <p>Identified <strong>5 high-potential opportunities</strong> across AMER — 3 converted into live markets following business development activity.</p>
+      </div>
+      <div class="achievement-card">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <p>Automated a manual competitor pricing process — <strong>saving ~8 hours per week</strong> and improving trading team pricing visibility.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section>
+    <div class="section-title">Experience</div>
+
+    <div class="experience-item">
+      <div class="exp-left">
+        <div class="exp-company">Manchester Airports Group — CAVU</div>
+        <div class="exp-period">Aug 2022 – Dec 2025</div>
+        <div class="exp-context">Digital travel services division. c.£1.3bn annual revenue. UK's largest airport group.</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-role">Commercial Analyst &nbsp;Jun 2023 – Dec 2025</div>
+        <div class="exp-role-secondary">E-Commerce Trading Executive &nbsp;Aug 2022 – May 2023</div>
+        <ul class="exp-bullets">
+          <li>Owned weekly commercial insight reporting and month-end performance analysis supporting pricing, KPI tracking, and forecasting within a <strong>c.£70m EBITDA business area</strong>.</li>
+          <li>Built forecasting and scenario models using Excel and SQL (BigQuery, Databricks, Redshift) to support budgeting, long-term planning and commercial decision-making.</li>
+          <li>Developed Power BI dashboards that <strong>reduced manual reporting effort by 40%</strong>, consistently ranking in the top 10 most-viewed business-wide.</li>
+          <li>Led investment appraisal for a potential off-site car park acquisition — multi-year revenue projections directly informed the executive decision not to proceed.</li>
+          <li>Built a market-level ROI framework across a <strong>multi-million-pound Google Ads portfolio</strong>, establishing profitability-adjusted bidding guardrails.</li>
+          <li>Led market analysis across AMER — 5 opportunities identified, <strong>3 converted into new markets</strong>.</li>
+          <li>Analysis contributing to <strong>12% uplift in conversion rate</strong> and 7% revenue increase.</li>
+          <li>Automated competitor pricing process via Power Automate, <strong>saving ~8 hours per week</strong>.</li>
+        </ul>
       </div>
     </div>
 
-    <!-- EMPLOYMENT HISTORY -->
-    <div class="section fade-in" id="experience">
-      <div class="section-title">Employment History</div>
-      <div class="exp-list">
-
-        <!-- TRAVEL & RELOCATION -->
-        <div class="exp-item fade-in">
-          <div class="exp-company-header">
-            <span class="exp-role">International Travel &amp; Relocation</span>
-          </div>
-          <div class="exp-role-stack">
-            <div class="exp-role-line-sm"><span class="exp-dates">Dec 2025 &rarr; May 2026</span></div>
-          </div>
-          <div class="exp-bullets">
-            <div class="exp-bullet">Embarked on international travel across Asia while relocating to Sydney, Australia.</div>
-            <div class="exp-bullet">Available for immediate full-time employment from June 2026.</div>
-          </div>
-        </div>
-
-        <!-- CAVU -->
-        <div class="exp-item fade-in">
-          <div class="exp-company-header">
-            <span class="exp-role">Manchester Airports Group &mdash; CAVU</span>
-          </div>
-          <div class="exp-role-stack">
-            <div class="exp-role-line-sm">Commercial Analyst &nbsp;<span class="exp-dates">Jun 2023 &rarr; Dec 2025</span></div>
-            <div class="exp-role-line-sm">E-Commerce Trading Executive &nbsp;<span class="exp-dates">Aug 2022 &rarr; May 2023</span></div>
-          </div>
-          <div class="exp-context">Digital travel services division of Manchester Airports Group, the UK's largest airport group, operating across global airport and e-commerce markets with c.£1.3bn annual revenue.</div>
-          <div class="exp-bullets">
-            <div class="exp-bullet">Owned weekly commercial insight reporting and month-end performance analysis supporting pricing, KPI tracking, and forecasting within a c.£70m EBITDA business area.</div>
-            <div class="exp-bullet">Built forecasting and scenario models using Excel and SQL (BigQuery, Databricks, Redshift) to support budgeting, long-term planning and commercial decision-making.</div>
-            <div class="exp-bullet">Developed Power BI dashboards and automated reporting suites that reduced manual reporting effort by 40%, with reports consistently ranking in the top 10 most-viewed business-wide.</div>
-            <div class="exp-bullet">Led investment appraisal for a potential off-site car park acquisition, building multi-year revenue projections against acquisition cost and commission structures; analysis directly informed the executive decision not to proceed.</div>
-            <div class="exp-bullet">Built a market-level ROI framework across a multi-million-pound Google Ads portfolio, establishing profitability-adjusted bidding guardrails to prioritise high-margin markets and protect overall return.</div>
-            <div class="exp-bullet">Led market analysis across AMER region, identifying 5 high-potential market opportunities; 3 were converted into new markets following business development activity.</div>
-            <div class="exp-bullet">Analysed trading and promotional KPIs to identify on-site optimisation opportunities, with recommendations contributing to a 12% uplift in conversion rate and 7% revenue increase.</div>
-            <div class="exp-bullet">Automated a manual competitor pricing process using Power Automate, delivering structured weekly reporting that saved approximately 8 hours per week and improved pricing visibility for the trading team.</div>
-          </div>
-        </div>
-
-        <!-- FRAGRANCE SHOP -->
-        <div class="exp-item fade-in">
-          <div class="exp-company-header">
-            <span class="exp-role">The Fragrance Shop</span>
-          </div>
-          <div class="exp-role-stack">
-            <div class="exp-role-line-sm">E-Commerce Trading Executive &nbsp;<span class="exp-dates">May 2021 &rarr; Aug 2022</span></div>
-          </div>
-          <div class="exp-context">The UK's largest independent fragrance retailer, operating 200+ stores alongside a national e-commerce platform with annual turnover exceeding £150m.</div>
-          <div class="exp-bullets">
-            <div class="exp-bullet">Managed trading performance across 2,500+ SKUs spanning B2C, B2B and marketplace channels, using pricing, promotional and competitor analysis to drive revenue, conversion and margin decisions.</div>
-            <div class="exp-bullet">Partnered with buying, merchandising and marketing teams to deliver insight-led recommendations across pricing, promotions and product strategy.</div>
-          </div>
-        </div>
-
-        <!-- ATLANTIC TIMBER -->
-        <div class="exp-item fade-in">
-          <div class="exp-company-header">
-            <span class="exp-role">Atlantic Timber</span>
-          </div>
-          <div class="exp-role-stack">
-            <div class="exp-role-line-sm">E-Commerce Executive &nbsp;<span class="exp-dates">Nov 2018 &rarr; Apr 2021</span></div>
-          </div>
-          <div class="exp-context">An independent UK timber merchant selling products to trade and consumer markets through a physical store and expanding e-commerce sales channels.</div>
-          <div class="exp-bullets">
-            <div class="exp-bullet">Transformed a brick-and-mortar business into a multi-channel retailer across 3 new online revenue streams, generating approximately £480k in first-year marketplace revenue via Amazon and eBay.</div>
-            <div class="exp-bullet">Developed pricing and profitability models accounting for delivery, packaging and marketplace fees to maintain margin performance across new channels.</div>
-          </div>
-        </div>
-
+    <div class="experience-item">
+      <div class="exp-left">
+        <div class="exp-company">The Fragrance Shop</div>
+        <div class="exp-period">May 2021 – Aug 2022</div>
+        <div class="exp-context">UK's largest independent fragrance retailer. 200+ stores. £150m+ turnover.</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-role">E-Commerce Trading Executive</div>
+        <ul class="exp-bullets">
+          <li>Managed trading performance across <strong>2,500+ SKUs</strong> spanning B2C, B2B and marketplace channels.</li>
+          <li>Used pricing, promotional and competitor analysis to drive revenue, conversion and margin decisions.</li>
+          <li>Partnered with buying, merchandising and marketing to deliver insight-led recommendations across pricing, promotions and product strategy.</li>
+        </ul>
       </div>
     </div>
 
-    <!-- EDUCATION -->
-    <div class="section fade-in" id="education">
-      <div class="section-title">Education</div>
-      <div class="edu-list">
-        <div class="edu-item">
-          <div>
-            <div class="edu-qual">Level 4 Data Analyst</div>
-            <div class="edu-inst">Multiverse</div>
-            <div class="edu-dates">2023 &ndash; 2024</div>
-          </div>
-          <div class="edu-grade">Distinction</div>
+    <div class="experience-item">
+      <div class="exp-left">
+        <div class="exp-company">Atlantic Timber</div>
+        <div class="exp-period">Nov 2018 – Apr 2021</div>
+        <div class="exp-context">Independent UK timber merchant expanding into e-commerce.</div>
+      </div>
+      <div class="exp-right">
+        <div class="exp-role">E-Commerce Executive</div>
+        <ul class="exp-bullets">
+          <li>Transformed a brick-and-mortar business into a multi-channel retailer — <strong>generating ~£480k in first-year marketplace revenue</strong> via Amazon and eBay.</li>
+          <li>Developed pricing and profitability models accounting for delivery, packaging and marketplace fees to maintain margin across new channels.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section>
+    <div class="section-title">Skills & Tools</div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-label">Data & Analytics</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Excel</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">Power BI</span>
+          <span class="skill-tag">Power Query</span>
+          <span class="skill-tag">Power Automate</span>
+          <span class="skill-tag">BigQuery</span>
+          <span class="skill-tag">Databricks</span>
+          <span class="skill-tag">Redshift</span>
+          <span class="skill-tag">Google Analytics</span>
+          <span class="skill-tag">Microsoft Fabric</span>
         </div>
-        <div class="edu-item">
-          <div>
-            <div class="edu-qual">BA (Hons) Business &amp; Marketing</div>
-            <div class="edu-inst">Manchester Metropolitan University</div>
-            <div class="edu-dates">2017 &ndash; 2020</div>
-          </div>
-          <div class="edu-grade">1st Class</div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">FP&A & Financial Analysis</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Forecasting</span>
+          <span class="skill-tag">Budgeting</span>
+          <span class="skill-tag">Variance Analysis</span>
+          <span class="skill-tag">P&L Analysis</span>
+          <span class="skill-tag">Scenario Modelling</span>
+          <span class="skill-tag">Investment Appraisal</span>
+          <span class="skill-tag">Payback Modelling</span>
+          <span class="skill-tag">Cost-Benefit</span>
         </div>
-        <div class="edu-item">
-          <div>
-            <div class="edu-qual">Creative Media / Graphic Design</div>
-            <div class="edu-inst">The Manchester College</div>
-            <div class="edu-dates">2014 &ndash; 2016</div>
-          </div>
-          <div class="edu-grade">Distinction</div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Data Engineering</div>
+        <div class="skill-tags">
+          <span class="skill-tag">DAX</span>
+          <span class="skill-tag">ETL Pipelines</span>
+          <span class="skill-tag">Data Modelling</span>
+          <span class="skill-tag">Star Schema</span>
+          <span class="skill-tag">Data Validation</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Commercial & Pricing</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Market Opportunity</span>
+          <span class="skill-tag">ROI Analysis</span>
+          <span class="skill-tag">Pricing Optimisation</span>
+          <span class="skill-tag">Competitor Analysis</span>
+          <span class="skill-tag">Margin Analysis</span>
+          <span class="skill-tag">Profitability Modelling</span>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- SKILLS -->
-    <div class="section fade-in" id="skills">
-      <div class="section-title">Skills</div>
-      <div class="skills-group">
-        <div class="skills-group-label">Data &amp; Analytics Tools</div>
-        <div class="chips">
-          <span class="chip">Excel</span>
-          <span class="chip">SQL</span>
-          <span class="chip">Power BI</span>
-          <span class="chip">Power Query</span>
-          <span class="chip">Power Automate</span>
-          <span class="chip">Google Analytics</span>
-          <span class="chip">BigQuery</span>
-          <span class="chip">Databricks</span>
-          <span class="chip">Redshift</span>
+  <!-- EDUCATION -->
+  <section>
+    <div class="section-title">Education</div>
+    <div class="education-grid">
+      <div class="edu-card">
+        <div>
+          <div class="edu-qual">Level 4 Data Analyst</div>
+          <div class="edu-school">Multiverse</div>
+        </div>
+        <div class="edu-footer">
+          <span class="edu-year">2023 – 2024</span>
+          <span class="edu-grade">Distinction</span>
         </div>
       </div>
-      <div class="skills-group" style="margin-top:16px;">
-        <div class="skills-group-label">Data Engineering &amp; Modelling</div>
-        <div class="chips">
-          <span class="chip">ETL Pipelines</span>
-          <span class="chip">DAX</span>
-          <span class="chip">Data Modelling</span>
-          <span class="chip">Star Schema Design</span>
-          <span class="chip">Data Validation &amp; Reconciliation</span>
-          <span class="chip">Microsoft Fabric</span>
+      <div class="edu-card">
+        <div>
+          <div class="edu-qual">BA (Hons) Business & Marketing</div>
+          <div class="edu-school">Manchester Metropolitan University</div>
+        </div>
+        <div class="edu-footer">
+          <span class="edu-year">2017 – 2020</span>
+          <span class="edu-grade">1st Class</span>
         </div>
       </div>
-      <div class="skills-group" style="margin-top:16px;">
-        <div class="skills-group-label">FP&amp;A &amp; Financial Analysis</div>
-        <div class="chips">
-          <span class="chip">Forecasting</span>
-          <span class="chip">Budgeting</span>
-          <span class="chip">Variance Analysis</span>
-          <span class="chip">P&amp;L Analysis</span>
-          <span class="chip">Scenario &amp; Sensitivity Modelling</span>
-          <span class="chip">Investment Appraisal</span>
-          <span class="chip">Payback Period Modelling</span>
-          <span class="chip">Cost-Benefit Evaluation</span>
+      <div class="edu-card">
+        <div>
+          <div class="edu-qual">Creative Media / Graphic Design</div>
+          <div class="edu-school">The Manchester College</div>
         </div>
-      </div>
-      <div class="skills-group" style="margin-top:16px;">
-        <div class="skills-group-label">Commercial Analysis</div>
-        <div class="chips">
-          <span class="chip">Market Opportunity Analysis</span>
-          <span class="chip">ROI Analysis</span>
-          <span class="chip">Performance Reporting</span>
-          <span class="chip">Commercial Decision Support</span>
-        </div>
-      </div>
-      <div class="skills-group" style="margin-top:16px;">
-        <div class="skills-group-label">Pricing &amp; Category</div>
-        <div class="chips">
-          <span class="chip">Pricing Optimisation</span>
-          <span class="chip">Competitor Analysis</span>
-          <span class="chip">Margin Analysis</span>
-          <span class="chip">Profitability Modelling</span>
+        <div class="edu-footer">
+          <span class="edu-year">2014 – 2016</span>
+          <span class="edu-grade">Distinction</span>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- PORTFOLIO CALLOUT -->
-    <a href="/portfolio" class="portfolio-banner fade-in" id="portfolio">
-      <div>
-        <div class="pb-label">Portfolio</div>
-        <div class="pb-url">nathan-wallis.com/portfolio</div>
-        <div class="pb-desc">Power BI dashboards &nbsp;&middot;&nbsp; Scenario models &nbsp;&middot;&nbsp; Financial forecasting</div>
+  <!-- TESTIMONIAL -->
+  <section>
+    <div class="section-title">Colleague Feedback</div>
+    <div class="testimonial">
+      <blockquote>"Nathan has built out a suite of dashboards in Power BI for distribution that are high quality, easy to understand and the visualisation is impeccable. In particular, the Marketing KPI report will save the e-commerce distribution team hours each week which were spent downloading data from various sources. It also allows the marketing teams to quickly and easily view performance at an airport level and begin to make decisions and action plans."</blockquote>
+      <div class="testimonial-attr">
+        <div class="testimonial-avatar">KB</div>
+        <div>
+          <div class="testimonial-name">Katie Bajwa-Reynolds</div>
+          <div class="testimonial-role">Senior Commercial Analyst Lead — Manchester Airports Group (CAVU)</div>
+        </div>
       </div>
-      <div class="pb-arrow">→</div>
+    </div>
+  </section>
+
+  <!-- HOBBIES -->
+  <section>
+    <div class="section-title">Interests & Hobbies</div>
+    <div class="hobbies-grid">
+      <div class="hobby-card">
+        <span class="hobby-icon">🏍️</span>
+        <span>Motorbikes</span>
+      </div>
+      <div class="hobby-card">
+        <span class="hobby-icon">🏔️</span>
+        <span>Hiking</span>
+      </div>
+      <div class="hobby-card">
+        <span class="hobby-icon">📷</span>
+        <span>Photography</span>
+      </div>
+      <div class="hobby-card">
+        <span class="hobby-icon">🏋️</span>
+        <span>Gym</span>
+      </div>
+      <div class="hobby-card">
+        <span class="hobby-icon">✈️</span>
+        <span>Travelling</span>
+      </div>
+      <div class="hobby-card">
+        <span class="hobby-icon">💻</span>
+        <span>AI Technology</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section>
+    <div class="section-title">Get In Touch</div>
+    <div class="contact-grid">
+      <a href="mailto:nathangw.11@gmail.com" class="contact-item">
+        <div class="contact-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-value">nathangw.11@gmail.com</div>
+        </div>
+      </a>
+      <a href="tel:+61433254944" class="contact-item">
+        <div class="contact-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.4 3.14 2 2 0 012 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        </div>
+        <div>
+          <div class="contact-label">Phone</div>
+          <div class="contact-value">+61 433 254 944</div>
+        </div>
+      </a>
+      <a href="https://linkedin.com/in/nathangwallis" target="_blank" class="contact-item">
+        <div class="contact-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </div>
+        <div>
+          <div class="contact-label">LinkedIn</div>
+          <div class="contact-value">linkedin.com/in/nathangwallis</div>
+        </div>
+      </a>
+      <a href="https://nathan-wallis.com/portfolio" target="_blank" class="contact-item">
+        <div class="contact-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <div>
+          <div class="contact-label">Portfolio</div>
+          <div class="contact-value">nathan-wallis.com</div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-text">© 2026 Nathan Wallis · Sydney, AU</span>
+    <a href="https://nathan-wallis.com/portfolio" target="_blank" class="portfolio-link">
+      View Portfolio
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
     </a>
+  </footer>
 
-    <!-- COLLEAGUE FEEDBACK -->
-    <div class="section fade-in" id="feedback" style="padding-top:40px;">
-      <div class="section-title">Colleague Feedback</div>
-      <div class="testimonial">
-        <div class="t-quote">Nathan has built out a suite of dashboards in Power BI for distribution that are high quality, easy to understand and the visualisation is impeccable. In particular, the Marketing KPI report will save the e-commerce distribution team hours each week which were spent downloading data from various sources and waiting for large files to load and calculate. It also allows the marketing teams to quickly and easily view performance at an airport level and begin to make decisions and action plans.</div>
-        <div class="t-author">
-          <div class="t-avatar">KB</div>
-          <div>
-            <div class="t-name">Katie Bajwa-Reynolds</div>
-            <div class="t-role">Senior Commercial Analyst Lead &mdash; Manchester Airports Group (CAVU)</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- HOBBIES & INTERESTS -->
-    <div class="section fade-in" id="hobbies">
-      <div class="section-title">Hobbies &amp; Interests</div>
-      <div class="hobby-chips">
-        <span class="hobby-chip">🏍️ Motorbikes</span>
-        <span class="hobby-chip">🏔️ Hiking</span>
-        <span class="hobby-chip">📷 Photography</span>
-        <span class="hobby-chip">🏋️ Gym</span>
-        <span class="hobby-chip">✈️ Travelling</span>
-        <span class="hobby-chip">💻 AI Technology</span>
-      </div>
-    </div>
-
-    <!-- CONTACT -->
-    <div class="section fade-in" id="contact">
-      <div class="section-title">Contact</div>
-      <div class="contact-grid">
-        <div class="contact-details">
-          <div class="c-item">
-            <svg class="c-icon" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
-            <a href="mailto:nathangw.11@gmail.com">nathangw.11@gmail.com</a>
-          </div>
-          <div class="c-item">
-            <svg class="c-icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.9 12 19.79 19.79 0 0 1 1.87 3.35 2 2 0 0 1 3.85 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            +61 433 254 944
-          </div>
-          <div class="c-item">
-            <svg class="c-icon" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            Sydney, Australia
-          </div>
-          <div class="c-item">
-            <svg class="c-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-            <a href="https://nathan-wallis.com" target="_blank">nathan-wallis.com</a>
-          </div>
-          <div class="c-item">
-            <svg class="c-icon" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-            <a href="https://www.linkedin.com/in/nathan-wallis-991129125/" target="_blank">linkedin.com/in/nathangwallis</a>
-          </div>
-        </div>
-        <div class="contact-form">
-          <div class="form-row">
-            <div class="form-field">
-              <label>Name</label>
-              <input type="text" placeholder="Your name">
-            </div>
-            <div class="form-field">
-              <label>Email</label>
-              <input type="email" placeholder="your@email.com">
-            </div>
-          </div>
-          <div class="form-field">
-            <label>Message</label>
-            <textarea placeholder="Your message..."></textarea>
-          </div>
-          <button class="form-submit" onclick="handleSubmit(event)">Send Message</button>
-        </div>
-      </div>
-    </div>
-
-  </div>
 </div>
-
-<script>
-function handleSubmit(e) {
-  e.preventDefault();
-  const btn = e.target;
-  btn.textContent = 'Sent!';
-  btn.style.background = 'var(--g-bright)';
-  setTimeout(() => {
-    btn.textContent = 'Send Message';
-    btn.style.background = '';
-  }, 3000);
-}
-
-// Scroll fade-in
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.08 });
-
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-</script>
 </body>
 </html>

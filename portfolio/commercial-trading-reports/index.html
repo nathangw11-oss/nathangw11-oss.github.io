@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nathan Wallis — Portfolio</title>
+<title>E-Commerce Analytics Suite — Nathan Wallis</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -96,17 +96,24 @@ nav {
 
 /* ─── HEADER ─── */
 header {
-  padding: 64px 0 56px;
+  padding: 56px 0 48px;
   border-bottom: 1px solid var(--border);
 }
 
-.header-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 40px;
-  margin-bottom: 16px;
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  margin-bottom: 28px;
+  transition: color 0.15s;
 }
+
+.back-link:hover { color: var(--green); }
+.back-link svg { width: 13px; height: 13px; }
 
 .header-eyebrow {
   font-size: 11px;
@@ -119,255 +126,229 @@ header {
 
 header h1 {
   font-family: 'Inter Tight', sans-serif;
-  font-size: 46px;
+  font-size: 42px;
   font-weight: 300;
   letter-spacing: -0.03em;
-  line-height: 1.05;
+  line-height: 1.1;
   color: var(--gray-900);
-  margin-bottom: 10px;
+  margin-bottom: 16px;
 }
 
 header h1 strong { font-weight: 600; }
 
-.header-summary {
-  font-size: 15.5px;
-  line-height: 1.75;
+.header-subtitle {
+  font-size: 16px;
   color: var(--text-secondary);
-  max-width: 600px;
-  margin-top: 20px;
+  line-height: 1.65;
+  max-width: 680px;
+  margin-bottom: 28px;
 }
 
-.project-count {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--gray-50);
-  border: 1px solid var(--border);
-  color: var(--text-secondary);
-  font-size: 12px;
-  font-weight: 500;
-  padding: 7px 14px;
-  border-radius: 100px;
-  white-space: nowrap;
-  margin-top: 4px;
-}
-
-.project-count strong {
-  color: var(--green);
-  font-weight: 600;
-}
-
-/* ─── FILTER BAR ─── */
-.filter-bar {
-  padding: 24px 0;
-  border-bottom: 1px solid var(--border-light);
+.header-tags {
   display: flex;
-  align-items: center;
-  gap: 8px;
   flex-wrap: wrap;
+  gap: 6px;
 }
 
-.filter-label {
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-muted);
-  margin-right: 4px;
-}
-
-.filter-btn {
-  font-size: 12.5px;
-  font-weight: 500;
+.tag {
+  font-size: 12px;
   color: var(--text-secondary);
   background: var(--gray-50);
   border: 1px solid var(--border);
-  padding: 5px 13px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.15s;
-  font-family: 'Inter', sans-serif;
+  padding: 4px 11px;
+  border-radius: 6px;
+  font-weight: 400;
 }
 
-.filter-btn:hover {
-  border-color: var(--green-border);
+.tag-green {
   color: var(--green);
   background: var(--green-light);
-}
-
-.filter-btn.active {
   border-color: var(--green-border);
-  color: var(--green);
-  background: var(--green-light);
+  font-weight: 500;
 }
 
-/* ─── PROJECTS GRID ─── */
-.projects-section {
-  padding: 48px 0 72px;
-}
-
-.projects-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-
-/* ─── PROJECT CARD ─── */
-.project-card {
-  background: var(--white);
-  border: 1px solid var(--border);
+/* ─── SCREENSHOT ─── */
+.hero-screenshot {
+  margin-top: 0;
   border-radius: var(--radius);
   overflow: hidden;
-  transition: border-color 0.2s, box-shadow 0.2s;
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
-  text-decoration: none;
-  color: inherit;
+  border: 1px solid var(--border);
+  background: var(--gray-50);
 }
 
-.project-card:hover {
-  border-color: var(--green-border);
-  box-shadow: 0 4px 24px rgba(45, 106, 79, 0.07);
+.screenshot-img {
+  width: 100%;
+  display: block;
 }
 
-.project-hero {
+.screenshot-placeholder {
   width: 100%;
   aspect-ratio: 16 / 9;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   background: var(--gray-50);
-  position: relative;
+}
+
+.screenshot-placeholder svg {
+  width: 28px;
+  height: 28px;
+  opacity: 0.4;
+  color: var(--text-muted);
+}
+
+.screenshot-placeholder p {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.screenshot-caption {
+  padding: 12px 16px;
+  font-size: 12px;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+  background: var(--white);
+}
+
+/* ─── CONTENT SECTIONS ─── */
+.content-section {
+  padding: 48px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.content-section:last-of-type {
+  border-bottom: none;
+}
+
+.section-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.prose {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  max-width: 720px;
+}
+
+.prose p + p { margin-top: 16px; }
+
+/* ─── REPORT ITEMS ─── */
+.reports-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.report-item {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.report-item:first-child { padding-top: 0; }
+.report-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+.report-item-header {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+
+.report-number {
+  font-size: 11px;
+  font-weight: 600;
+  font-family: 'Inter Tight', sans-serif;
+  color: var(--green);
+  letter-spacing: 0.08em;
   flex-shrink: 0;
 }
 
-.project-hero img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.35s ease;
-}
-
-.project-card:hover .project-hero img {
-  transform: scale(1.03);
-}
-
-/* Card body */
-.project-body {
-  padding: 22px 24px 24px;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  gap: 10px;
-}
-
-.project-category {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex-wrap: wrap;
-}
-
-.cat-tag {
-  font-size: 10.5px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.09em;
-  color: var(--green);
-  background: var(--green-light);
-  border: 1px solid var(--green-border);
-  padding: 3px 9px;
-  border-radius: 6px;
-}
-
-.project-title {
+.report-title {
   font-family: 'Inter Tight', sans-serif;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
   color: var(--text-primary);
   letter-spacing: -0.02em;
   line-height: 1.3;
 }
 
-.project-subtitle {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-muted);
-  letter-spacing: 0.01em;
-  line-height: 1.4;
-}
-
-.project-description {
-  font-size: 13.5px;
-  color: var(--text-secondary);
-  line-height: 1.7;
-  flex: 1;
-}
-
-.project-footer {
+/* ─── TAGS FOOTER ─── */
+.tags-footer {
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
-  padding-top: 12px;
-  border-top: 1px solid var(--border-light);
-  margin-top: 4px;
+  gap: 6px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  margin-top: 8px;
 }
 
-.skill-pill {
-  font-size: 12px;
-  color: var(--text-secondary);
-  background: var(--gray-50);
-  border: 1px solid var(--border);
-  padding: 3px 10px;
-  border-radius: 6px;
-  font-weight: 400;
-}
-
-/* ─── COMING SOON CARD ─── */
-.project-card-placeholder {
-  background: var(--gray-50);
-  border: 1px dashed var(--gray-300);
-  border-radius: var(--radius);
+/* ─── PROJECT NAV ─── */
+.project-nav {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
-  min-height: 300px;
-  padding: 32px;
-  text-align: center;
+  padding: 32px 0;
+  border-top: 1px solid var(--border);
+  gap: 16px;
 }
 
-.placeholder-icon {
-  width: 40px;
-  height: 40px;
-  background: var(--gray-200);
-  border-radius: 10px;
-  display: flex;
+.project-nav-link {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-}
-
-.placeholder-icon svg {
-  width: 18px;
-  height: 18px;
-  color: var(--gray-400);
-}
-
-.placeholder-text {
+  gap: 7px;
   font-size: 13px;
-  color: var(--text-muted);
   font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 9px 18px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--gray-50);
+  transition: all 0.15s;
 }
 
-.placeholder-sub {
-  font-size: 12px;
-  color: var(--gray-300);
+.project-nav-link:hover {
+  border-color: var(--green-border);
+  color: var(--green);
+  background: var(--green-light);
 }
+
+.project-nav-link svg { width: 13px; height: 13px; }
+
+.btn-portfolio {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--white);
+  background: var(--green);
+  border: 1px solid var(--green);
+  padding: 9px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.btn-portfolio:hover {
+  background: var(--green-mid);
+  border-color: var(--green-mid);
+}
+
+.btn-portfolio svg { width: 13px; height: 13px; }
 
 /* ─── FOOTER ─── */
 footer {
-  padding: 36px 0;
+  padding: 32px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -379,36 +360,13 @@ footer {
   color: var(--text-muted);
 }
 
-.cv-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--green);
-  text-decoration: none;
-  padding: 8px 18px;
-  border: 1px solid var(--green-border);
-  border-radius: 8px;
-  background: var(--green-light);
-  transition: all 0.15s;
-}
-
-.cv-link:hover {
-  background: var(--green);
-  color: white;
-  border-color: var(--green);
-}
-
-.cv-link svg { width: 13px; height: 13px; }
-
 /* ─── RESPONSIVE ─── */
 @media (max-width: 680px) {
   .container { padding: 0 20px; }
-  header { padding: 48px 0 40px; }
-  header h1 { font-size: 34px; }
-  .header-inner { flex-direction: column; gap: 16px; }
-  .projects-grid { grid-template-columns: 1fr; }
+  header { padding: 40px 0 36px; }
+  header h1 { font-size: 30px; }
+  .project-nav { flex-direction: column; align-items: stretch; }
+  .project-nav-link, .btn-portfolio { justify-content: center; }
 }
 </style>
 </head>
@@ -421,7 +379,7 @@ footer {
       <a href="nathan-wallis-cv.html" class="nav-name">Nathan Wallis</a>
       <div class="nav-links">
         <a href="nathan-wallis-cv.html" class="nav-link">CV</a>
-        <a href="#" class="nav-link active">Portfolio</a>
+        <a href="nathan-wallis-portfolio.html" class="nav-link active">Portfolio</a>
         <a href="mailto:nathangw.11@gmail.com" class="nav-link">Contact</a>
       </div>
     </div>
@@ -431,140 +389,155 @@ footer {
 <!-- HEADER -->
 <header>
   <div class="container">
-    <div class="header-inner">
-      <div>
-        <div class="header-eyebrow">Portfolio</div>
-        <h1><strong>Selected</strong> Work</h1>
-      </div>
-      <div class="project-count">
-        <strong>4</strong> projects &nbsp;·&nbsp; More coming soon
-      </div>
+    <a href="nathan-wallis-portfolio.html" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Back to Portfolio
+    </a>
+    <div class="header-eyebrow">Project Write-up</div>
+    <h1><strong>E-Commerce</strong> Analytics Suite</h1>
+    <p class="header-subtitle">A selection of reports and dashboards built to support eCommerce trading, business development and website performance monitoring. Turning complex, multi-source data into clear, actionable insight.</p>
+    <div class="header-tags">
+      <span class="tag tag-green">Power BI</span>
+      <span class="tag tag-green">DAX</span>
+      <span class="tag tag-green">SQL</span>
+      <span class="tag">BigQuery</span>
+      <span class="tag">GA4</span>
+      <span class="tag">eCommerce</span>
+      <span class="tag">Conversion Rate</span>
+      <span class="tag">Funnel Analysis</span>
+      <span class="tag">Marketing Analytics</span>
+      <span class="tag">Business Development</span>
     </div>
-    <p class="header-summary">A collection of data visualisation and analytics projects built across commercial, e-commerce and FP&A environments. Each project includes a write-up covering the brief, the approach, and the business impact.</p>
   </div>
 </header>
 
-<!-- FILTER BAR -->
+<!-- REPORT ITEMS -->
 <div class="container">
-  <div class="filter-bar">
-    <span class="filter-label">Filter</span>
-    <button class="filter-btn active" onclick="filterProjects('all', this)">All</button>
-    <button class="filter-btn" onclick="filterProjects('Power BI', this)">Power BI</button>
-    <button class="filter-btn" onclick="filterProjects('Excel', this)">Excel</button>
-    <button class="filter-btn" onclick="filterProjects('FP&A', this)">FP&A</button>
-    <button class="filter-btn" onclick="filterProjects('Financial Modelling', this)">Financial Modelling</button>
-  </div>
-</div>
+  <div class="content-section" style="border-bottom: none;">
+    <div class="reports-list">
 
-<!-- PROJECTS -->
-<div class="container">
-  <div class="projects-section">
-    <div class="projects-grid" id="projects-grid">
+      <!-- 01 -->
+      <div class="report-item">
+        <div class="report-item-header">
+          <span class="report-number">01</span>
+          <h2 class="report-title">Trading Dashboards Dashboard</h2>
+        </div>
+        <div class="hero-screenshot">
+          <img src="/images/Ecom_Dash.png" alt="eCommerce Trading Dashboard" class="screenshot-img">
+          <div class="screenshot-caption">eCommerce Trading Dashboard</div>
+        </div>
+        <div class="prose">
+          <p>A multi-tab trading dashboard used daily by the eCommerce team to monitor bookings, income, average transaction value and conversion rate, with dynamic prior year and budget comparisons built in. Each tab allowed the team to drill down into performance by market, product mix and stay duration, giving a much clearer read on where trading was performing well and where it needed attention.</p>
+        </div>
+      </div>
 
-      <!-- PROJECT 1 -->
-      <a href="/portfolio/commercial_trading_reports" class="project-card" data-tags="Power BI,DAX,Commercial Reporting,KPI Tracking">
-        <div class="project-hero">
-          <img src="/images/Market_View.png" alt="E-commerce Analytics Suite">
+      <!-- 02 -->
+      <div class="report-item">
+        <div class="report-item-header">
+          <span class="report-number">02</span>
+          <h2 class="report-title">Supplier Snapshot — Partner Performance Report</h2>
         </div>
-        <div class="project-body">
-          <div class="project-category">
-            <span class="cat-tag">Power BI</span>
-          </div>
-          <div>
-            <div class="project-title">E-commerce Analytics Suite</div>
-            <div class="project-subtitle">A Collection of Power BI Reports for Commercial Trading</div>
-          </div>
-          <p class="project-description">A suite of Power BI reports built to support day-to-day commercial trading decisions across multiple sales channels and regions. Covers revenue performance, margin analysis, KPI tracking and comparative reporting against forecast and prior year.</p>
-          <div class="project-footer">
-            <span class="skill-pill">DAX</span>
-            <span class="skill-pill">Commercial Reporting</span>
-            <span class="skill-pill">KPI Tracking</span>
-            <span class="skill-pill">Multi-channel</span>
-          </div>
+        <div class="hero-screenshot">
+          <img src="/images/Supplier_Snapshot.png" alt="Supplier Snapshot Dashboard" class="screenshot-img">
+          <div class="screenshot-caption">Supplier Snapshot — Partner Performance Report</div>
         </div>
-      </a>
+        <div class="prose">
+          <p>Built for the Business Development team to share performance data directly with key partners. The report surfaced estimated revenue, booking count, market share, average transaction value and stay duration mix, all filterable by platform, airport and product. It gave partners a clean, professional view of their own performance without needing access to internal systems.</p>
+        </div>
+      </div>
 
-      <!-- PROJECT 2 -->
-      <a href="/portfolio/performance_dashboard" class="project-card" data-tags="Power BI,DAX,Data Visualisation,Variance Analysis">
-        <div class="project-hero">
-          <img src="/images/Performance_Dashboard.png" alt="Commercial Performance Dashboard">
+      <!-- 03 -->
+      <div class="report-item">
+        <div class="report-item-header">
+          <span class="report-number">03</span>
+          <h2 class="report-title">Booking Funnel Report</h2>
         </div>
-        <div class="project-body">
-          <div class="project-category">
-            <span class="cat-tag">Power BI</span>
-          </div>
-          <div>
-            <div class="project-title">Commercial Performance Dashboard</div>
-            <div class="project-subtitle">Power BI E-Commerce Analytics</div>
-          </div>
-          <p class="project-description">An end-to-end commercial performance dashboard tracking revenue, profit, units sold and average transaction value across e-commerce channels. Built with a comparative framework allowing users to benchmark current performance against forecast and prior year, with filters for region, sales channel and product category.</p>
-          <div class="project-footer">
-            <span class="skill-pill">Star Schema</span>
-            <span class="skill-pill">DAX</span>
-            <span class="skill-pill">Data Visualisation</span>
-            <span class="skill-pill">Variance Analysis</span>
-          </div>
+        <div class="hero-screenshot">
+          <img src="/images/Booking_Funnel.png" alt="Booking Funnel Dashboard" class="screenshot-img">
+          <div class="screenshot-caption">Booking Funnel Report</div>
         </div>
-      </a>
+        <div class="prose">
+          <p>Built by extracting GA4 data using SQL from BigQuery to track every stage of the purchase funnel on the website, from total sessions through to completed bookings. The ability to segment by marketing channel, device, product category and landing page made it a genuinely useful tool for both the Trading Dashboards and marketing teams to review where users were dropping off and why.</p>
+        </div>
+      </div>
 
-      <!-- PROJECT 3 -->
-      <a href="/portfolio/scenario_modelling" class="project-card" data-tags="Excel,Power BI,FP&A,Scenario Modelling,Budgeting">
-        <div class="project-hero">
-          <img src="/images/Scenario_Modelv1.png" alt="Scenario & Sensitivity Model">
+      <!-- 04 -->
+      <div class="report-item">
+        <div class="report-item-header">
+          <span class="report-number">04</span>
+          <h2 class="report-title">Conversion Rate Analysis Dashboard</h2>
         </div>
-        <div class="project-body">
-          <div class="project-category">
-            <span class="cat-tag">Power BI</span>
-            <span class="cat-tag">FP&A</span>
-          </div>
-          <div>
-            <div class="project-title">Scenario & Sensitivity Model</div>
-            <div class="project-subtitle">Commercial Planning & Budgeting Tool</div>
-          </div>
-          <p class="project-description">A scenario and sensitivity modelling tool built to support commercial planning and budgeting decisions. Allows stakeholders to model best, base and worst case outcomes across key revenue and cost drivers, with outputs visualised in Power BI for easy communication to senior leadership.</p>
-          <div class="project-footer">
-            <span class="skill-pill">Forecasting</span>
-            <span class="skill-pill">Scenario Modelling</span>
-            <span class="skill-pill">Sensitivity Analysis</span>
-            <span class="skill-pill">Budgeting</span>
-          </div>
+        <div class="hero-screenshot">
+          <img src="/images/CVR_Dash.png" alt="Conversion Rate Dashboard" class="screenshot-img">
+          <div class="screenshot-caption">Conversion Rate Analysis Dashboard</div>
         </div>
-      </a>
+        <div class="prose">
+          <p>A comprehensive conversion rate dashboard tracking CVR performance across marketing channels, devices and markets, with both daily and 7-day rolling average views to smooth out volatility and surface genuine trends. It was built to give the trading and marketing teams a clear read on where conversion was improving, where it was lagging and what was likely driving it.</p>
+        </div>
+      </div>
 
-      <!-- PROJECT 4 -->
-      <a href="/portfolio/three_statement_model" class="project-card" data-tags="Excel,FP&A,Financial Modelling,Forecasting">
-        <div class="project-hero">
-          <img src="/images/3_Statement_Model.png" alt="Three Statement Forecast Model">
+      <!-- 05 -->
+      <div class="report-item">
+        <div class="report-item-header">
+          <span class="report-number">05</span>
+          <h2 class="report-title">Marketing Channel KPI Report</h2>
         </div>
-        <div class="project-body">
-          <div class="project-category">
-            <span class="cat-tag">Excel</span>
-            <span class="cat-tag">Financial Planning</span>
-          </div>
-          <div>
-            <div class="project-title">Three Statement Forecast Model</div>
-            <div class="project-subtitle">Integrated 5-Year Financial Model</div>
-          </div>
-          <p class="project-description">A fully integrated financial model built for a multi-channel outdoor retailer, covering five years of historical results and a five-year forecast across the income statement, balance sheet and cash flow statement.</p>
-          <div class="project-footer">
-            <span class="skill-pill">Forecasting</span>
-            <span class="skill-pill">Financial Modelling</span>
-            <span class="skill-pill">FP&A</span>
-            <span class="skill-pill">Retail Finance</span>
-          </div>
+        <div class="hero-screenshot">
+          <img src="/images/Marketing_KPI.png" alt="Marketing Channel KPI Dashboard" class="screenshot-img">
+          <div class="screenshot-caption">Marketing Channel KPI Report</div>
         </div>
-      </a>
+        <div class="prose">
+          <p>A weekly performance report giving a full picture view of trading across every marketing channel including Paid Search, Email, Organic Search, Direct and Affiliates. It was designed as a side-by-side layout with current year actuals alongside prior year variance, so the trading and marketing teams could assess both absolute performance and trend direction in one view.</p>
+          <p>The report had previously been maintained as an Excel file, updated manually on a daily basis throughout the week. By rebuilding it in Power BI with a SQL backend, it refreshed automatically every day without anyone needing to touch it. This saved the team several hours of manual work each week and removed the risk of human error creeping into the data.</p>
+        </div>
+      </div>
 
-      <!-- PLACEHOLDER -->
-      <div class="project-card-placeholder">
-        <div class="placeholder-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      <!-- 06 -->
+      <div class="report-item">
+        <div class="report-item-header">
+          <span class="report-number">06</span>
+          <h2 class="report-title">Market View Dashboard</h2>
         </div>
-        <div class="placeholder-text">More projects coming soon</div>
-        <div class="placeholder-sub">Power BI · Excel · SQL · Financial Modelling</div>
+        <div class="hero-screenshot">
+          <img src="/images/Market_View.png" alt="Market View Dashboard" class="screenshot-img">
+          <div class="screenshot-caption">Market View Dashboard</div>
+        </div>
+        <div class="prose">
+          <p>A geographic market performance dashboard combining an interactive bubble map with detailed data tables and a bookings trendline. It was built for the distribution team to quickly identify which markets were growing and which needed attention, all within a single, visually intuitive view rather than switching between multiple reports.</p>
+          <p>The dashboard made use of Power BI's native cross-filtering so that selecting any market bubble on the map instantly filtered the KPI table and bookings trendline down to that market. This gave users a seamless way to explore performance without ever needing to navigate away from the page.</p>
+        </div>
       </div>
 
     </div>
+
+    <!-- Tags -->
+    <div class="tags-footer">
+      <span class="tag tag-green">Power BI</span>
+      <span class="tag tag-green">DAX</span>
+      <span class="tag tag-green">SQL</span>
+      <span class="tag">BigQuery</span>
+      <span class="tag">GA4</span>
+      <span class="tag">eCommerce</span>
+      <span class="tag">Conversion Rate</span>
+      <span class="tag">Funnel Analysis</span>
+      <span class="tag">Marketing Analytics</span>
+      <span class="tag">Business Development</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- PROJECT NAV -->
+<div class="container">
+  <div class="project-nav">
+    <a href="nathan-wallis-portfolio.html" class="project-nav-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      All Projects
+    </a>
+    <a href="nathan-wallis-portfolio.html" class="btn-portfolio">
+      View Portfolio
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+    </a>
   </div>
 </div>
 
@@ -572,28 +545,9 @@ footer {
 <footer>
   <div class="container" style="width:100%; display:flex; justify-content:space-between; align-items:center;">
     <span class="footer-text">© 2026 Nathan Wallis · Sydney, AU</span>
-    <a href="nathan-wallis-cv.html" class="cv-link">
-      View CV
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-    </a>
+    <span class="footer-text">Power BI Commercial Analytics</span>
   </div>
 </footer>
 
-<script>
-function filterProjects(tag, btn) {
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('.project-card').forEach(card => {
-    if (tag === 'all') {
-      card.style.display = '';
-      return;
-    }
-    const tags = card.dataset.tags || '';
-    card.style.display = tags.toLowerCase().includes(tag.toLowerCase()) ? '' : 'none';
-  });
-  const placeholder = document.querySelector('.project-card-placeholder');
-  if (placeholder) placeholder.style.display = tag === 'all' ? '' : 'none';
-}
-</script>
 </body>
 </html>

@@ -1,1 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scenario & Sensitivity Modelling — Nathan Wallis</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+:root {
+  --white: #ffffff;
+  --gray-50: #F9F9F9;
+  --gray-100: #F2F2F2;
+  --gray-200: #E5E5E5;
+  --gray-300: #D1D1D1;
+  --gray-400: #ABABAB;
+  --gray-500: #737373;
+  --gray-700: #3D3D3D;
+  --gray-900: #1A1A1A;
+  --green: #2D6A4F;
+  --green-mid: #3A8566;
+  --green-light: #EAF3EE;
+  --green-border: #C2DDD1;
+  --text-primary: #1A1A1A;
+  --text-secondary: #737373;
+  --text-muted: #ABABAB;
+  --border: #E5E5E5;
+  --border-light: #F0F0F0;
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--white);
+  color: var(--text-primary);
+  line-height: 1.6;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* ─── NAV ─── */
+nav {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-name {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 6px;
+}
+
+.nav-link {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 8px;
+  transition: all 0.15s;
+}
+
+.nav-link:hover {
+  color: var(--text-primary);
+  background: var(--gray-50);
+}
+
+.nav-link.active {
+  color: var(--green);
+  background: var(--green-light);
+}
+
+/* ─── HEADER ─── */
+header {
+  padding: 56px 0 48px;
+  border-bottom: 1px solid var(--border);
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  margin-bottom: 28px;
+  transition: color 0.15s;
+}
+
+.back-link:hover { color: var(--green); }
+
+.back-link svg {
+  width: 13px;
+  height: 13px;
+}
+
+.header-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+header h1 {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 42px;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--gray-900);
+  margin-bottom: 16px;
+}
+
+header h1 strong { font-weight: 600; }
+
+.header-subtitle {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  max-width: 680px;
+  margin-bottom: 28px;
+}
+
+.header-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  font-size: 12px;
+  color: var(--text-secondary);
+  background: var(--gray-50);
+  border: 1px solid var(--border);
+  padding: 4px 11px;
+  border-radius: 6px;
+  font-weight: 400;
+}
+
+.tag-green {
+  color: var(--green);
+  background: var(--green-light);
+  border-color: var(--green-border);
+  font-weight: 500;
+}
+
+/* ─── HERO SCREENSHOT ─── */
+.hero-screenshot {
+  margin: 48px 0 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--gray-50);
+}
+
+.hero-screenshot-wrap {
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--border);
+}
+
+.screenshot-img {
+  width: 100%;
+  display: block;
+}
+
+/* Placeholder for when no image is provided */
+.screenshot-placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--gray-50);
+  color: var(--text-muted);
+}
+
+.screenshot-placeholder svg {
+  width: 28px;
+  height: 28px;
+  opacity: 0.4;
+}
+
+.screenshot-placeholder p {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.screenshot-caption {
+  padding: 12px 16px;
+  font-size: 12px;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+  background: var(--white);
+}
+
+/* ─── CONTENT SECTIONS ─── */
+.content-section {
+  padding: 48px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.content-section:last-of-type {
+  border-bottom: none;
+}
+
+.section-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.section-heading {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+.prose {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  max-width: 720px;
+}
+
+.prose p + p {
+  margin-top: 16px;
+}
+
+.prose a {
+  color: var(--green);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.prose a:hover {
+  color: var(--green-mid);
+}
+
+/* ─── SCREENSHOT GRID (secondary) ─── */
+.screenshot-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.screenshot-card {
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--gray-50);
+}
+
+.screenshot-card img {
+  width: 100%;
+  display: block;
+}
+
+.screenshot-card .screenshot-placeholder {
+  aspect-ratio: 4 / 3;
+}
+
+.screenshot-card .screenshot-caption {
+  font-size: 11.5px;
+}
+
+/* ─── FEATURES LIST ─── */
+.features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.feature-item {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  background: var(--gray-50);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+}
+
+.feature-dot {
+  width: 7px;
+  height: 7px;
+  background: var(--green);
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 7px;
+}
+
+.feature-text {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* ─── OUTCOME BOX ─── */
+.outcome-box {
+  background: var(--green-light);
+  border: 1px solid var(--green-border);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  margin-top: 4px;
+}
+
+.outcome-box .prose {
+  color: #3D5A4A;
+}
+
+/* ─── TAGS FOOTER ─── */
+.tags-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border-light);
+  margin-top: 48px;
+}
+
+/* ─── NAV FOOTER ─── */
+.project-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 0;
+  border-top: 1px solid var(--border);
+  gap: 16px;
+}
+
+.project-nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 9px 18px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--gray-50);
+  transition: all 0.15s;
+}
+
+.project-nav-link:hover {
+  border-color: var(--green-border);
+  color: var(--green);
+  background: var(--green-light);
+}
+
+.project-nav-link svg { width: 13px; height: 13px; }
+
+.btn-portfolio {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--white);
+  background: var(--green);
+  border: 1px solid var(--green);
+  padding: 9px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.btn-portfolio:hover {
+  background: var(--green-mid);
+  border-color: var(--green-mid);
+}
+
+.btn-portfolio svg { width: 13px; height: 13px; }
+
+/* ─── FOOTER ─── */
+footer {
+  padding: 32px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border);
+}
+
+.footer-text {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 680px) {
+  .container { padding: 0 20px; }
+  header { padding: 40px 0 36px; }
+  header h1 { font-size: 30px; }
+  .screenshot-grid { grid-template-columns: 1fr; }
+  .project-nav { flex-direction: column; align-items: stretch; }
+  .project-nav-link, .btn-portfolio { justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <a href="nathan-wallis-cv.html" class="nav-name">Nathan Wallis</a>
+      <div class="nav-links">
+        <a href="nathan-wallis-cv.html" class="nav-link">CV</a>
+        <a href="nathan-wallis-portfolio.html" class="nav-link active">Portfolio</a>
+        <a href="mailto:nathangw.11@gmail.com" class="nav-link">Contact</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HEADER -->
+<header>
+  <div class="container">
+    <a href="nathan-wallis-portfolio.html" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Back to Portfolio
+    </a>
+    <div class="header-eyebrow">Project Write-up</div>
+    <h1><strong>Scenario & Sensitivity</strong> Modelling</h1>
+    <p class="header-subtitle">An interactive Power BI scenario and sensitivity modelling solution designed to simulate the commercial impact of changes in traffic, conversion, average transaction value and margin across a multi-channel eCommerce environment.</p>
+    <div class="header-tags">
+      <span class="tag tag-green">Power BI</span>
+      <span class="tag tag-green">DAX</span>
+      <span class="tag tag-green">Scenario Modelling</span>
+      <span class="tag">Sensitivity Analysis</span>
+      <span class="tag">Forecasting</span>
+      <span class="tag">Star Schema</span>
+      <span class="tag">Parameters</span>
+      <span class="tag">SWITCH Measures</span>
+      <span class="tag">Waterfall Analysis</span>
+      <span class="tag">Commercial Planning</span>
+    </div>
+  </div>
+</header>
+
+<!-- HERO SCREENSHOT -->
+<div class="container">
+  <div class="hero-screenshot-wrap">
+    <div class="hero-screenshot">
+      <img src="/images/Scenario_Modelv1.png" alt="Scenario model overview" class="screenshot-img">
+      <div class="screenshot-caption">Overview — Scenario & Sensitivity Model dashboard</div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTENT SECTIONS -->
+<div class="container">
+
+  <!-- THE BRIEF -->
+  <div class="content-section">
+    <div class="section-label">The Brief</div>
+    <div class="prose">
+      <p>This project was built to explore how Power BI could be used beyond traditional reporting and applied within a commercial forecasting and planning environment. Most budgeting and forecasting processes still rely heavily on Excel models, and the aim here was to recreate some of that planning functionality inside a more interactive and visually accessible solution.</p>
+      <p>Instead of manually adjusting assumptions across spreadsheets, users can model commercial scenarios in real time and instantly see the impact on revenue, profit and trading performance. The project is centred around the core commercial drivers commonly used within eCommerce forecasting models: sessions, conversion rate, average transaction value, orders, revenue and profit.</p>
+    </div>
+  </div>
+
+  <!-- THE APPROACH -->
+  <div class="content-section">
+    <div class="section-label">The Approach</div>
+    <div class="prose">
+      <p>Interactive sliders allow users to adjust assumptions across session growth, conversion rate uplift, average transaction value growth and margin impact. As each assumption changes, the forecast model recalculates automatically across the full reporting layer including KPIs, cumulative revenue forecasts, revenue bridge analysis and channel-level uplift reporting.</p>
+      <p>This exposes the underlying drivers influencing commercial performance and makes scenario testing genuinely accessible for senior stakeholders who want to understand the numbers without needing to open a spreadsheet.</p>
+      <p>In the example below, session growth was reduced to -6% while conversion rate, average transaction value and margin growth were all increased. The rest of the visuals recalculated instantly to reflect the new scenario. The waterfall chart highlights the net impact to the forecast as each assumption shifts, making it straightforward to see which drivers are helping performance and which are holding it back.</p>
+    </div>
+
+<!-- Single approach screenshot -->
+<div class="hero-screenshot" style="margin-top: 28px;">
+  <img src="/images/Scenario_Modelv2.png" alt="Scenario model overview" class="screenshot-img">
+  <div class="screenshot-caption">Change of Assumptions — Scenario & Sensitivity Model dashboard</div>
+</div>
+
+  <!-- KEY FEATURES -->
+  <div class="content-section">
+    <div class="section-label">Key Features</div>
+    <div class="features-list">
+      <div class="feature-item">
+        <div class="feature-dot"></div>
+        <p class="feature-text">Interactive assumption sliders covering session growth, conversion rate, average transaction value and margin impact, with all visuals recalculating in real time.</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-dot"></div>
+        <p class="feature-text">Cumulative revenue forecast and waterfall bridge analysis showing the impact of each assumption change on the overall forecast.</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-dot"></div>
+        <p class="feature-text">Channel-level uplift reporting to understand how performance shifts vary across different parts of the business.</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-dot"></div>
+        <p class="feature-text">Sensitivity analysis capability, allowing users to identify which assumptions matter most for driving revenue.</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-dot"></div>
+        <p class="feature-text">Star schema data model with clearly structured fact and dimension tables, built for maintainability and scalability.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- THE OUTCOME -->
+  <div class="content-section" style="border-bottom: none;">
+    <div class="section-label">The Outcome</div>
+    <div class="outcome-box">
+      <div class="prose">
+        <p>The focus of the project was improving the accessibility of commercial forecasting and planning within a single reporting environment. Rather than maintaining multiple spreadsheet models and manually consolidating outputs, stakeholders can test assumptions quickly, understand the drivers behind performance changes and support faster commercial decision-making all in one place.</p>
+        <p>Potential use cases include forecast planning, budget modelling, trading reviews, promotional impact analysis, revenue sensitivity analysis and ongoing commercial performance monitoring.</p>
+        <p>For a deeper look at the data modelling approach and visualisation decisions behind this project, take a look at the <a href="https://nathangw11-oss.github.io/commercial-performance">Commercial Performance Dashboard</a> write-up.</p>
+      </div>
+    </div>
+
+    <!-- Tags -->
+    <div class="tags-footer">
+      <span class="tag tag-green">Power BI</span>
+      <span class="tag tag-green">DAX</span>
+      <span class="tag">Scenario Modelling</span>
+      <span class="tag">Sensitivity Analysis</span>
+      <span class="tag">Forecasting</span>
+      <span class="tag">Star Schema</span>
+      <span class="tag">Parameters</span>
+      <span class="tag">SWITCH Measures</span>
+      <span class="tag">Waterfall Analysis</span>
+      <span class="tag">Commercial Planning</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- PROJECT NAV -->
+<div class="container">
+  <div class="project-nav">
+    <a href="nathan-wallis-portfolio.html" class="project-nav-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      All Projects
+    </a>
+    <a href="nathan-wallis-portfolio.html" class="btn-portfolio">
+      View Portfolio
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container" style="width:100%; display:flex; justify-content:space-between; align-items:center;">
+    <span class="footer-text">© 2026 Nathan Wallis · Sydney, AU</span>
+    <span class="footer-text">Scenario & Sensitivity Modelling</span>
+  </div>
+</footer>
+
+</body>
+</html>

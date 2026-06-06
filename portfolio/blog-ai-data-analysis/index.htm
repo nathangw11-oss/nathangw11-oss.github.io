@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How AI Is Changing Data Analysis Workflows — Nathan Wallis</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --white: #ffffff;
+  --gray-50: #F9F9F9;
+  --gray-100: #F2F2F2;
+  --gray-200: #E5E5E5;
+  --gray-300: #D1D1D1;
+  --gray-400: #ABABAB;
+  --gray-500: #737373;
+  --gray-700: #3D3D3D;
+  --gray-900: #1A1A1A;
+  --green: #2D6A4F;
+  --green-mid: #3A8566;
+  --green-light: #EAF3EE;
+  --green-border: #C2DDD1;
+  --text-primary: #1A1A1A;
+  --text-secondary: #737373;
+  --text-muted: #ABABAB;
+  --border: #E5E5E5;
+  --border-light: #F0F0F0;
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--white);
+  color: var(--text-primary);
+  line-height: 1.6;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+header { animation: fadeInDown 0.65s ease both; }
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+/* ─── NAV ─── */
+nav {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-name {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+
+.nav-links { display: flex; gap: 6px; }
+
+.nav-link {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 8px;
+  transition: all 0.15s;
+}
+
+.nav-link:hover { color: var(--text-primary); background: var(--gray-50); }
+.nav-link.active { color: var(--green); background: var(--green-light); }
+
+/* ─── HEADER ─── */
+header {
+  padding: 56px 0 48px;
+  border-bottom: 1px solid var(--border);
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  margin-bottom: 28px;
+  transition: color 0.15s;
+}
+
+.back-link:hover { color: var(--green); }
+.back-link svg { width: 13px; height: 13px; }
+
+.post-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.post-tag {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--green);
+  background: var(--green-light);
+  border: 1px solid var(--green-border);
+  padding: 4px 12px;
+  border-radius: 100px;
+}
+
+.post-date {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+header h1 {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 40px;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: var(--gray-900);
+  margin-bottom: 20px;
+  max-width: 720px;
+}
+
+header h1 strong { font-weight: 600; }
+
+.post-intro {
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--text-secondary);
+  max-width: 680px;
+  font-weight: 400;
+  border-left: 3px solid var(--green);
+  padding-left: 20px;
+  margin-top: 8px;
+}
+
+/* ─── ARTICLE ─── */
+.article-body {
+  padding: 48px 0 64px;
+  max-width: 680px;
+}
+
+.article-body p {
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+
+.article-body p strong {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* Pull quote */
+.pull-quote {
+  border-left: 3px solid var(--green);
+  padding: 4px 0 4px 24px;
+  margin: 36px 0;
+}
+
+.pull-quote p {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 20px !important;
+  font-weight: 300;
+  line-height: 1.5 !important;
+  color: var(--gray-900) !important;
+  letter-spacing: -0.01em;
+  margin-bottom: 0 !important;
+}
+
+/* Section heading */
+.article-body h2 {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--gray-900);
+  letter-spacing: -0.02em;
+  margin: 40px 0 16px;
+}
+
+/* List items styled as arrow list */
+.arrow-list {
+  list-style: none;
+  margin: -8px 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.arrow-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.arrow-list li::before {
+  content: '↳';
+  color: var(--green);
+  font-size: 14px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Highlight box */
+.highlight-box {
+  background: var(--gray-50);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  margin: 32px 0;
+}
+
+.highlight-box p {
+  margin-bottom: 0 !important;
+  font-size: 15px !important;
+}
+
+/* ─── AUTHOR CARD ─── */
+.author-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--gray-50);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin-top: 48px;
+}
+
+.author-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--green-light);
+  border: 1px solid var(--green-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--green);
+  flex-shrink: 0;
+  letter-spacing: -0.01em;
+}
+
+.author-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.author-role {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.author-links {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.author-link {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--green);
+  text-decoration: none;
+  padding: 4px 12px;
+  border: 1px solid var(--green-border);
+  border-radius: 100px;
+  background: var(--green-light);
+  transition: all 0.15s;
+}
+
+.author-link:hover { background: var(--green); color: var(--white); border-color: var(--green); }
+
+/* ─── PROJECT NAV ─── */
+.post-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 0;
+  border-top: 1px solid var(--border);
+  gap: 16px;
+}
+
+.post-nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 9px 18px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--gray-50);
+  transition: all 0.15s;
+}
+
+.post-nav-link:hover { border-color: var(--green-border); color: var(--green); background: var(--green-light); }
+.post-nav-link svg { width: 13px; height: 13px; }
+
+/* ─── FOOTER ─── */
+footer {
+  padding: 32px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border);
+}
+
+.footer-text { font-size: 12px; color: var(--text-muted); }
+
+.portfolio-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--green);
+  text-decoration: none;
+  padding: 8px 18px;
+  border: 1px solid var(--green-border);
+  border-radius: 8px;
+  background: var(--green-light);
+  transition: all 0.15s;
+}
+
+.portfolio-link:hover { background: var(--green); color: white; border-color: var(--green); }
+.portfolio-link svg { width: 13px; height: 13px; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 680px) {
+  .container { padding: 0 20px; }
+  header { padding: 40px 0 36px; }
+  header h1 { font-size: 28px; }
+  .article-body { padding: 32px 0 48px; }
+  .post-nav { flex-direction: column; align-items: stretch; }
+  .post-nav-link { justify-content: center; }
+  footer { flex-direction: column; gap: 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <a href="/" class="nav-name">Nathan Wallis</a>
+      <div class="nav-links">
+        <a href="/" class="nav-link">CV</a>
+        <a href="/portfolio/" class="nav-link">Portfolio</a>
+        <a href="mailto:nathangw.11@gmail.com" class="nav-link">Contact</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HEADER -->
+<header>
+  <div class="container">
+    <a href="/portfolio/" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Back to Portfolio
+    </a>
+
+    <div class="post-eyebrow">
+      <span class="post-tag">Insight</span>
+      <span class="post-date">June 2026</span>
+    </div>
+
+    <h1>How AI Is <strong>Changing Data Analysis</strong> Workflows</h1>
+
+    <p class="post-intro">Artificial intelligence is rapidly becoming part of everyday data and commercial analysis work. While much of the discussion online focuses on automation and productivity gains, the reality inside analytical teams is more nuanced.</p>
+  </div>
+</header>
+
+<!-- ARTICLE -->
+<div class="container">
+  <div class="article-body">
+
+    <p class="fade-in">For many analysts, AI is changing not only how work gets completed, but also how processes are designed, reviewed and improved. Tasks that once felt efficient enough are now being re-evaluated through the lens of automation, scalability and workflow optimisation.</p>
+
+    <p class="fade-in">One of the biggest changes is the expectation around efficiency. Previously, building reports, updating financial models, maintaining dashboards and producing stakeholder commentary followed familiar processes. Analysts knew the logic, understood the workflows and could confidently deliver outputs using established methods.</p>
+
+    <div class="pull-quote fade-in">
+      <p>AI changes that dynamic completely.</p>
+    </div>
+
+    <p class="fade-in">There is now an additional layer of thinking involved in almost every task. Once a report or process is complete, the next question becomes whether parts of it could be streamlined further using AI tools, automation or workflow integrations. That creates a constant cycle of experimentation and learning, particularly because the capabilities of AI are still evolving at such a rapid pace.</p>
+
+    <h2 class="fade-in">Reducing manual data handling</h2>
+
+    <p class="fade-in">In practice, one of the most valuable applications of AI has been reducing manual data handling. Many teams still spend significant amounts of time exporting reports, downloading CSV files, copying data between systems and refreshing working models manually.</p>
+
+    <p class="fade-in">Using tools such as Power Query alongside AI-generated code and guidance can dramatically simplify these workflows. Processes that previously required multiple manual steps can often be converted into direct system connections with automated refresh functionality. The technology itself is not necessarily new, but AI lowers the technical barrier to implementing it.</p>
+
+    <p class="fade-in">This is particularly useful for recurring analytical processes such as:</p>
+
+    <ul class="arrow-list fade-in">
+      <li>Financial and operational reporting</li>
+      <li>Dashboard refreshes</li>
+      <li>Customer and sales data extraction</li>
+      <li>Monthly reporting packs</li>
+      <li>Variance analysis preparation</li>
+      <li>KPI tracking and performance monitoring</li>
+    </ul>
+
+    <h2 class="fade-in">Performance analysis and stakeholder reporting</h2>
+
+    <p class="fade-in">Another area where AI is proving useful is performance analysis and stakeholder reporting. Reviewing large datasets often involves analysing multiple dimensions simultaneously including products, regions, channels, customers, operational metrics and financial performance.</p>
+
+    <p class="fade-in">AI can help generate first draft commentary by reviewing structured datasets and identifying key movements, anomalies and trends. The most effective approach is not to allow AI to build the analysis entirely from scratch. Strong results usually come from providing a clearly structured template with predefined logic, helper columns and guidance on what the analysis should focus on.</p>
+
+    <div class="highlight-box fade-in">
+      <p>This is where technical and commercial skills still matter heavily. Experienced analysts already have established ways of interpreting data and presenting insights to stakeholders. AI works far better when it is guided within those frameworks rather than being left to determine the structure independently.</p>
+    </div>
+
+    <p class="fade-in">A useful comparison is working with a junior analyst. Without context or examples, outputs can vary significantly from expectations. With proper templates, examples and guidance, the quality improves substantially.</p>
+
+    <h2 class="fade-in">Structuring data for AI</h2>
+
+    <p class="fade-in">Structuring data specifically for AI has also become increasingly important. Clear column naming, helper fields and explicit instructions within datasets can improve output quality considerably.</p>
+
+    <p class="fade-in">Simple adjustments can make a major difference:</p>
+
+    <ul class="arrow-list fade-in">
+      <li>Separate current year, budget and prior year columns</li>
+      <li>Include clear include/exclude flags</li>
+      <li>Add qualitative operational commentary alongside quantitative data</li>
+      <li>Standardise field naming conventions</li>
+      <li>Consolidate supporting information into one working file</li>
+    </ul>
+
+    <p class="fade-in">This becomes especially valuable when analysing commercial performance, customer behaviour or operational trends where context matters just as much as the raw numbers themselves.</p>
+
+    <h2 class="fade-in">Accelerating ad hoc analysis</h2>
+
+    <p class="fade-in">AI is also helping accelerate ad hoc analysis. Analysts regularly receive unfamiliar datasets from different departments and historically would spend time manually identifying relationships, operational drivers and useful fields for investigation.</p>
+
+    <p class="fade-in">AI can now assist with early-stage exploratory analysis by identifying patterns, highlighting potential relationships and suggesting areas worth investigating further. In many cases, it can complete a large portion of the initial groundwork before human review begins.</p>
+
+    <div class="pull-quote fade-in">
+      <p>Validation remains essential. AI can produce polished commentary and seemingly accurate analysis while still missing important business context or making incorrect assumptions.</p>
+    </div>
+
+    <p class="fade-in">Formula checking, data validation and workbook reviews are also not fully reliable without manual verification. The current reality is that AI works best as an accelerator rather than a replacement for analytical thinking.</p>
+
+    <h2 class="fade-in">The growing productivity gap</h2>
+
+    <p class="fade-in">The analysts gaining the most value from AI are usually those with strong existing foundations in:</p>
+
+    <ul class="arrow-list fade-in">
+      <li>Data analysis</li>
+      <li>Commercial understanding</li>
+      <li>Data modelling and structuring</li>
+      <li>Process design</li>
+      <li>Reporting logic</li>
+      <li>Stakeholder communication</li>
+    </ul>
+
+    <p class="fade-in">One of the biggest long-term implications of AI in analytical roles is the growing productivity gap between professionals who actively integrate AI into their workflows and those who do not.</p>
+
+    <p class="fade-in">Analysts using AI effectively are already able to complete reporting, commentary, exploratory analysis and data preparation significantly faster than traditional manual workflows allow. Tasks that previously required several hours can now often be completed in a fraction of the time with the right combination of automation, structured data and AI-assisted analysis.</p>
+
+    <div class="highlight-box fade-in">
+      <p>The advantage is not simply about working faster. It is about having more time available for deeper analysis, stakeholder engagement, commercial thinking and decision support.</p>
+    </div>
+
+    <p class="fade-in">The strongest analysts will still need technical skills, business understanding and analytical judgement. AI does not remove the need for those capabilities. In many cases, it increases their importance because human review, validation and interpretation remain critical.</p>
+
+    <p class="fade-in">As AI tools continue to improve, analysts who understand how to structure workflows around them will likely operate at a very different level of efficiency compared to those relying entirely on traditional manual processes.</p>
+
+    <p class="fade-in">For data, finance and commercial analysts, the opportunity is significant. The challenge now is learning how to integrate AI into existing workflows in a way that genuinely improves efficiency without sacrificing quality, governance or critical thinking.</p>
+
+    <!-- AUTHOR CARD -->
+    <div class="author-card fade-in">
+      <div class="author-avatar">NW</div>
+      <div>
+        <div class="author-name">Nathan Wallis</div>
+        <div class="author-role">Commercial Analyst · Power BI · SQL · Forecasting</div>
+        <div class="author-links">
+          <a href="/" class="author-link">CV</a>
+          <a href="/portfolio/" class="author-link">Portfolio</a>
+          <a href="https://www.linkedin.com/in/nathan-wallis-991129125/" target="_blank" class="author-link">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- POST NAV -->
+<div class="container">
+  <div class="post-nav fade-in">
+    <a href="/portfolio/" class="post-nav-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Back to Portfolio
+    </a>
+    <a href="/" class="portfolio-link">
+      View CV
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container" style="width:100%; display:flex; justify-content:space-between; align-items:center;">
+    <span class="footer-text">© 2026 Nathan Wallis · Sydney, AU</span>
+    <span class="footer-text">How AI Is Changing Data Analysis Workflows</span>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

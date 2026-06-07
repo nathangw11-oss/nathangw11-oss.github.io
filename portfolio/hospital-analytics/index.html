@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hospital Analytics Dashboard — Nathan Wallis</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --white: #ffffff;
+  --gray-50: #F9F9F9;
+  --gray-100: #F2F2F2;
+  --gray-200: #E5E5E5;
+  --gray-300: #D1D1D1;
+  --gray-400: #ABABAB;
+  --gray-500: #737373;
+  --gray-700: #3D3D3D;
+  --gray-900: #1A1A1A;
+  --green: #2D6A4F;
+  --green-mid: #3A8566;
+  --green-light: #EAF3EE;
+  --green-border: #C2DDD1;
+  --text-primary: #1A1A1A;
+  --text-secondary: #737373;
+  --text-muted: #ABABAB;
+  --border: #E5E5E5;
+  --border-light: #F0F0F0;
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--white);
+  color: var(--text-primary);
+  line-height: 1.6;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* ─── NAV ─── */
+nav {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-name {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 6px;
+}
+
+.nav-link {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 8px;
+  transition: all 0.15s;
+}
+
+.nav-link:hover {
+  color: var(--text-primary);
+  background: var(--gray-50);
+}
+
+.nav-link.active {
+  color: var(--green);
+  background: var(--green-light);
+}
+
+/* ─── HEADER ─── */
+header {
+  padding: 56px 0 48px;
+  border-bottom: 1px solid var(--border);
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  margin-bottom: 28px;
+  transition: color 0.15s;
+}
+
+.back-link:hover { color: var(--green); }
+.back-link svg { width: 13px; height: 13px; }
+
+.header-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+header h1 {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 42px;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--gray-900);
+  margin-bottom: 16px;
+}
+
+header h1 strong { font-weight: 600; }
+
+.header-subtitle {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  max-width: 680px;
+  margin-bottom: 28px;
+}
+
+.header-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  font-size: 12px;
+  color: var(--text-secondary);
+  background: var(--gray-50);
+  border: 1px solid var(--border);
+  padding: 4px 11px;
+  border-radius: 6px;
+  font-weight: 400;
+}
+
+.tag-green {
+  color: var(--green);
+  background: var(--green-light);
+  border-color: var(--green-border);
+  font-weight: 500;
+}
+
+/* ─── SCREENSHOTS ─── */
+.hero-screenshot {
+  margin-top: 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--gray-50);
+}
+
+.screenshot-img {
+  width: 100%;
+  display: block;
+}
+
+.screenshot-caption {
+  padding: 12px 16px;
+  font-size: 12px;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+  background: var(--white);
+}
+
+/* ─── CONTENT SECTIONS ─── */
+.content-section {
+  padding: 48px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.content-section:last-of-type {
+  border-bottom: none;
+}
+
+.section-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.prose {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  max-width: 720px;
+}
+
+.prose p + p { margin-top: 16px; }
+
+/* ─── INLINE SCREENSHOT ─── */
+.inline-screenshot {
+  margin: 24px 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--gray-50);
+}
+
+.inline-screenshot img {
+  width: 100%;
+  display: block;
+}
+
+/* ─── FEATURES LIST ─── */
+.features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.feature-item {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  background: var(--gray-50);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+}
+
+.feature-dot {
+  width: 7px;
+  height: 7px;
+  background: var(--green);
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 7px;
+}
+
+.feature-text {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* ─── OUTCOME BOX ─── */
+.outcome-box {
+  background: var(--green-light);
+  border: 1px solid var(--green-border);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  margin-top: 4px;
+}
+
+.outcome-box .prose {
+  color: #3D5A4A;
+}
+
+/* ─── TAGS FOOTER ─── */
+.tags-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  margin-top: 48px;
+}
+
+/* ─── PROJECT NAV ─── */
+.project-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 0;
+  border-top: 1px solid var(--border);
+  gap: 16px;
+}
+
+.project-nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 9px 18px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--gray-50);
+  transition: all 0.15s;
+}
+
+.project-nav-link:hover {
+  border-color: var(--green-border);
+  color: var(--green);
+  background: var(--green-light);
+}
+
+.project-nav-link svg { width: 13px; height: 13px; }
+
+.btn-portfolio {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--white);
+  background: var(--green);
+  border: 1px solid var(--green);
+  padding: 9px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.btn-portfolio:hover {
+  background: var(--green-mid);
+  border-color: var(--green-mid);
+}
+
+.btn-portfolio svg { width: 13px; height: 13px; }
+
+/* ─── FOOTER ─── */
+footer {
+  padding: 32px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border);
+}
+
+.footer-text {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 680px) {
+  .container { padding: 0 20px; }
+  header { padding: 40px 0 36px; }
+  header h1 { font-size: 30px; }
+  .project-nav { flex-direction: column; align-items: stretch; }
+  .project-nav-link, .btn-portfolio { justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <a href="/" class="nav-name">Nathan Wallis</a>
+      <div class="nav-links">
+        <a href="/" class="nav-link">CV</a>
+        <a href="/portfolio" class="nav-link active">Portfolio</a>
+        <a href="mailto:nathangw.11@gmail.com" class="nav-link">Contact</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HEADER -->
+<header>
+  <div class="container">
+    <a href="/portfolio" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Back to Portfolio
+    </a>
+    <div class="header-eyebrow">Project Write-up</div>
+    <h1><strong>Hospital Analytics</strong> Dashboard</h1>
+    <p class="header-subtitle">A two-page analytics dashboard built for a private hospital environment, covering commercial performance and operational efficiency. Designed to give clinical and operational teams a single view of the metrics that matter most, from revenue and bed occupancy through to theatre utilisation and discharge performance.</p>
+    <div class="header-tags">
+      <span class="tag tag-green">Power BI</span>
+      <span class="tag tag-green">DAX</span>
+      <span class="tag tag-green">Star Schema</span>
+      <span class="tag">ETL</span>
+      <span class="tag">Healthcare Analytics</span>
+      <span class="tag">Operational Reporting</span>
+      <span class="tag">KPI Tracking</span>
+      <span class="tag">Variance Analysis</span>
+    </div>
+  </div>
+</header>
+
+<!-- HERO SCREENSHOT -->
+<div class="container">
+  <div style="padding-bottom: 48px; border-bottom: 1px solid var(--border);">
+    <div class="hero-screenshot" style="margin-top: 48px;">
+      <img src="/images/Hospital_Commercial.png" alt="Hospital Analytics Dashboard — Commercial Performance" class="screenshot-img">
+      <div class="screenshot-caption">Commercial Performance — St Augustines Private Hospital Analytics Dashboard</div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTENT SECTIONS -->
+<div class="container">
+
+  <!-- THE BRIEF -->
+  <div class="content-section">
+    <div class="section-label">The Brief</div>
+    <div class="prose">
+      <p>This project was built to simulate an analytics environment for a private hospital, covering both the commercial and operational sides of the business. Healthcare reporting tends to sit across multiple disconnected systems: finance teams track revenue in one place, clinical teams monitor bed occupancy in another, and operational leads manage theatre schedules somewhere else entirely. The goal was to bring all of that into a single, well-structured report that different users could navigate without needing to cross-reference multiple sources.</p>
+      <p>The dashboard covers two distinct report pages: commercial performance, focused on revenue, admissions and payer mix, and operational efficiency, tracking theatre utilisation, bed occupancy, discharge performance and staffing ratios.</p>
+    </div>
+  </div>
+
+  <!-- THE APPROACH -->
+  <div class="content-section">
+    <div class="section-label">The Approach</div>
+    <div class="prose">
+      <p>The report was built in Power BI using a star schema data model, with clearly separated fact and dimension tables to keep the model structured and easy to extend. DAX measures handle all calculated metrics across both pages, including rolling averages, variance to target, admission splits and readmission rates, and are stored in organised measure folders to make the model easier to maintain.</p>
+    </div>
+
+    <div class="inline-screenshot">
+      <img src="/images/Hospital_Operational.png" alt="Hospital Analytics Dashboard — Operational Efficiency" class="screenshot-img">
+      <div class="screenshot-caption">Operational Efficiency — St Augustines Private Hospital Analytics Dashboard</div>
+    </div>
+
+    <div class="prose">
+      <p>The two-page structure was a deliberate design choice. Rather than trying to fit everything onto one screen, the commercial and operational views are separated so that each page can be read quickly without requiring the user to mentally filter out irrelevant information. Shared filters for ward, date range and payer type sit consistently across both pages, so switching between them feels like a single connected report rather than two separate documents.</p>
+      <p>The colour coding throughout is intentional: green indicates performance above threshold, amber flags potential concerns and red highlights areas below target. That logic is applied consistently so users can orientate themselves quickly without needing to read every number.</p>
+    </div>
+  </div>
+
+  <!-- KEY FEATURES -->
+  <div class="content-section">
+    <div class="section-label">Key Features</div>
+    <div class="features-list">
+      <div class="feature-item">
+        <div class="feature-dot"></div>
+        <p class="feature-text">Commercial performance page covering total revenue ($46M), average revenue per admission, budget variance tracking and a rolling 7-day revenue vs budget trend line.</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-dot"></div>
+        <p class="feature-text">Revenue breakdown by payer mix (private health insurance, DVA/Medicare and self-pay) and top procedures by total revenue and admissions volume.</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-dot"></div>
+        <p class="feature-text">Operational efficiency page with theatre utilisation by session, elective vs emergency admission split by ward, and a 28-day readmission rate gauge with ward-level breakdowns.</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-dot"></div>
+        <p class="feature-text">Bed occupancy heatmap showing daily utilisation by ward across the full week, alongside a discharge efficiency table identifying the primary causes of discharge delays.</p>
+      </div>
+      <div class="feature-item">
+        <div class="feature-dot"></div>
+        <p class="feature-text">Consistent cross-page filtering by ward, date range, admission type and day of week, keeping both report pages navigable as a single connected view.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- THE OUTCOME -->
+  <div class="content-section" style="border-bottom: none;">
+    <div class="section-label">The Outcome</div>
+    <div class="outcome-box">
+      <div class="prose">
+        <p>The finished report covers a broad range of use cases: financial performance reviews, theatre scheduling, staffing allocation, discharge planning and readmission monitoring. Each section is designed to be useful in isolation as well as part of the wider picture, so the same report can serve a finance director reviewing monthly revenue and a ward manager checking bed occupancy on a Tuesday morning.</p>
+        <p>Healthcare felt like an interesting environment to build in because the metrics carry real weight. Discharge delays, theatre utilisation rates and readmission figures have direct consequences on both patient outcomes and financial performance, which made it important to present them clearly and without unnecessary visual noise. The design approach here follows the same principles I applied at Manchester Airports Group, where a focus on usability helped my reports rank within the top 10 most-viewed dashboards across a business with roughly 8,000 reports in circulation.</p>
+      </div>
+    </div>
+
+    <div class="tags-footer">
+      <span class="tag tag-green">Power BI</span>
+      <span class="tag tag-green">DAX</span>
+      <span class="tag tag-green">Star Schema</span>
+      <span class="tag">ETL</span>
+      <span class="tag">Healthcare Analytics</span>
+      <span class="tag">Operational Reporting</span>
+      <span class="tag">KPI Tracking</span>
+      <span class="tag">Variance Analysis</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- PROJECT NAV -->
+<div class="container">
+  <div class="project-nav">
+    <a href="/portfolio" class="project-nav-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      All Projects
+    </a>
+    <a href="/portfolio" class="btn-portfolio">
+      View Portfolio
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container" style="width:100%; display:flex; justify-content:space-between; align-items:center;">
+    <span class="footer-text">© 2026 Nathan Wallis · Sydney, AU</span>
+    <span class="footer-text">Hospital Analytics Dashboard</span>
+  </div>
+</footer>
+
+</body>
+</html>

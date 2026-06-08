@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mining Operations Dashboard — Nathan Wallis</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --white: #ffffff;
+  --gray-50: #F9F9F9;
+  --gray-100: #F2F2F2;
+  --gray-200: #E5E5E5;
+  --gray-300: #D1D1D1;
+  --gray-400: #ABABAB;
+  --gray-500: #737373;
+  --gray-700: #3D3D3D;
+  --gray-900: #1A1A1A;
+  --green: #2D6A4F;
+  --green-mid: #3A8566;
+  --green-light: #EAF3EE;
+  --green-border: #C2DDD1;
+  --green-dark: #1E4D38;
+  --text-primary: #1A1A1A;
+  --text-secondary: #737373;
+  --text-muted: #ABABAB;
+  --border: #E5E5E5;
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--white);
+  color: var(--text-primary);
+  line-height: 1.6;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* NAV */
+nav {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-name {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+
+.nav-links { display: flex; gap: 6px; }
+
+.nav-link {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 8px;
+  transition: all 0.15s;
+}
+
+.nav-link:hover { color: var(--text-primary); background: var(--gray-50); }
+.nav-link.active { color: var(--green); background: var(--green-light); }
+
+/* DARK HEADER BAND */
+.header-band {
+  background: #142B21;
+  background-image:
+    radial-gradient(ellipse 60% 80% at 85% 50%, rgba(45,106,79,0.35) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 10% 80%, rgba(45,106,79,0.15) 0%, transparent 60%);
+  padding: 56px 0 52px;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.35);
+  text-decoration: none;
+  margin-bottom: 32px;
+  transition: color 0.15s;
+}
+
+.back-link:hover { color: rgba(255,255,255,0.7); }
+.back-link svg { width: 13px; height: 13px; }
+
+.header-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 14px;
+}
+
+.header-band h1 {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 44px;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  color: #ffffff;
+  margin-bottom: 18px;
+}
+
+.header-band h1 strong { font-weight: 700; }
+
+.header-subtitle {
+  font-size: 15.5px;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.7;
+  max-width: 640px;
+  margin-bottom: 30px;
+}
+
+.header-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  font-size: 12px;
+  color: var(--text-secondary);
+  background: var(--gray-50);
+  border: 1px solid var(--border);
+  padding: 4px 11px;
+  border-radius: 6px;
+  font-weight: 400;
+}
+
+.tag-green {
+  color: var(--green);
+  background: var(--green-light);
+  border-color: var(--green-border);
+  font-weight: 500;
+}
+
+.tag-dark {
+  color: rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  font-weight: 400;
+}
+
+.tag-dark-green {
+  color: #74C69D;
+  background: rgba(45,106,79,0.3);
+  border: 1px solid rgba(116,198,157,0.3);
+  font-weight: 500;
+}
+
+/* HERO SCREENSHOT */
+.screenshot-wrap {
+  padding: 40px 0 48px;
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-screenshot {
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--gray-50);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+}
+
+.screenshot-img { width: 100%; display: block; }
+
+.screenshot-caption {
+  padding: 12px 16px;
+  font-size: 12px;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+  background: var(--white);
+}
+
+/* CONTENT SECTIONS */
+.content-section {
+  padding: 48px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.content-section:last-of-type { border-bottom: none; }
+
+.section-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.prose {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  max-width: 720px;
+}
+
+.prose p + p { margin-top: 16px; }
+
+/* INLINE SCREENSHOT */
+.inline-screenshot {
+  margin: 28px 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--gray-50);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+}
+
+.inline-screenshot img { width: 100%; display: block; }
+
+/* FEATURES GRID */
+.features-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.feature-card {
+  background: var(--gray-50);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  position: relative;
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--green);
+  border-radius: 3px 0 0 3px;
+  opacity: 0.5;
+}
+
+.feature-title {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 5px;
+  letter-spacing: -0.01em;
+}
+
+.feature-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+/* OUTCOME BOX */
+.outcome-box {
+  background: #142B21;
+  background-image: radial-gradient(ellipse 50% 70% at 90% 50%, rgba(45,106,79,0.3) 0%, transparent 70%);
+  border: 1px solid rgba(45,106,79,0.4);
+  border-radius: var(--radius);
+  padding: 32px 36px;
+  margin-top: 4px;
+}
+
+.outcome-box .prose {
+  color: rgba(255,255,255,0.6);
+}
+
+.outcome-box .prose p + p { margin-top: 16px; }
+
+/* TAGS FOOTER */
+.tags-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  margin-top: 48px;
+}
+
+/* PROJECT NAV */
+.project-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 0;
+  border-top: 1px solid var(--border);
+  gap: 16px;
+}
+
+.project-nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 9px 18px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--gray-50);
+  transition: all 0.15s;
+}
+
+.project-nav-link:hover {
+  border-color: var(--green-border);
+  color: var(--green);
+  background: var(--green-light);
+}
+
+.project-nav-link svg { width: 13px; height: 13px; }
+
+.btn-portfolio {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--white);
+  background: var(--green);
+  border: 1px solid var(--green);
+  padding: 9px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.btn-portfolio:hover { background: var(--green-mid); border-color: var(--green-mid); }
+.btn-portfolio svg { width: 13px; height: 13px; }
+
+/* FOOTER */
+footer {
+  padding: 32px 0;
+  border-top: 1px solid var(--border);
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-text { font-size: 12px; color: var(--text-muted); }
+
+/* RESPONSIVE */
+@media (max-width: 680px) {
+  .container { padding: 0 20px; }
+  .header-band { padding: 40px 0 36px; }
+  .header-band h1 { font-size: 30px; }
+  .features-grid { grid-template-columns: 1fr; }
+  .project-nav { flex-direction: column; align-items: stretch; }
+  .project-nav-link, .btn-portfolio { justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <a href="/" class="nav-name">Nathan Wallis</a>
+      <div class="nav-links">
+        <a href="/" class="nav-link">CV</a>
+        <a href="/portfolio" class="nav-link active">Portfolio</a>
+        <a href="mailto:nathangw.11@gmail.com" class="nav-link">Contact</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- DARK HEADER -->
+<div class="header-band">
+  <div class="container">
+    <a href="/portfolio" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Back to Portfolio
+    </a>
+    <div class="header-eyebrow">Project Write-up</div>
+    <h1><strong>Mining Operations</strong><br>Dashboard</h1>
+    <p class="header-subtitle">A two-page Power BI dashboard for a multi-site mining operation, covering production performance and safety reporting across Pilbara, Bowen Basin and Olympic Dam.</p>
+    <div class="header-tags">
+      <span class="tag tag-dark-green">Power BI</span>
+      <span class="tag tag-dark-green">DAX</span>
+      <span class="tag tag-dark-green">Star Schema</span>
+      <span class="tag tag-dark">ETL</span>
+      <span class="tag tag-dark">Mining Analytics</span>
+      <span class="tag tag-dark">Safety Reporting</span>
+      <span class="tag tag-dark">KPI Tracking</span>
+      <span class="tag tag-dark">Variance Analysis</span>
+    </div>
+  </div>
+</div>
+
+<!-- HERO SCREENSHOT -->
+<div class="container">
+  <div class="screenshot-wrap">
+    <div class="hero-screenshot">
+      <img src="/images/Mining_Production.png" alt="Arafura Resources — Production Dashboard" class="screenshot-img">
+      <div class="screenshot-caption">Production — Arafura Resources Operations Dashboard</div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="container">
+
+  <!-- THE BRIEF -->
+  <div class="content-section">
+    <div class="section-label">The Brief</div>
+    <div class="prose">
+      <p>This project simulates an analytics environment for a multi-site mining operation, with fictional company Arafura Resources running production across three sites: Pilbara, Bowen Basin and Olympic Dam. Mining operations generate a significant volume of data across production, equipment, logistics and safety, and it typically lives across separate systems with no unified view.</p>
+      <p>The goal was to consolidate that into a two-page report for operational and safety teams. The production page covers output performance, equipment utilisation and cycle times by site and shift. The safety page covers injury frequency rates, near miss reporting, safety observations and incident classification, all filterable by site, shift and department.</p>
+    </div>
+  </div>
+
+  <!-- THE APPROACH -->
+  <div class="content-section">
+    <div class="section-label">The Approach</div>
+    <div class="prose">
+      <p>The report is built on a star schema data model in Power BI, with separate fact and dimension tables for production and safety data. All calculated metrics are handled in DAX, including rolling averages, variance to target, shift splits and frequency rate calculations, and are organised into measure folders to keep the model maintainable.</p>
+    </div>
+
+    <div class="inline-screenshot">
+      <img src="/images/Mining_Safety.png" alt="Arafura Resources — Safety Dashboard" class="screenshot-img">
+      <div class="screenshot-caption">Safety — Arafura Resources Operations Dashboard</div>
+    </div>
+
+    <div class="prose">
+      <p>Separating production and safety into dedicated pages was deliberate. A production manager wants to know why Pilbara is running above cycle time target; a safety lead wants to see where near miss frequency is trending and whether observation completion is on track. Shared filters for site, shift and date range carry across both pages, so users can set their context once and move between the two views without losing it.</p>
+    </div>
+  </div>
+
+  <!-- KEY FEATURES -->
+  <div class="content-section">
+    <div class="section-label">Key Features</div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-title">Production KPIs</div>
+        <div class="feature-desc">Tonnes mined, equipment utilisation, drill metres and average cycle time, each with variance against target.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-title">Site-level variance table</div>
+        <div class="feature-desc">Total tonnes mined vs target with percentage variance across Pilbara, Bowen Basin and Olympic Dam.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-title">Equipment utilisation breakdown</div>
+        <div class="feature-desc">Utilisation rate by equipment type: haul trucks, excavators, drill rigs, graders and dozers.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-title">LTIFR &amp; TRIFR tracking</div>
+        <div class="feature-desc">Frequency rates with quarter-on-quarter movement and a 12-month LTIFR rolling trend line.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-title">Near miss &amp; incident log</div>
+        <div class="feature-desc">Near misses by category, QTD incident counts by type, and a leading vs lagging severity ratio.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-title">Safety observations vs target</div>
+        <div class="feature-desc">Completion rate by site with colour-coded performance and days since last LTI per site.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THE OUTCOME -->
+  <div class="content-section" style="border-bottom: none;">
+    <div class="section-label">The Outcome</div>
+    <div class="outcome-box">
+      <div class="prose">
+        <p>The finished report covers two of the most operationally critical areas in mining: production throughput and workforce safety. Each page works independently, a production manager can go straight to their site data, while the shared filter logic means the full report reads as a single connected view.</p>
+        <p>The safety page required careful thought around metric selection. LTIFR and TRIFR are standard across the industry but they are lagging indicators by nature, so the report gives equal weight to leading measures like observation completion rates and near miss reporting. The severity ratio bar at the bottom makes that split explicit and surfaces something worth talking about in a safety review.</p>
+        <p>Mining felt like a strong sector to build for given the volume and variety of operational data involved. The principles applied here, a clear KPI hierarchy, consistent cross-page filters, a model built to extend, carry directly across to the kind of environments I have worked in and am targeting in Australia.</p>
+      </div>
+    </div>
+
+    <div class="tags-footer">
+      <span class="tag tag-green">Power BI</span>
+      <span class="tag tag-green">DAX</span>
+      <span class="tag tag-green">Star Schema</span>
+      <span class="tag">ETL</span>
+      <span class="tag">Mining Analytics</span>
+      <span class="tag">Safety Reporting</span>
+      <span class="tag">KPI Tracking</span>
+      <span class="tag">Variance Analysis</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- PROJECT NAV -->
+<div class="container">
+  <div class="project-nav">
+    <a href="/portfolio" class="project-nav-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      All Projects
+    </a>
+    <a href="/portfolio" class="btn-portfolio">
+      View Portfolio
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <span class="footer-text">© 2026 Nathan Wallis · Sydney, AU</span>
+      <span class="footer-text">Mining Operations Dashboard</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

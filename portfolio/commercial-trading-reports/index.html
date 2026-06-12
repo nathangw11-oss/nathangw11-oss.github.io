@@ -181,29 +181,6 @@ header h1 strong { font-weight: 600; }
   display: block;
 }
 
-.screenshot-placeholder {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  background: var(--gray-50);
-}
-
-.screenshot-placeholder svg {
-  width: 28px;
-  height: 28px;
-  opacity: 0.4;
-  color: var(--text-muted);
-}
-
-.screenshot-placeholder p {
-  font-size: 13px;
-  color: var(--text-muted);
-}
-
 .screenshot-caption {
   padding: 12px 16px;
   font-size: 12px;
@@ -279,6 +256,78 @@ header h1 strong { font-weight: 600; }
   color: var(--text-primary);
   letter-spacing: -0.02em;
   line-height: 1.3;
+}
+
+/* ─── TESTIMONIALS ─── */
+.testimonial-inline {
+  margin-top: 4px;
+}
+
+.testimonial-card {
+  background: var(--gray-50);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+}
+
+.testimonial-card::before {
+  content: '\201C';
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 56px;
+  font-weight: 600;
+  color: var(--green-border);
+  line-height: 1;
+  position: absolute;
+  top: 16px;
+  right: 24px;
+}
+
+.testimonial-quote {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--text-secondary);
+  font-style: italic;
+  padding-right: 24px;
+}
+
+.testimonial-attribution {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.testimonial-initials {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--green-light);
+  border: 1px solid var(--green-border);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--green);
+  margin-bottom: 10px;
+  font-family: 'Inter Tight', sans-serif;
+}
+
+.testimonial-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.testimonial-role {
+  font-size: 12px;
+  color: var(--text-muted);
 }
 
 /* ─── TAGS FOOTER ─── */
@@ -367,6 +416,7 @@ footer {
   header h1 { font-size: 30px; }
   .project-nav { flex-direction: column; align-items: stretch; }
   .project-nav-link, .btn-portfolio { justify-content: center; }
+  .testimonials-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -395,7 +445,7 @@ footer {
     </a>
     <div class="header-eyebrow">Project Write-up</div>
     <h1><strong>E-Commerce</strong> Analytics Suite</h1>
-    <p class="header-subtitle">A selection of reports and dashboards built to support eCommerce trading, business development and website performance monitoring. Turning complex, multi-source data into clear, actionable insight.</p>
+    <p class="header-subtitle">A selection of reports and dashboards built to support eCommerce trading, business development and marketing channel performance. Turning complex, multi-source data into clear, actionable insight.</p>
     <div class="header-tags">
       <span class="tag tag-green">Power BI</span>
       <span class="tag tag-green">DAX</span>
@@ -459,6 +509,14 @@ footer {
         <div class="prose">
           <p>Built by extracting GA4 data using SQL from BigQuery to track every stage of the purchase funnel on the website, from total sessions through to completed bookings. The ability to segment by marketing channel, device, product category and landing page made it a genuinely useful tool for both the Trading Dashboards and marketing teams to review where users were dropping off and why.</p>
         </div>
+        <div class="testimonial-card testimonial-inline">
+          <p class="testimonial-quote">This is really great, the best funnel report I have seen in this business and I love the visualisation.<br>Well done!</p>
+          <div class="testimonial-attribution">
+            <div class="testimonial-initials">JH</div>
+            <span class="testimonial-name">Joey Hughes</span>
+            <span class="testimonial-role">Head of E-commerce — Manchester Airports Group (CAVU)</span>
+          </div>
+        </div>
       </div>
 
       <!-- 04 -->
@@ -490,6 +548,14 @@ footer {
           <p>A weekly performance report giving a full picture view of trading across every marketing channel including Paid Search, Email, Organic Search, Direct and Affiliates. It was designed as a side-by-side layout with current year actuals alongside prior year variance, so the trading and marketing teams could assess both absolute performance and trend direction in one view.</p>
           <p>The report had previously been maintained as an Excel file, updated manually on a daily basis throughout the week. By rebuilding it in Power BI with a SQL backend, it refreshed automatically every day without anyone needing to touch it. This saved the team several hours of manual work each week and removed the risk of human error creeping into the data.</p>
         </div>
+        <div class="testimonial-card testimonial-inline">
+          <p class="testimonial-quote">Nathan has built out a suite of dashboards in Power BI for distribution that are high quality, easy to understand and the visualisation is impeccable. In particular, the Marketing KPI report will save the e-commerce distribution team hours each week which were spent downloading data from various sources. It also allows the marketing teams to quickly and easily view performance at an airport level and begin to make decisions and action plans.</p>
+          <div class="testimonial-attribution">
+            <div class="testimonial-initials">KB</div>
+            <span class="testimonial-name">Katie Bajwa-Reynolds</span>
+            <span class="testimonial-role">Senior Commercial Analyst Lead — Manchester Airports Group (CAVU)</span>
+          </div>
+        </div>
       </div>
 
       <!-- 06 -->
@@ -516,6 +582,7 @@ footer {
       <span class="tag tag-green">DAX</span>
       <span class="tag tag-green">SQL</span>
       <span class="tag">BigQuery</span>
+      <span class="tag">Databricks</span>
       <span class="tag">GA4</span>
       <span class="tag">eCommerce</span>
       <span class="tag">Conversion Rate</span>
@@ -525,6 +592,8 @@ footer {
     </div>
 
   </div>
+
+
 </div>
 
 <!-- PROJECT NAV -->

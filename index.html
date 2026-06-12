@@ -74,6 +74,8 @@ header { animation: fadeInDown 0.6s ease both; }
 .fade-stagger.visible > *:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 0.21s; }
 .fade-stagger.visible > *:nth-child(5) { opacity: 1; transform: translateY(0); transition-delay: 0.28s; }
 .fade-stagger.visible > *:nth-child(6) { opacity: 1; transform: translateY(0); transition-delay: 0.35s; }
+.fade-stagger.visible > *:nth-child(7) { opacity: 1; transform: translateY(0); transition-delay: 0.42s; }
+.fade-stagger.visible > *:nth-child(8) { opacity: 1; transform: translateY(0); transition-delay: 0.49s; }
 
 /* ─── HEADER ─── */
 header {
@@ -170,6 +172,46 @@ header {
   margin-bottom: 28px;
 }
 
+/* ─── SKILLS SECTION ─── */
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.skills-card {
+  background: var(--gray-50);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+}
+
+.skills-card-label {
+  font-size: 10.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.skills-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.skills-tag {
+  font-size: 12.5px;
+  color: var(--green);
+  background: var(--green-light);
+  border: 1px solid var(--green-border);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
 /* ─── PHILOSOPHY CARD ─── */
 .philosophy-card {
   border-left: 3px solid var(--green);
@@ -199,46 +241,6 @@ header {
   font-style: italic;
   font-weight: 500;
   color: var(--green);
-}
-
-/* ─── OPEN TO GRID ─── */
-.open-to-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-top: 4px;
-}
-
-.open-to-card {
-  background: var(--gray-50);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 18px 20px;
-}
-
-.open-to-label {
-  font-size: 10.5px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-muted);
-  margin-bottom: 10px;
-}
-
-.open-to-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.open-to-tag {
-  font-size: 12.5px;
-  color: var(--green);
-  background: var(--green-light);
-  border: 1px solid var(--green-border);
-  padding: 4px 10px;
-  border-radius: 6px;
-  font-weight: 500;
 }
 
 /* ─── TESTIMONIAL ─── */
@@ -409,7 +411,7 @@ section:last-of-type { border-bottom: none; }
   border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
-  transition: border-color 0.2s, box-shadow 0.2s;
+
   display: flex;
   flex-direction: column;
   cursor: pointer;
@@ -543,7 +545,7 @@ footer {
   header { padding: 40px 0 36px; }
   .header-top { flex-direction: column; gap: 16px; }
   .header-name { font-size: 38px; }
-  .open-to-grid { grid-template-columns: 1fr; }
+  .skills-grid { grid-template-columns: 1fr; }
   .hobbies-grid { grid-template-columns: repeat(3, 1fr); }
   .contact-grid { grid-template-columns: 1fr 1fr; }
   .projects-grid { grid-template-columns: 1fr; }
@@ -560,7 +562,7 @@ footer {
     <div class="header-top">
       <div>
         <h1 class="header-name"><strong>Nathan</strong> Wallis</h1>
-        <div class="header-role">Commercial &amp; Data Analyst &nbsp;·&nbsp; Power BI &nbsp;·&nbsp; SQL &nbsp;·&nbsp; Databricks &nbsp;·&nbsp; Sydney, AU</div>
+        <div class="header-role">Commercial &amp; Data Analyst &nbsp;·&nbsp; Power BI &nbsp;·&nbsp; SQL &nbsp;·&nbsp; Excel &nbsp;·&nbsp; Sydney, AU</div>
       </div>
       <div class="available-badge">Available Now</div>
     </div>
@@ -584,26 +586,56 @@ footer {
       </a>
     </div>
 
-    <p class="bio">I'm a commercially minded analyst with 3+ years of experience across digital, retail, and travel environments. My background spans commercial trading analytics, digital performance, and financial modelling — with a consistent focus on turning complex, multi-source data into commercial decision and presenting to senior leadership.<br><br>Most recently I was at Manchester Airports Group, UK's largest airport group (c. &pound;1.3b annual revenue), within their digital travel services division called CAVU. I owned insight and reporting across a c.&pound;70m EBITDA business area. Day-to-day that meant everything from booking funnel analysis and marketing channel performance to pricing strategy and finance reporting. I worked closely with trading, finance and marketing teams.<br><br>Prior to that I came up through commercial trading at The Fragrance Shop and Atlantic Timber before moving into analytics, which means I don't just report on business performance, I understand the commercial drivers behind them and report on the why.<br><br>I've recently relocated to Sydney from the UK, following travel across Asia, and I'm open to opportunities across Australia.</p>
+    <div style="border-top: 1px solid var(--border); margin-bottom: 24px;"></div>
+    <div class="section-label" style="margin-bottom: 16px;">Summary</div>
 
-    <div class="open-to-grid fade-in">
-      <div class="open-to-card">
-        <div class="open-to-label">Open to</div>
-        <div class="open-to-tags">
-          <span class="open-to-tag">Commercial Analyst</span>
-          <span class="open-to-tag">Data Analyst</span>
-          <span class="open-to-tag">BI Developer</span>
-          <span class="open-to-tag">FP&amp;A Analyst</span>
-          <span class="open-to-tag">Pricing Analyst</span>
+    <p class="bio">I'm a commercially minded analyst with five years' experience across commercial, e-commerce and analytics roles in the travel, retail and digital sectors. My work sits at the intersection of data, commercial performance and decision-making, helping businesses turn complex information into clear insight that drives revenue, profitability and growth. I specialise in Power BI, SQL, Excel, forecasting and data modelling, with a strong focus on making data accessible and actionable.<br><br>Most recently, I worked at Manchester Airports Group within its digital travel services division, CAVU, where I owned insight and reporting across a business area generating around &pound;70m in EBITDA. Working closely with commercial, finance and marketing teams, I delivered analysis across digital performance, pricing strategy, forecasting and financial reporting to support business decisions and identify growth opportunities.<br><br>My career began in commercial trading before moving into analytics, giving me a strong understanding of the commercial drivers behind business performance. Rather than simply reporting what happened, I focus on understanding why it happened and what actions should come next.<br><br>Originally from the UK, I recently relocated to Sydney and am currently exploring opportunities across Australia.</p>
+
+
+
+
+    <div style="border-top: 1px solid var(--border); margin: 0 0 24px;"></div>
+    <div class="section-label" style="margin-bottom: 16px;">Technical Skills</div>
+    <div class="skills-grid fade-in">
+      <div class="skills-card">
+        <div class="skills-card-label">Data &amp; Analytics</div>
+        <div class="skills-tags">
+          <span class="skills-tag">Power BI</span>
+          <span class="skills-tag">SQL</span>
+          <span class="skills-tag">Excel</span>
+          <span class="skills-tag">Google Analytics</span>
+          
         </div>
       </div>
-      <div class="open-to-card">
-        <div class="open-to-label">Based in &amp; open to relocate</div>
-        <div class="open-to-tags">
-          <span class="open-to-tag">Sydney</span>
-          <span class="open-to-tag">Melbourne</span>
-          <span class="open-to-tag">Brisbane</span>
-          <span class="open-to-tag">Perth</span>
+      <div class="skills-card">
+        <div class="skills-card-label">Modelling &amp; Engineering</div>
+        <div class="skills-tags">
+          <span class="skills-tag">Databricks</span>
+          <span class="skills-tag">Power Query</span>
+          <span class="skills-tag">DAX</span>
+          <span class="skills-tag">Python</span>
+          <span class="skills-tag">ETL Pipelines</span>
+          <span class="skills-tag">Microsoft Fabric</span>
+        </div>
+      </div>
+      <div class="skills-card">
+        <div class="skills-card-label">FP&amp;A &amp; Finance</div>
+        <div class="skills-tags">
+          <span class="skills-tag">Forecasting</span>
+          <span class="skills-tag">Scenario & Sensitivity Modelling</span>
+          <span class="skills-tag">Variance Analysis</span>
+          <span class="skills-tag">P&amp;L Analysis</span>
+          <span class="skills-tag">Budgeting</span>
+        </div>
+      </div>
+      <div class="skills-card">
+        <div class="skills-card-label">Commercial</div>
+        <div class="skills-tags">
+          <span class="skills-tag">Pricing Optimisation</span>
+          <span class="skills-tag">ROI Analysis</span>
+          <span class="skills-tag">KPI Tracking</span>
+          <span class="skills-tag">Market Analysis</span>
+          <span class="skills-tag">CRO & A/B Testing</span>
         </div>
       </div>
     </div>
@@ -611,16 +643,17 @@ footer {
 
   <!-- PORTFOLIO SECTION -->
   <div id="portfolio" class="portfolio-divider fade-in">
-    <div class="portfolio-divider-inner">
+
+    <div class="portfolio-divider-inner fade-in">
       <div>
         <div class="portfolio-eyebrow">Portfolio</div>
         <h2 class="portfolio-heading"><strong>Selected</strong> Work</h2>
       </div>
       <div class="project-count-badge"><strong>8</strong> projects</div>
     </div>
-    <p class="portfolio-subtext">A collection of analytics and data visualisation projects built across commercial, e-commerce, and travel environments. Each project includes a write-up covering the brief, the approach, and the business impact.</p>
+    <p class="portfolio-subtext fade-in">A collection of analytics and data visualisation projects built across commercial, e-commerce, and travel environments. Each project includes a write-up covering the brief, the approach, and the business impact.</p>
 
-    <div class="filter-bar">
+    <div class="filter-bar fade-in">
       <span class="filter-label">Filter</span>
       <button class="filter-btn active" onclick="filterProjects('all', this)">All</button>
       <button class="filter-btn" onclick="filterProjects('Power BI', this)">Power BI</button>
@@ -632,7 +665,7 @@ footer {
 
     <div class="projects-grid" id="projects-grid">
 
-      <a href="/portfolio/commercial-trading-reports" class="project-card" data-tags="Power BI,DAX,Commercial Reporting,KPI Tracking">
+      <a href="/portfolio/commercial-trading-reports" class="project-card fade-in" data-tags="Power BI,DAX,Commercial Reporting,KPI Tracking">
         <div class="project-hero"><img src="/images/Booking_Funnel.png" alt="E-commerce Analytics Suite"></div>
         <div class="project-body">
           <div class="project-category"><span class="cat-tag">Power BI</span></div>
@@ -650,7 +683,7 @@ footer {
         </div>
       </a>
 
-      <a href="/portfolio/performance-dashboard" class="project-card" data-tags="Power BI,DAX,Data Visualisation,Variance Analysis">
+      <a href="/portfolio/performance-dashboard" class="project-card fade-in" data-tags="Power BI,DAX,Data Visualisation,Variance Analysis">
         <div class="project-hero"><img src="/images/Performance_Dashboard.png" alt="Commercial Performance Dashboard"></div>
         <div class="project-body">
           <div class="project-category"><span class="cat-tag">Power BI</span></div>
@@ -668,7 +701,7 @@ footer {
         </div>
       </a>
 
-      <a href="/portfolio/scenario-modelling" class="project-card" data-tags="Power BI,FP&A,Scenario Modelling,Budgeting,Financial Modelling">
+      <a href="/portfolio/scenario-modelling" class="project-card fade-in" data-tags="Power BI,FP&A,Scenario Modelling,Budgeting,Financial Modelling">
         <div class="project-hero"><img src="/images/Scenario_Modelv1.png" alt="Scenario & Sensitivity Model"></div>
         <div class="project-body">
           <div class="project-category"><span class="cat-tag">Power BI</span><span class="cat-tag">FP&A</span></div>
@@ -686,7 +719,7 @@ footer {
         </div>
       </a>
 
-      <a href="/portfolio/three-statement-model" class="project-card" data-tags="Excel,FP&A,Financial Modelling,Forecasting">
+      <a href="/portfolio/three-statement-model" class="project-card fade-in" data-tags="Excel,FP&A,Financial Modelling,Forecasting">
         <div class="project-hero"><img src="/images/3_Statement_Model.png" alt="Three Statement Forecast Model"></div>
         <div class="project-body">
           <div class="project-category"><span class="cat-tag">Excel</span><span class="cat-tag">Financial Planning</span></div>
@@ -704,7 +737,7 @@ footer {
         </div>
       </a>
 
-      <a href="/portfolio/mining-operations-dashboard" class="project-card" data-tags="Power BI">
+      <a href="/portfolio/mining-operations-dashboard" class="project-card fade-in" data-tags="Power BI">
         <div class="project-hero"><img src="/images/Mining_Production_Dashboard.png" alt="Mining Operations Dashboard"></div>
         <div class="project-body">
           <div class="project-category"><span class="cat-tag">Power BI</span><span class="cat-tag">Data Visualisation</span></div>
@@ -722,7 +755,7 @@ footer {
         </div>
       </a>
 
-      <a href="/portfolio/business-case-model" class="project-card" data-tags="Excel,Business Case,Financial Modelling,Investment Appraisal,Scenario Analysis,FP&A">
+      <a href="/portfolio/business-case-model" class="project-card fade-in" data-tags="Excel,Business Case,Financial Modelling,Investment Appraisal,Scenario Analysis,FP&A">
         <div class="project-hero"><img src="/images/Business_Case_Model.png" alt="Business Case Model"></div>
         <div class="project-body">
           <div class="project-category"><span class="cat-tag">Excel</span><span class="cat-tag">Financial Modelling</span></div>
@@ -740,7 +773,7 @@ footer {
         </div>
       </a>
 
-      <a href="/portfolio/blog-ai-data-analysis" class="project-card" data-tags="Insight,Data Analysis,AI,Artificial Intelligence">
+      <a href="/portfolio/blog-ai-data-analysis" class="project-card fade-in" data-tags="Insight,Data Analysis,AI,Artificial Intelligence">
         <div class="project-hero"><img src="/images/AI_Blog_Post_Hero.png" alt="AI & The Analyst"></div>
         <div class="project-body">
           <div class="project-category"><span class="cat-tag">Insight</span><span class="cat-tag">Artificial Intelligence</span></div>
@@ -757,7 +790,7 @@ footer {
         </div>
       </a>
 
-      <a href="/portfolio/hospital-analytics" class="project-card" data-tags="Power BI">
+      <a href="/portfolio/hospital-analytics" class="project-card fade-in" data-tags="Power BI">
         <div class="project-hero"><img src="/images/Operational_Hospital.png" alt="Hospital Analytics Dashboard"></div>
         <div class="project-body">
           <div class="project-category"><span class="cat-tag">Power BI</span><span class="cat-tag">Data Visualisation</span></div>
@@ -777,8 +810,10 @@ footer {
     </div>
   </div>
 
+
+
   <!-- TESTIMONIAL -->
-  <section>
+  <section style="border-top: 1px solid var(--border);">
     <div class="section-label fade-in">Colleague Feedback</div>
     <div class="testimonial fade-in">
       <blockquote>"Nathan has built out a suite of dashboards in Power BI for distribution that are high quality, easy to understand and the visualisation is impeccable. In particular, the Marketing KPI report will save the e-commerce distribution team hours each week which were spent downloading data from various sources. It also allows the marketing teams to quickly and easily view performance at an airport level and begin to make decisions and action plans."</blockquote>
@@ -864,7 +899,7 @@ footer {
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.05, rootMargin: '0px 0px 0px 0px' });
 
   document.querySelectorAll('.fade-in, .fade-stagger').forEach(el => observer.observe(el));
 

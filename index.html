@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nathan Wallis</title>
+<title>Nathan Wallis — Commercial & Data Analyst</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -49,41 +49,25 @@ body {
 }
 
 /* ─── ANIMATIONS ─── */
-
-/* Header fades in on load */
 @keyframes fadeInDown {
   from { opacity: 0; transform: translateY(-16px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
+header { animation: fadeInDown 0.6s ease both; }
 
-header {
-  animation: fadeInDown 0.7s ease both;
-}
-
-/* Scroll-triggered fade — hidden state */
 .fade-in {
   opacity: 0;
   transform: translateY(18px);
   transition: opacity 0.55s ease, transform 0.55s ease;
 }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
 
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Stagger children inside a section */
 .fade-stagger > * {
   opacity: 0;
   transform: translateY(14px);
   transition: opacity 0.45s ease, transform 0.45s ease;
 }
-
 .fade-stagger.visible > *:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0s; }
 .fade-stagger.visible > *:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.07s; }
 .fade-stagger.visible > *:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.14s; }
@@ -97,31 +81,29 @@ header {
   border-bottom: 1px solid var(--border);
 }
 
-.header-inner {
+.header-top {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 40px;
-  margin-bottom: 28px;
+  gap: 32px;
+  margin-bottom: 24px;
 }
 
-.header-left h1 {
+.header-name {
   font-family: 'Inter Tight', sans-serif;
   font-size: 52px;
   font-weight: 300;
   letter-spacing: -0.03em;
   line-height: 1.0;
   color: var(--gray-900);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
-
-.header-left h1 strong { font-weight: 600; }
+.header-name strong { font-weight: 600; }
 
 .header-role {
-  font-size: 16px;
-  font-weight: 400;
+  font-size: 15px;
   color: var(--text-secondary);
-  letter-spacing: 0.01em;
+  font-weight: 400;
 }
 
 .available-badge {
@@ -136,32 +118,31 @@ header {
   padding: 7px 14px;
   border-radius: 100px;
   white-space: nowrap;
+  flex-shrink: 0;
   margin-top: 4px;
 }
-
 .available-badge::before {
   content: '';
-  width: 7px;
-  height: 7px;
+  width: 7px; height: 7px;
   background: var(--green);
   border-radius: 50%;
   animation: pulse 2.5s infinite;
   flex-shrink: 0;
 }
-
 @keyframes pulse {
   0%, 100% { opacity: 1; transform: scale(1); }
   50% { opacity: 0.4; transform: scale(0.75); }
 }
 
-.header-meta {
+/* ─── CONTACT PILLS ─── */
+.contact-pills {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 }
 
-.meta-pill {
+.contact-pill {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -174,212 +155,122 @@ header {
   text-decoration: none;
   transition: all 0.15s;
 }
-
-.meta-pill:hover {
+.contact-pill:hover {
   border-color: var(--green-border);
   color: var(--green);
   background: var(--green-light);
 }
+.contact-pill svg { width: 13px; height: 13px; flex-shrink: 0; }
 
-.meta-pill svg { width: 13px; height: 13px; flex-shrink: 0; }
-
-.header-summary {
+/* ─── BIO ─── */
+.bio {
   font-size: 16px;
-  line-height: 1.75;
+  line-height: 1.8;
   color: var(--text-secondary);
-  max-width: 680px;
-  font-weight: 400;
+  margin-bottom: 28px;
 }
 
-/* ─── CTA BANNER ─── */
-.cta-banner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+/* ─── PHILOSOPHY CARD ─── */
+.philosophy-card {
+  border-left: 3px solid var(--green);
   background: var(--green-light);
-  border: 1px solid var(--green-border);
-  border-radius: var(--radius);
-  padding: 16px 20px;
-  margin-top: 28px;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 20px 24px;
+  margin-bottom: 28px;
 }
 
-.cta-text { font-size: 13.5px; color: var(--green); font-weight: 400; line-height: 1.5; }
-.cta-text strong { font-weight: 600; }
-
-.cta-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 13px;
+.philosophy-label {
+  font-size: 10.5px;
   font-weight: 600;
-  color: var(--white);
-  background: var(--green);
-  text-decoration: none;
-  padding: 8px 16px;
-  border-radius: 8px;
-  white-space: nowrap;
-  flex-shrink: 0;
-  transition: all 0.15s;
-}
-
-.cta-link:hover { background: var(--green-mid); }
-.cta-link svg { width: 13px; height: 13px; }
-
-/* ─── SECTION WRAPPER ─── */
-section {
-  padding: 40px 0;
-  border-bottom: 1px solid var(--border-light);
-}
-
-section:last-of-type { border-bottom: none; }
-
-.section-title {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 20px;
+  letter-spacing: 0.1em;
+  color: var(--green);
+  margin-bottom: 10px;
 }
 
-/* ─── EXPERIENCE ─── */
-.experience-item {
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 32px;
-  padding: 32px 0;
-  border-bottom: 1px solid var(--border-light);
+.philosophy-text {
+  font-size: 14.5px;
+  line-height: 1.75;
+  color: var(--green-mid);
+  font-weight: 400;
 }
 
-.experience-item:first-child { padding-top: 0; }
-.experience-item:last-child { border-bottom: none; padding-bottom: 0; }
-
-.exp-left { padding-top: 2px; }
-
-.exp-company { font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; line-height: 1.3; }
-.exp-period { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
-.exp-context { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
-
-.exp-role { font-size: 13.5px; font-weight: 500; color: var(--green); margin-bottom: 12px; }
-
-.exp-role-secondary {
-  font-size: 12.5px;
+.philosophy-text em {
+  font-style: italic;
   font-weight: 500;
-  color: var(--gray-400);
-  margin-bottom: 14px;
+  color: var(--green);
+}
+
+/* ─── OPEN TO GRID ─── */
+.open-to-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.open-to-card {
+  background: var(--gray-50);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+}
+
+.open-to-label {
+  font-size: 10.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.open-to-tags {
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
   gap: 6px;
 }
 
-.exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 7px; }
-
-.exp-bullets li {
-  font-size: 13.5px;
-  color: var(--text-secondary);
-  line-height: 1.65;
-  padding-left: 14px;
-  position: relative;
-}
-
-.exp-bullets li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 10px;
-  width: 4px;
-  height: 4px;
-  background: var(--gray-300);
-  border-radius: 50%;
-}
-
-.exp-bullets li strong { color: var(--text-primary); font-weight: 500; }
-
-/* ─── SKILLS ─── */
-.skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-
-.skill-group {
-  background: var(--gray-50);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 20px 22px;
-}
-
-.skill-group-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; }
-
-.skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-
-.skill-tag {
+.open-to-tag {
   font-size: 12.5px;
-  color: var(--text-secondary);
-  background: var(--white);
-  border: 1px solid var(--border);
-  padding: 4px 10px;
-  border-radius: 6px;
-  font-weight: 400;
-  transition: all 0.15s;
-}
-
-.skill-tag:hover { border-color: var(--green-border); color: var(--green); background: var(--green-light); }
-
-/* ─── EDUCATION ─── */
-.education-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-
-.edu-card {
-  background: var(--gray-50);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 22px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 120px;
-}
-
-.edu-qual { font-size: 14px; font-weight: 500; color: var(--text-primary); line-height: 1.4; margin-bottom: 5px; }
-.edu-school { font-size: 12.5px; color: var(--text-muted); margin-bottom: 16px; }
-
-.edu-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 14px;
-  border-top: 1px solid var(--border);
-}
-
-.edu-year { font-size: 12px; color: var(--text-muted); }
-
-.edu-grade {
-  font-size: 12px;
-  font-weight: 600;
   color: var(--green);
   background: var(--green-light);
-  padding: 3px 10px;
-  border-radius: 100px;
   border: 1px solid var(--green-border);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-weight: 500;
 }
 
 /* ─── TESTIMONIAL ─── */
-.testimonial { background: var(--gray-50); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 32px; }
-
-.testimonial blockquote { font-size: 15px; color: var(--text-secondary); line-height: 1.8; font-style: italic; margin-bottom: 22px; }
-
+.testimonial {
+  background: var(--gray-50);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+}
+.testimonial blockquote {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  font-style: italic;
+  margin-bottom: 20px;
+}
 .testimonial-attr { display: flex; align-items: center; gap: 12px; }
-
 .testimonial-avatar {
   width: 36px; height: 36px; border-radius: 50%;
   background: var(--green-light); border: 1px solid var(--green-border);
   display: flex; align-items: center; justify-content: center;
   font-size: 12px; font-weight: 600; color: var(--green); flex-shrink: 0;
 }
-
 .testimonial-name { font-size: 13.5px; font-weight: 500; color: var(--text-primary); }
 .testimonial-role { font-size: 12px; color: var(--text-muted); }
 
 /* ─── HOBBIES ─── */
-.hobbies-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
-
+.hobbies-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+}
 .hobby-card {
   background: var(--gray-50);
   border: 1px solid var(--border);
@@ -391,38 +282,246 @@ section:last-of-type { border-bottom: none; }
   gap: 8px;
   text-align: center;
 }
-
 .hobby-card .hobby-icon { font-size: 22px; line-height: 1; }
 .hobby-card span { font-size: 12px; color: var(--text-muted); font-weight: 500; }
 
-/* ─── CONTACT ─── */
+/* ─── SECTION LABEL ─── */
+.section-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+section {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--border-light);
+}
+section:last-of-type { border-bottom: none; }
+
+/* ─── PORTFOLIO DIVIDER ─── */
+.portfolio-divider {
+  padding: 56px 0 0;
+  border-top: 1px solid var(--border);
+}
+
+.portfolio-divider-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 8px;
+}
+
+.portfolio-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.portfolio-heading {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 36px;
+  font-weight: 300;
+  letter-spacing: -0.025em;
+  color: var(--gray-900);
+  line-height: 1.1;
+}
+.portfolio-heading strong { font-weight: 600; }
+
+.portfolio-subtext {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 560px;
+  margin-top: 12px;
+  margin-bottom: 32px;
+}
+
+.project-count-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--gray-50);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 7px 14px;
+  border-radius: 100px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-bottom: 8px;
+  align-self: flex-end;
+}
+.project-count-badge strong { color: var(--green); font-weight: 600; }
+
+/* ─── FILTER BAR ─── */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--border-light);
+  margin-bottom: 40px;
+}
+
+.filter-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-right: 4px;
+}
+
+.filter-btn {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: var(--gray-50);
+  border: 1px solid var(--border);
+  padding: 5px 13px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: 'Inter', sans-serif;
+}
+.filter-btn:hover { border-color: var(--green-border); color: var(--green); background: var(--green-light); }
+.filter-btn.active { border-color: var(--green-border); color: var(--green); background: var(--green-light); }
+
+/* ─── PROJECTS GRID ─── */
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding-bottom: 72px;
+}
+
+/* ─── PROJECT CARD ─── */
+.project-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+.project-card:hover {
+  border-color: var(--green-border);
+  box-shadow: 0 4px 24px rgba(45, 106, 79, 0.07);
+}
+
+.project-hero {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--gray-50);
+  flex-shrink: 0;
+}
+.project-hero img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform 0.35s ease;
+}
+.project-card:hover .project-hero img { transform: scale(1.03); }
+
+.project-body {
+  padding: 22px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 10px;
+}
+
+.project-category { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+
+.cat-tag {
+  font-size: 10.5px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.09em;
+  color: var(--green); background: var(--green-light);
+  border: 1px solid var(--green-border);
+  padding: 3px 9px; border-radius: 6px;
+}
+
+.project-title {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 18px; font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.02em; line-height: 1.3;
+}
+
+.project-subtitle {
+  font-size: 13px; font-weight: 500;
+  color: var(--text-muted); line-height: 1.4;
+}
+
+.project-description {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.7; flex: 1;
+}
+
+.project-footer {
+  display: flex; flex-wrap: wrap; gap: 5px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-light);
+  margin-top: 4px;
+}
+
+.skill-pill {
+  font-size: 12px; color: var(--text-secondary);
+  background: var(--gray-50); border: 1px solid var(--border);
+  padding: 3px 10px; border-radius: 6px; font-weight: 400;
+}
+
+/* ─── PLACEHOLDER CARD ─── */
+.project-card-placeholder {
+  background: var(--gray-50);
+  border: 1px dashed var(--gray-300);
+  border-radius: var(--radius);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 10px; min-height: 300px;
+  padding: 32px; text-align: center;
+}
+.placeholder-icon {
+  width: 40px; height: 40px;
+  background: var(--gray-200); border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+}
+.placeholder-icon svg { width: 18px; height: 18px; color: var(--gray-400); }
+.placeholder-text { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+.placeholder-sub { font-size: 12px; color: var(--gray-300); }
+
+/* ─── GET IN TOUCH ─── */
 .contact-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
 
 .contact-item {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
-  background: var(--gray-50);
-  border: 1px solid var(--border);
-  padding: 18px 18px;
-  border-radius: var(--radius);
-  text-decoration: none;
-  transition: all 0.15s;
-  min-height: 88px;
+  display: flex; flex-direction: column;
+  align-items: flex-start; gap: 8px;
+  background: var(--gray-50); border: 1px solid var(--border);
+  padding: 18px; border-radius: var(--radius);
+  text-decoration: none; transition: all 0.15s; min-height: 88px;
 }
-
 .contact-item:hover { border-color: var(--green-border); background: var(--green-light); }
 .contact-item:hover .contact-icon-wrap { background: var(--green-border); }
 
 .contact-icon-wrap {
-  width: 32px; height: 32px;
-  border-radius: var(--radius-sm);
+  width: 32px; height: 32px; border-radius: var(--radius-sm);
   background: var(--gray-200);
   display: flex; align-items: center; justify-content: center;
   transition: background 0.15s;
 }
-
 .contact-icon-wrap svg { width: 14px; height: 14px; color: var(--gray-700); }
 .contact-item:hover .contact-icon-wrap svg { color: var(--green); }
 .contact-label { font-size: 10.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 1px; }
@@ -436,39 +535,20 @@ footer {
   align-items: center;
   border-top: 1px solid var(--border);
 }
-
 .footer-text { font-size: 12px; color: var(--text-muted); }
-
-.portfolio-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--green);
-  text-decoration: none;
-  padding: 8px 18px;
-  border: 1px solid var(--green-border);
-  border-radius: 8px;
-  background: var(--green-light);
-  transition: all 0.15s;
-}
-
-.portfolio-link:hover { background: var(--green); color: white; border-color: var(--green); }
-.portfolio-link svg { width: 13px; height: 13px; }
 
 /* ─── RESPONSIVE ─── */
 @media (max-width: 720px) {
   .container { padding: 0 20px; }
-  header { padding: 48px 0 40px; }
-  .header-inner { flex-direction: column; gap: 20px; }
-  .header-left h1 { font-size: 38px; }
-  .experience-item { grid-template-columns: 1fr; gap: 8px; }
-  .skills-grid { grid-template-columns: 1fr; }
-  .education-grid { grid-template-columns: 1fr; }
+  header { padding: 40px 0 36px; }
+  .header-top { flex-direction: column; gap: 16px; }
+  .header-name { font-size: 38px; }
+  .open-to-grid { grid-template-columns: 1fr; }
   .hobbies-grid { grid-template-columns: repeat(3, 1fr); }
   .contact-grid { grid-template-columns: 1fr 1fr; }
-  footer { flex-direction: column; gap: 16px; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .portfolio-heading { font-size: 28px; }
+  .portfolio-divider-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
 }
 </style>
 </head>
@@ -477,215 +557,229 @@ footer {
 
   <!-- HEADER -->
   <header>
-    <div class="header-inner">
-      <div class="header-left">
-        <h1><strong>Nathan</strong> Wallis</h1>
-        <div class="header-role">Commercial Analyst &nbsp;·&nbsp; Power BI &nbsp;·&nbsp; SQL &nbsp;·&nbsp; Excel &nbsp;·&nbsp; Forecasting &nbsp;·&nbsp; Modelling</div>
+    <div class="header-top">
+      <div>
+        <h1 class="header-name"><strong>Nathan</strong> Wallis</h1>
+        <div class="header-role">Commercial &amp; Data Analyst &nbsp;·&nbsp; Power BI &nbsp;·&nbsp; SQL &nbsp;·&nbsp; Databricks &nbsp;·&nbsp; Sydney, AU</div>
       </div>
       <div class="available-badge">Available Now</div>
     </div>
 
-    <div class="header-meta">
-      <a href="mailto:nathangw.11@gmail.com" class="meta-pill">
+    <div class="contact-pills">
+      <a href="mailto:nathangw.11@gmail.com" class="contact-pill">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         nathangw.11@gmail.com
       </a>
-      <a href="tel:+61433254944" class="meta-pill">
+      <a href="tel:+61433254944" class="contact-pill">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.4 3.14 2 2 0 012 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
         +61 433 254 944
       </a>
-      <a class="meta-pill">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-        Sydney, Australia
-      </a>
-      <a href="https://www.linkedin.com/in/nathan-wallis-991129125/" target="_blank" class="meta-pill">
+      <a href="https://www.linkedin.com/in/nathan-wallis-991129125/" target="_blank" class="contact-pill">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
         LinkedIn
       </a>
-      <a href="https://nathan-wallis.com/portfolio" target="_blank" class="meta-pill">
+      <a href="#portfolio" class="contact-pill">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-        Portfolio
+        View Portfolio
       </a>
     </div>
 
-    <p class="header-summary">Commercially minded analyst with 3+ years of experience turning complex data into commercial decisions across retail, airports, and e-commerce environments. Proven track record of building advanced Excel forecasting models, Power BI reporting suites, and SQL-driven analysis that directly influence business planning, pricing and growth strategy. A collaborative partner to finance, trading, and marketing teams, most recently owning reporting and insight across a c.£70m EBITDA business area at Manchester Airports Group.</p>
+    <p class="bio">I'm a commercially minded analyst with 3+ years of experience across digital, retail, and travel environments. My background spans commercial trading analytics, digital performance, and financial modelling — with a consistent focus on turning complex, multi-source data into commercial decision and presenting to senior leadership.<br><br>Most recently I was at Manchester Airports Group, UK's largest airport group (c. &pound;1.3b annual revenue), within their digital travel services division called CAVU. I owned insight and reporting across a c.&pound;70m EBITDA business area. Day-to-day that meant everything from booking funnel analysis and marketing channel performance to pricing strategy and finance reporting. I worked closely with trading, finance and marketing teams.<br><br>Prior to that I came up through commercial trading at The Fragrance Shop and Atlantic Timber before moving into analytics, which means I don't just report on business performance, I understand the commercial drivers behind them and report on the why.<br><br>I've recently relocated to Sydney from the UK, following travel across Asia, and I'm open to opportunities across Australia.</p>
+
+    <div class="open-to-grid fade-in">
+      <div class="open-to-card">
+        <div class="open-to-label">Open to</div>
+        <div class="open-to-tags">
+          <span class="open-to-tag">Commercial Analyst</span>
+          <span class="open-to-tag">Data Analyst</span>
+          <span class="open-to-tag">BI Developer</span>
+          <span class="open-to-tag">FP&amp;A Analyst</span>
+          <span class="open-to-tag">Pricing Analyst</span>
+        </div>
+      </div>
+      <div class="open-to-card">
+        <div class="open-to-label">Based in &amp; open to relocate</div>
+        <div class="open-to-tags">
+          <span class="open-to-tag">Sydney</span>
+          <span class="open-to-tag">Melbourne</span>
+          <span class="open-to-tag">Brisbane</span>
+          <span class="open-to-tag">Perth</span>
+        </div>
+      </div>
+    </div>
   </header>
 
-  <!-- EXPERIENCE -->
-  <section>
-    <div class="section-title fade-in">Experience</div>
+  <!-- PORTFOLIO SECTION -->
+  <div id="portfolio" class="portfolio-divider fade-in">
+    <div class="portfolio-divider-inner">
+      <div>
+        <div class="portfolio-eyebrow">Portfolio</div>
+        <h2 class="portfolio-heading"><strong>Selected</strong> Work</h2>
+      </div>
+      <div class="project-count-badge"><strong>8</strong> projects</div>
+    </div>
+    <p class="portfolio-subtext">A collection of analytics and data visualisation projects built across commercial, e-commerce, and travel environments. Each project includes a write-up covering the brief, the approach, and the business impact.</p>
 
-    <div class="experience-item fade-in">
-      <div class="exp-left">
-        <div class="exp-company">International Travel &amp; Relocation</div>
-        <div class="exp-period">Dec 2025 &ndash; May 2026</div>
-      </div>
-      <div class="exp-right">
-        <ul class="exp-bullets">
-          <li>Embarked on international travel across Asia while relocating to Sydney, Australia.</li>
-          <li>Now based in Sydney and available for immediate employment.</li>
-        </ul>
-      </div>
+    <div class="filter-bar">
+      <span class="filter-label">Filter</span>
+      <button class="filter-btn active" onclick="filterProjects('all', this)">All</button>
+      <button class="filter-btn" onclick="filterProjects('Power BI', this)">Power BI</button>
+      <button class="filter-btn" onclick="filterProjects('Excel', this)">Excel</button>
+      <button class="filter-btn" onclick="filterProjects('FP&A', this)">FP&A</button>
+      <button class="filter-btn" onclick="filterProjects('Financial Modelling', this)">Financial Modelling</button>
+      <button class="filter-btn" onclick="filterProjects('Insight', this)">Insight</button>
     </div>
 
-    <div class="experience-item fade-in">
-      <div class="exp-left">
-        <div class="exp-company">Manchester Airports Group — CAVU</div>
-        <div class="exp-period">Aug 2022 – Dec 2025</div>
-        <div class="exp-context">Digital travel services division. UK's largest airport group. c.£1.3bn annual revenue.</div>
-      </div>
-      <div class="exp-right">
-        <div class="exp-role">Commercial Analyst &nbsp;Jun 2023 – Dec 2025</div>
-        <div class="exp-role-secondary">E-Commerce Trading Executive &nbsp;Aug 2022 – May 2023</div>
-        <ul class="exp-bullets">
-          <li>Owned weekly commercial insight reporting and month-end performance analysis supporting pricing, KPI tracking, and forecasting within a <strong>c.£70m EBITDA business area</strong>.</li>
-          <li>Produced and presented commercial reports, financial analysis and recommendations to senior stakeholders across finance, trading, marketing and business development teams, influencing pricing and trading decisions across international markets.</li>
-          <li>Built forecasting and scenario models using <strong>Excel and SQL</strong> (BigQuery, Databricks, Redshift), supporting budgeting, long-term planning and commercial decision-making across the business.</li>
-          <li>Developed Power BI dashboards and automated reporting suites, <strong>reducing manual reporting effort by 40%</strong>, with reports consistently ranking in the top 10 most-viewed business-wide, demonstrating strong stakeholder adoption.</li>
-          <li>Led investment appraisal for a potential off-site car park acquisition, building multi-year financial model against acquisition cost and commission structures; analysis directly informed the executive decision not to proceed.</li>
-          <li>Built a market-level ROI framework across a <strong>multi-million-pound Google Ads portfolio</strong>, establishing profitability-adjusted bidding guardrails to prioritise high-margin markets and protect overall return.</li>
-          <li>Led market analysis across AMER region, <strong>identifying 5 high-potential market opportunities; 3 were converted into new markets</strong> following business development activity.</li>
-          <li>Automated competitor pricing process via Power Automate, <strong>saving ~450 hours per annum</strong> on manual procedure and improving pricing visibility for the trading team.</li>
-        </ul>
-      </div>
-    </div>
+    <div class="projects-grid" id="projects-grid">
 
-    <div class="experience-item fade-in">
-      <div class="exp-left">
-        <div class="exp-company">The Fragrance Shop</div>
-        <div class="exp-period">May 2021 – Aug 2022</div>
-        <div class="exp-context">UK's largest independent fragrance retailer. 200+ stores. £150m+ turnover.</div>
-      </div>
-      <div class="exp-right">
-        <div class="exp-role">E-Commerce Trading Executive</div>
-        <ul class="exp-bullets">
-          <li>Managed trading performance across <strong>2,500+ SKUs with Dynamics 365 (ERP)</strong> spanning B2C, B2B and marketplace channels, using pricing, promotional and competitor analysis to drive revenue, conversion and margin decisions.</li>
-          <li>Analysed trading and promotional KPIs to identify on-site optimisation opportunities, with recommendations contributing to a <strong>12% uplift in conversion rate and 7% revenue increase.</strong></li>
-          <li>Partnered with buying, merchandising and marketing to deliver insight-led recommendations across pricing, promotions and product strategy.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="experience-item fade-in">
-      <div class="exp-left">
-        <div class="exp-company">Atlantic Timber</div>
-        <div class="exp-period">Nov 2018 – Apr 2021</div>
-        <div class="exp-context">Independent UK timber merchant expanding into e-commerce.</div>
-      </div>
-      <div class="exp-right">
-        <div class="exp-role">E-Commerce Executive</div>
-        <ul class="exp-bullets">
-          <li>Transformed a brick-and-mortar business into a multi-channel retailer — <strong>generating ~£480k in first-year marketplace revenue</strong> via Amazon and eBay.</li>
-          <li>Developed pricing and profitability models accounting for delivery, packaging and marketplace fees to maintain margin across new channels.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- SKILLS -->
-  <section>
-    <div class="section-title fade-in">Skills & Tools</div>
-    <div class="skills-grid fade-stagger">
-      <div class="skill-group">
-        <div class="skill-group-label">Data & Analytics</div>
-        <div class="skill-tags">
-          <span class="skill-tag">Excel</span>
-          <span class="skill-tag">SQL</span>
-          <span class="skill-tag">Power BI</span>
-          <span class="skill-tag">Power Query</span>
-          <span class="skill-tag">Power Automate</span>
-          <span class="skill-tag">BigQuery</span>
-          <span class="skill-tag">Databricks</span>
-          <span class="skill-tag">Redshift</span>
-          <span class="skill-tag">Google Analytics</span>
-          <span class="skill-tag">Microsoft Fabric</span>
+      <a href="/portfolio/commercial-trading-reports" class="project-card" data-tags="Power BI,DAX,Commercial Reporting,KPI Tracking">
+        <div class="project-hero"><img src="/images/Booking_Funnel.png" alt="E-commerce Analytics Suite"></div>
+        <div class="project-body">
+          <div class="project-category"><span class="cat-tag">Power BI</span></div>
+          <div>
+            <div class="project-title">E-commerce Analytics Suite</div>
+            <div class="project-subtitle">Power BI Reports for Commercial Trading</div>
+          </div>
+          <p class="project-description">A suite of Power BI reports built to support day-to-day commercial trading decisions across multiple sales channels and regions. Covers booking funnel performance, marketing channel KPIs, conversion rate analysis, and partner reporting.</p>
+          <div class="project-footer">
+            <span class="skill-pill">DAX</span>
+            <span class="skill-pill">Google Analytics</span>
+            <span class="skill-pill">Marketing Analytics</span>
+            <span class="skill-pill">Funnel Analysis</span>
+          </div>
         </div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-label">FP&A & Financial Analysis</div>
-        <div class="skill-tags">
-          <span class="skill-tag">Forecasting</span>
-          <span class="skill-tag">Budgeting</span>
-          <span class="skill-tag">Variance Analysis</span>
-          <span class="skill-tag">P&L Analysis</span>
-          <span class="skill-tag">Scenario Modelling</span>
-          <span class="skill-tag">Investment Appraisal</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-label">Data Engineering</div>
-        <div class="skill-tags">
-          <span class="skill-tag">DAX</span>
-          <span class="skill-tag">ETL Pipelines</span>
-          <span class="skill-tag">Data Modelling</span>
-          <span class="skill-tag">Star Schema</span>
-          <span class="skill-tag">Data Validation</span>
-          <span class="skill-tag">Python</span>
-          <span class="skill-tag">Microsoft Fabric</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <div class="skill-group-label">Commercial & Pricing</div>
-        <div class="skill-tags">
-          <span class="skill-tag">Market Opportunity</span>
-          <span class="skill-tag">ROI Analysis</span>
-          <span class="skill-tag">Pricing Optimisation</span>
-          <span class="skill-tag">Competitor Analysis</span>
-          <span class="skill-tag">Margin Analysis</span>
-          <span class="skill-tag">Profitability Modelling</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="cta-banner fade-in">
-      <p class="cta-text">Explore examples of my work including <strong>Power BI dashboards</strong>, <strong>scenario models</strong> and <strong>financial forecasting</strong>.</p>
-      <a href="/portfolio" class="cta-link">
-        View Portfolio
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
       </a>
-    </div>
-  </section>
 
-  <!-- EDUCATION -->
-  <section>
-    <div class="section-title fade-in">Education</div>
-    <div class="education-grid fade-stagger">
-      <div class="edu-card">
-        <div>
-          <div class="edu-qual">Level 4 Data Analyst</div>
-          <div class="edu-school">Multiverse</div>
+      <a href="/portfolio/performance-dashboard" class="project-card" data-tags="Power BI,DAX,Data Visualisation,Variance Analysis">
+        <div class="project-hero"><img src="/images/Performance_Dashboard.png" alt="Commercial Performance Dashboard"></div>
+        <div class="project-body">
+          <div class="project-category"><span class="cat-tag">Power BI</span></div>
+          <div>
+            <div class="project-title">Commercial Performance Dashboard</div>
+            <div class="project-subtitle">Power BI E-Commerce Analytics</div>
+          </div>
+          <p class="project-description">An end-to-end commercial performance dashboard tracking revenue, profit, units sold, and average transaction value across e-commerce channels, with benchmarking against forecast and prior year.</p>
+          <div class="project-footer">
+            <span class="skill-pill">Star Schema</span>
+            <span class="skill-pill">DAX</span>
+            <span class="skill-pill">Data Visualisation</span>
+            <span class="skill-pill">Variance Analysis</span>
+          </div>
         </div>
-        <div class="edu-footer">
-          <span class="edu-year">2023 – 2024</span>
-          <span class="edu-grade">Distinction</span>
+      </a>
+
+      <a href="/portfolio/scenario-modelling" class="project-card" data-tags="Power BI,FP&A,Scenario Modelling,Budgeting,Financial Modelling">
+        <div class="project-hero"><img src="/images/Scenario_Modelv1.png" alt="Scenario & Sensitivity Model"></div>
+        <div class="project-body">
+          <div class="project-category"><span class="cat-tag">Power BI</span><span class="cat-tag">FP&A</span></div>
+          <div>
+            <div class="project-title">Scenario &amp; Sensitivity Model</div>
+            <div class="project-subtitle">Commercial Planning &amp; Budgeting Tool</div>
+          </div>
+          <p class="project-description">A scenario and sensitivity modelling tool built to support commercial planning and budgeting decisions, with best, base, and worst case outputs visualised in Power BI for senior stakeholder communication.</p>
+          <div class="project-footer">
+            <span class="skill-pill">Forecasting</span>
+            <span class="skill-pill">Scenario Modelling</span>
+            <span class="skill-pill">Sensitivity Analysis</span>
+            <span class="skill-pill">Budgeting</span>
+          </div>
         </div>
-      </div>
-      <div class="edu-card">
-        <div>
-          <div class="edu-qual">BA (Hons) Business & Marketing</div>
-          <div class="edu-school">Manchester Metropolitan University</div>
+      </a>
+
+      <a href="/portfolio/three-statement-model" class="project-card" data-tags="Excel,FP&A,Financial Modelling,Forecasting">
+        <div class="project-hero"><img src="/images/3_Statement_Model.png" alt="Three Statement Forecast Model"></div>
+        <div class="project-body">
+          <div class="project-category"><span class="cat-tag">Excel</span><span class="cat-tag">Financial Planning</span></div>
+          <div>
+            <div class="project-title">Three Statement Forecast Model</div>
+            <div class="project-subtitle">Integrated 5-Year Financial Model</div>
+          </div>
+          <p class="project-description">A fully integrated financial model for a multi-channel outdoor retailer, covering five years of historical results and a five-year forecast across the income statement, balance sheet, and cash flow statement.</p>
+          <div class="project-footer">
+            <span class="skill-pill">Forecasting</span>
+            <span class="skill-pill">Financial Modelling</span>
+            <span class="skill-pill">FP&A</span>
+            <span class="skill-pill">Retail Finance</span>
+          </div>
         </div>
-        <div class="edu-footer">
-          <span class="edu-year">2017 – 2020</span>
-          <span class="edu-grade">1st Class</span>
+      </a>
+
+      <a href="/portfolio/mining-operations-dashboard" class="project-card" data-tags="Power BI">
+        <div class="project-hero"><img src="/images/Mining_Production_Dashboard.png" alt="Mining Operations Dashboard"></div>
+        <div class="project-body">
+          <div class="project-category"><span class="cat-tag">Power BI</span><span class="cat-tag">Data Visualisation</span></div>
+          <div>
+            <div class="project-title">Mining Operations Dashboard</div>
+            <div class="project-subtitle">Production and Safety Monitoring</div>
+          </div>
+          <p class="project-description">A Power BI dashboard for a multi-site mining operation covering production performance and safety reporting across Pilbara, Bowen Basin, and Olympic Dam.</p>
+          <div class="project-footer">
+            <span class="skill-pill">Mining Analytics</span>
+            <span class="skill-pill">Operational Reporting</span>
+            <span class="skill-pill">Safety Reporting</span>
+            <span class="skill-pill">Variance Analysis</span>
+          </div>
         </div>
-      </div>
-      <div class="edu-card">
-        <div>
-          <div class="edu-qual">Creative Media / Graphic Design</div>
-          <div class="edu-school">The Manchester College</div>
+      </a>
+
+      <a href="/portfolio/business-case-model" class="project-card" data-tags="Excel,Business Case,Financial Modelling,Investment Appraisal,Scenario Analysis,FP&A">
+        <div class="project-hero"><img src="/images/Business_Case_Model.png" alt="Business Case Model"></div>
+        <div class="project-body">
+          <div class="project-category"><span class="cat-tag">Excel</span><span class="cat-tag">Financial Modelling</span></div>
+          <div>
+            <div class="project-title">Business Case Model</div>
+            <div class="project-subtitle">Digital Transformation Investment Appraisal</div>
+          </div>
+          <p class="project-description">A dynamic investment appraisal model for a fictional government digital transformation initiative, featuring scenario analysis, NPV and IRR, sensitivity testing, and an executive-ready one-page output.</p>
+          <div class="project-footer">
+            <span class="skill-pill">Financial Modelling</span>
+            <span class="skill-pill">Investment Appraisal</span>
+            <span class="skill-pill">Cost Benefit Analysis</span>
+            <span class="skill-pill">Scenario Analysis</span>
+          </div>
         </div>
-        <div class="edu-footer">
-          <span class="edu-year">2014 – 2016</span>
-          <span class="edu-grade">Distinction</span>
+      </a>
+
+      <a href="/portfolio/blog-ai-data-analysis" class="project-card" data-tags="Insight,Data Analysis,AI,Artificial Intelligence">
+        <div class="project-hero"><img src="/images/AI_Blog_Post_Hero.png" alt="AI & The Analyst"></div>
+        <div class="project-body">
+          <div class="project-category"><span class="cat-tag">Insight</span><span class="cat-tag">Artificial Intelligence</span></div>
+          <div>
+            <div class="project-title">AI &amp; The Analyst</div>
+            <div class="project-subtitle">How AI Is Changing Data Analysis Workflows</div>
+          </div>
+          <p class="project-description">Artificial intelligence is rapidly becoming part of everyday data and commercial analysis work. While much of the discussion online focuses on productivity gains, the reality inside analytical teams is more nuanced.</p>
+          <div class="project-footer">
+            <span class="skill-pill">Data Analytics</span>
+            <span class="skill-pill">Artificial Intelligence</span>
+            <span class="skill-pill">Commercial Analysis</span>
+          </div>
         </div>
-      </div>
+      </a>
+
+      <a href="/portfolio/hospital-analytics" class="project-card" data-tags="Power BI">
+        <div class="project-hero"><img src="/images/Operational_Hospital.png" alt="Hospital Analytics Dashboard"></div>
+        <div class="project-body">
+          <div class="project-category"><span class="cat-tag">Power BI</span><span class="cat-tag">Data Visualisation</span></div>
+          <div>
+            <div class="project-title">Hospital Analytics Dashboard</div>
+            <div class="project-subtitle">Commercial and Operational Efficiency</div>
+          </div>
+          <p class="project-description">A two-page analytics dashboard for a private hospital environment covering commercial performance and operational efficiency, designed to give clinical and operational teams a single view of key metrics.</p>
+          <div class="project-footer">
+            <span class="skill-pill">Hospital Analytics</span>
+            <span class="skill-pill">Operational Reporting</span>
+            <span class="skill-pill">KPI Tracking</span>
+          </div>
+        </div>
+      </a>
+
     </div>
-  </section>
+  </div>
 
   <!-- TESTIMONIAL -->
   <section>
-    <div class="section-title fade-in">Colleague Feedback</div>
+    <div class="section-label fade-in">Colleague Feedback</div>
     <div class="testimonial fade-in">
       <blockquote>"Nathan has built out a suite of dashboards in Power BI for distribution that are high quality, easy to understand and the visualisation is impeccable. In particular, the Marketing KPI report will save the e-commerce distribution team hours each week which were spent downloading data from various sources. It also allows the marketing teams to quickly and easily view performance at an airport level and begin to make decisions and action plans."</blockquote>
       <div class="testimonial-attr">
@@ -700,38 +794,20 @@ footer {
 
   <!-- HOBBIES -->
   <section>
-    <div class="section-title fade-in">Interests & Hobbies</div>
+    <div class="section-label fade-in">Interests &amp; Hobbies</div>
     <div class="hobbies-grid fade-stagger">
-      <div class="hobby-card">
-        <span class="hobby-icon">🏍️</span>
-        <span>Motorbikes</span>
-      </div>
-      <div class="hobby-card">
-        <span class="hobby-icon">🏔️</span>
-        <span>Hiking</span>
-      </div>
-      <div class="hobby-card">
-        <span class="hobby-icon">📷</span>
-        <span>Photography</span>
-      </div>
-      <div class="hobby-card">
-        <span class="hobby-icon">🏋️</span>
-        <span>Gym</span>
-      </div>
-      <div class="hobby-card">
-        <span class="hobby-icon">✈️</span>
-        <span>Travelling</span>
-      </div>
-      <div class="hobby-card">
-        <span class="hobby-icon">💻</span>
-        <span>AI Technology</span>
-      </div>
+      <div class="hobby-card"><span class="hobby-icon">🏍️</span><span>Motorbikes</span></div>
+      <div class="hobby-card"><span class="hobby-icon">🏔️</span><span>Hiking</span></div>
+      <div class="hobby-card"><span class="hobby-icon">📷</span><span>Photography</span></div>
+      <div class="hobby-card"><span class="hobby-icon">🏋️</span><span>Gym</span></div>
+      <div class="hobby-card"><span class="hobby-icon">✈️</span><span>Travelling</span></div>
+      <div class="hobby-card"><span class="hobby-icon">💻</span><span>AI Technology</span></div>
     </div>
   </section>
 
-  <!-- CONTACT -->
+  <!-- GET IN TOUCH -->
   <section>
-    <div class="section-title fade-in">Get In Touch</div>
+    <div class="section-label fade-in">Get In Touch</div>
     <div class="contact-grid fade-stagger">
       <a href="mailto:nathangw.11@gmail.com" class="contact-item">
         <div class="contact-icon-wrap">
@@ -760,7 +836,7 @@ footer {
           <div class="contact-value">linkedin.com/in/nathangwallis</div>
         </div>
       </a>
-      <a href="https://nathan-wallis.com/portfolio" target="_blank" class="contact-item">
+      <a href="#portfolio" class="contact-item">
         <div class="contact-icon-wrap">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
         </div>
@@ -773,12 +849,9 @@ footer {
   </section>
 
   <!-- FOOTER -->
-  <footer class="fade-in">
+  <footer>
     <span class="footer-text">© 2026 Nathan Wallis · Sydney, AU</span>
-    <a href="https://nathan-wallis.com/portfolio" target="_blank" class="portfolio-link">
-      View Portfolio
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-    </a>
+    <span class="footer-text">nathangw.11@gmail.com &nbsp;·&nbsp; +61 433 254 944</span>
   </footer>
 
 </div>
@@ -791,14 +864,21 @@ footer {
         observer.unobserve(entry.target);
       }
     });
-  }, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -40px 0px'
-  });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-  document.querySelectorAll('.fade-in, .fade-stagger').forEach(el => {
-    observer.observe(el);
-  });
+  document.querySelectorAll('.fade-in, .fade-stagger').forEach(el => observer.observe(el));
+
+  function filterProjects(tag, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.project-card').forEach(card => {
+      if (tag === 'all') { card.style.display = ''; return; }
+      const tags = card.dataset.tags || '';
+      card.style.display = tags.toLowerCase().includes(tag.toLowerCase()) ? '' : 'none';
+    });
+    const placeholder = document.querySelector('.project-card-placeholder');
+    if (placeholder) placeholder.style.display = tag === 'all' ? '' : 'none';
+  }
 </script>
 </body>
 </html>

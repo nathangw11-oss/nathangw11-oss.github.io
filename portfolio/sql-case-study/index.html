@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SQL Case Study: Ardwell Margin Variance | Nathan Wallis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+<style>
+  :root{
+    --green:#2D6A4F;
+    --green-dark:#1B4332;
+    --green-tint:#E8F1EC;
+    --green-tint-2:#D8E8E0;
+    --ink:#1A1A1A;
+    --muted:#5A5A5A;
+    --line:#E5E7E5;
+    --bg:#FFFFFF;
+    --bg-grey:#F7F8F7;
+    --card:#FFFFFF;
+    --neg:#B23A3A;
+    --pos:#2D6A4F;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;font-family:'Inter',sans-serif;color:var(--ink);
+    background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:880px;margin:0 auto;padding:0 24px;}
+
+  /* ---- header ---- */
+  header{
+    background:var(--green-dark);color:#fff;padding:64px 0 56px;
+    background-image:linear-gradient(135deg,#1B4332 0%,#2D6A4F 100%);
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--green-tint-2);margin:0 0 18px;
+  }
+  header h1{
+    font-family:'Inter Tight',sans-serif;font-weight:700;font-size:42px;
+    line-height:1.12;margin:0 0 16px;letter-spacing:-.02em;
+  }
+  header p.lede{font-size:18px;color:#E3EDE8;margin:0;max-width:640px;}
+  .meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;}
+  .tag{
+    font-family:'JetBrains Mono',monospace;font-size:12px;
+    background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);
+    padding:6px 12px;border-radius:999px;color:#fff;
+  }
+
+  /* ---- sections ---- */
+  section{padding:52px 0;}
+  section.grey{background:var(--bg-grey);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  h2{
+    font-family:'Inter Tight',sans-serif;font-weight:600;font-size:27px;
+    letter-spacing:-.015em;margin:0 0 18px;
+  }
+  h2 .num{
+    font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--green);
+    display:inline-block;margin-right:12px;vertical-align:middle;
+  }
+  h3{font-family:'Inter Tight',sans-serif;font-weight:600;font-size:19px;margin:32px 0 10px;}
+  p{margin:0 0 16px;color:var(--ink);}
+  .muted{color:var(--muted);}
+
+  /* ---- question callout ---- */
+  .question{
+    background:var(--green-tint);border-left:4px solid var(--green);
+    padding:22px 26px;border-radius:0 12px 12px 0;margin:8px 0 0;
+  }
+  .question p{margin:0;font-size:19px;font-family:'Inter Tight',sans-serif;font-weight:500;color:var(--green-dark);}
+
+  /* ---- schema svg ---- */
+  .schema{margin:8px 0 0;text-align:center;}
+  .schema svg{max-width:100%;height:auto;}
+  .schema-note{font-size:14px;color:var(--muted);margin-top:14px;text-align:center;}
+
+  /* ---- query cards ---- */
+  .qcard{
+    background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:0;margin:0 0 28px;overflow:hidden;
+    box-shadow:0 1px 3px rgba(20,40,30,.04),0 8px 24px rgba(20,40,30,.04);
+  }
+  .qcard-head{padding:22px 26px 6px;}
+  .qcard-step{
+    font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--green);margin:0 0 6px;
+  }
+  .qcard-head h3{margin:0 0 4px;font-size:20px;}
+  .qcard-head .skill{font-size:13px;color:var(--muted);font-family:'JetBrains Mono',monospace;}
+  pre{margin:14px 0 0;}
+  pre code.hljs{
+    border-radius:0;font-family:'JetBrains Mono',monospace;font-size:13px;
+    line-height:1.65;padding:20px 26px;
+  }
+  .results{padding:4px 26px 8px;overflow-x:auto;}
+  table{border-collapse:collapse;width:100%;font-size:13.5px;margin:14px 0;}
+  th{
+    text-align:left;font-family:'JetBrains Mono',monospace;font-weight:500;
+    font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);
+    border-bottom:2px solid var(--line);padding:9px 12px;white-space:nowrap;
+  }
+  td{padding:9px 12px;border-bottom:1px solid var(--line);white-space:nowrap;}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
+  tr:last-child td{border-bottom:none;}
+  .neg{color:var(--neg);font-weight:500;}
+  .pos{color:var(--pos);font-weight:500;}
+  .res-label{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--muted);padding:14px 26px 0;
+  }
+  .sowhat{
+    background:var(--green-tint);margin:0;padding:18px 26px;
+    border-top:1px solid var(--green-tint-2);font-size:15px;
+  }
+  .sowhat strong{color:var(--green-dark);font-family:'Inter Tight',sans-serif;}
+
+  /* ---- closing ---- */
+  ul.takeaways{padding-left:0;list-style:none;margin:8px 0 0;}
+  ul.takeaways li{
+    padding:14px 0 14px 34px;border-bottom:1px solid var(--line);position:relative;
+  }
+  ul.takeaways li:last-child{border-bottom:none;}
+  ul.takeaways li::before{
+    content:"";position:absolute;left:4px;top:21px;width:8px;height:8px;
+    background:var(--green);border-radius:2px;transform:rotate(45deg);
+  }
+  ul.takeaways strong{font-family:'Inter Tight',sans-serif;}
+
+  footer{padding:40px 0 64px;border-top:1px solid var(--line);}
+  footer p{font-size:14px;color:var(--muted);margin:0;}
+  footer a{color:var(--green);text-decoration:none;font-weight:500;}
+  footer a:hover{text-decoration:underline;}
+
+  @media (max-width:640px){
+    header h1{font-size:32px;}
+    h2{font-size:23px;}
+    pre code.hljs{font-size:12px;padding:16px 18px;}
+    .results,.qcard-head,.sowhat,.res-label{padding-left:18px;padding-right:18px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <p class="eyebrow">SQL Case Study</p>
+    <h1>Diagnosing a quarterly margin decline at Ardwell Consumer Goods</h1>
+    <p class="lede">A worked SQL analysis on a fictional FMCG dataset, escalating from basic aggregation to a price, volume and cost bridge that pinpoints exactly which product lines moved margin, and why.</p>
+    <div class="meta">
+      <span class="tag">SQLite</span>
+      <span class="tag">Star schema</span>
+      <span class="tag">CTEs</span>
+      <span class="tag">Window functions</span>
+      <span class="tag">PVM decomposition</span>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>The brief</h2>
+    <p>Ardwell Consumer Goods is a fictional FMCG business spanning beverages, snacks, household and personal care lines, sold through grocery, convenience, wholesale and online channels across four Australian metros. The finance team flagged that gross margin slipped in the third quarter and wanted to know where it came from before the quarterly review.</p>
+    <div class="question">
+      <p>Which product lines drove the Q3 margin decline, and was it volume, price or cost?</p>
+    </div>
+    <p class="muted" style="margin-top:18px;">The dataset holds roughly 30,000 sales rows across the 2025 calendar year. Every query below was run against it and the result tables show the actual output.</p>
+  </div>
+</section>
+
+<section class="grey">
+  <div class="wrap">
+    <h2>The data model</h2>
+    <p>A single sales fact table at transaction grain, surrounded by four dimensions. The same star schema discipline I apply when building semantic models in Power BI: one fact, conformed dimensions, no snowflaking.</p>
+    <div class="schema">
+      <svg viewBox="0 0 640 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Star schema diagram">
+        <defs>
+          <style>
+            .box{fill:#fff;stroke:#2D6A4F;stroke-width:1.5;rx:10;}
+            .fact{fill:#2D6A4F;}
+            .ttl{font-family:'Inter Tight',sans-serif;font-weight:600;font-size:13px;}
+            .ttl-w{fill:#fff;}
+            .ttl-g{fill:#1B4332;}
+            .col{font-family:'JetBrains Mono',monospace;font-size:10px;fill:#5A5A5A;}
+            .col-w{fill:#D8E8E0;}
+            .link{stroke:#9DBDB0;stroke-width:1.5;}
+          </style>
+        </defs>
+        <!-- links -->
+        <line class="link" x1="320" y1="190" x2="150" y2="70"/>
+        <line class="link" x1="320" y1="190" x2="490" y2="70"/>
+        <line class="link" x1="320" y1="190" x2="150" y2="310"/>
+        <line class="link" x1="320" y1="190" x2="490" y2="310"/>
+        <!-- fact -->
+        <rect class="box fact" x="232" y="150" width="176" height="80" rx="10"/>
+        <text class="ttl ttl-w" x="320" y="178" text-anchor="middle">fact_sales</text>
+        <text class="col col-w" x="320" y="198" text-anchor="middle">units · gross · discount</text>
+        <text class="col col-w" x="320" y="212" text-anchor="middle">net_revenue · cogs</text>
+        <!-- dims -->
+        <rect class="box" x="48" y="20" width="190" height="70" rx="10"/>
+        <text class="ttl ttl-g" x="64" y="44">dim_product</text>
+        <text class="col" x="64" y="62">category · brand</text>
+        <text class="col" x="64" y="76">list_price · std_cost</text>
+
+        <rect class="box" x="402" y="20" width="190" height="70" rx="10"/>
+        <text class="ttl ttl-g" x="418" y="44">dim_date</text>
+        <text class="col" x="418" y="62">month · quarter</text>
+        <text class="col" x="418" y="76">year</text>
+
+        <rect class="box" x="48" y="290" width="190" height="70" rx="10"/>
+        <text class="ttl ttl-g" x="64" y="314">dim_customer</text>
+        <text class="col" x="64" y="332">customer_name</text>
+        <text class="col" x="64" y="346">channel</text>
+
+        <rect class="box" x="402" y="290" width="190" height="70" rx="10"/>
+        <text class="ttl ttl-g" x="418" y="314">dim_region</text>
+        <text class="col" x="418" y="332">region_name</text>
+        <text class="col" x="418" y="346">state</text>
+      </svg>
+    </div>
+    <p class="schema-note">Gross margin is defined as net revenue minus COGS. Net revenue is gross revenue less trade and promotional discount.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>The analysis</h2>
+    <p>Five steps, each one a layer deeper. The early queries establish where margin lives and confirm the decline is real. The later ones isolate the lines responsible and break the movement into its drivers.</p>
+
+    <!-- Q1 -->
+    <div class="qcard">
+      <div class="qcard-head">
+        <p class="qcard-step">Step 01 · Aggregation</p>
+        <h3>Where does margin sit across the range?</h3>
+        <span class="skill">GROUP BY · derived margin %</span>
+      </div>
+      <pre><code class="language-sql">SELECT
+    p.category,
+    ROUND(SUM(f.net_revenue), 0)                          AS net_revenue,
+    ROUND(SUM(f.net_revenue) - SUM(f.cogs), 0)            AS gross_margin,
+    ROUND(100.0 * (SUM(f.net_revenue) - SUM(f.cogs))
+                 / SUM(f.net_revenue), 1)                 AS margin_pct
+FROM fact_sales f
+JOIN dim_product p ON p.product_id = f.product_id
+GROUP BY p.category
+ORDER BY gross_margin DESC;</code></pre>
+      <p class="res-label">Result</p>
+      <div class="results">
+        <table>
+          <thead><tr><th>category</th><th class="num">net_revenue</th><th class="num">gross_margin</th><th class="num">margin_pct</th></tr></thead>
+          <tbody>
+            <tr><td>Household</td><td class="num">$671,708</td><td class="num">$327,765</td><td class="num">48.8%</td></tr>
+            <tr><td>Snacks</td><td class="num">$744,625</td><td class="num">$308,573</td><td class="num">41.4%</td></tr>
+            <tr><td>Beverages</td><td class="num">$630,776</td><td class="num">$291,588</td><td class="num">46.2%</td></tr>
+            <tr><td>Personal Care</td><td class="num">$513,433</td><td class="num">$287,688</td><td class="num">56.0%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="sowhat"><strong>So what:</strong> Personal Care earns the richest rate (56%) on the smallest revenue base, while Snacks is the volume engine but the thinnest margin at 41.4%. Knowing where the rate is fattest tells you which lines a few points of slippage will hurt most.</p>
+    </div>
+
+    <!-- Q2 -->
+    <div class="qcard">
+      <div class="qcard-head">
+        <p class="qcard-step">Step 02 · Joins</p>
+        <h3>Is the slip concentrated in one channel?</h3>
+        <span class="skill">multi-table join · channel × quarter grain</span>
+      </div>
+      <pre><code class="language-sql">SELECT
+    c.channel,
+    d.quarter,
+    ROUND(SUM(f.net_revenue), 0)                          AS net_revenue,
+    ROUND(100.0 * (SUM(f.net_revenue) - SUM(f.cogs))
+                 / SUM(f.net_revenue), 1)                 AS margin_pct
+FROM fact_sales f
+JOIN dim_customer c ON c.customer_id = f.customer_id
+JOIN dim_date d     ON d.date_id     = f.date_id
+GROUP BY c.channel, d.quarter
+ORDER BY c.channel, d.quarter;</code></pre>
+      <p class="res-label">Result · margin % shown pivoted for readability</p>
+      <div class="results">
+        <table>
+          <thead><tr><th>channel</th><th class="num">Q1</th><th class="num">Q2</th><th class="num">Q3</th><th class="num">Q4</th></tr></thead>
+          <tbody>
+            <tr><td>Grocery</td><td class="num">48.3%</td><td class="num">48.3%</td><td class="num neg">45.1%</td><td class="num">48.2%</td></tr>
+            <tr><td>Convenience</td><td class="num">48.3%</td><td class="num">48.2%</td><td class="num neg">45.0%</td><td class="num">48.2%</td></tr>
+            <tr><td>Wholesale</td><td class="num">48.3%</td><td class="num">48.2%</td><td class="num neg">45.1%</td><td class="num">48.3%</td></tr>
+            <tr><td>Online</td><td class="num">48.3%</td><td class="num">48.3%</td><td class="num neg">45.0%</td><td class="num">48.3%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="sowhat"><strong>So what:</strong> Every channel dips by almost exactly the same amount in Q3 and recovers in Q4. A uniform fall rules out a channel-specific cause like one retailer's trade deal. The problem travels with the products, not the route to market, so the next cut goes by product.</p>
+    </div>
+
+    <!-- Q3 -->
+    <div class="qcard">
+      <div class="qcard-head">
+        <p class="qcard-step">Step 03 · CTE</p>
+        <h3>How big is the decline, and is it structural?</h3>
+        <span class="skill">WITH clause · quarter-on-quarter</span>
+      </div>
+      <pre><code class="language-sql">WITH quarterly AS (
+    SELECT
+        d.quarter,
+        SUM(f.net_revenue)                AS net_revenue,
+        SUM(f.net_revenue) - SUM(f.cogs)  AS gross_margin
+    FROM fact_sales f
+    JOIN dim_date d ON d.date_id = f.date_id
+    GROUP BY d.quarter
+)
+SELECT
+    quarter,
+    ROUND(net_revenue, 0)                         AS net_revenue,
+    ROUND(gross_margin, 0)                        AS gross_margin,
+    ROUND(100.0 * gross_margin / net_revenue, 1)  AS margin_pct
+FROM quarterly
+ORDER BY quarter;</code></pre>
+      <p class="res-label">Result</p>
+      <div class="results">
+        <table>
+          <thead><tr><th>quarter</th><th class="num">net_revenue</th><th class="num">gross_margin</th><th class="num">margin_pct</th></tr></thead>
+          <tbody>
+            <tr><td>Q1</td><td class="num">$631,583</td><td class="num">$304,866</td><td class="num">48.3%</td></tr>
+            <tr><td>Q2</td><td class="num">$642,554</td><td class="num">$310,223</td><td class="num">48.3%</td></tr>
+            <tr><td>Q3</td><td class="num">$635,511</td><td class="num neg">$286,409</td><td class="num neg">45.1%</td></tr>
+            <tr><td>Q4</td><td class="num">$650,893</td><td class="num">$314,115</td><td class="num">48.3%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="sowhat"><strong>So what:</strong> Margin rate fell 3.2 points in Q3, around $24k of gross margin lost against Q2 on broadly flat revenue, then snapped back in Q4. This is a contained, single-quarter event rather than a structural decline, which points to a handful of lines with a temporary problem.</p>
+    </div>
+
+    <!-- Q4 -->
+    <div class="qcard">
+      <div class="qcard-head">
+        <p class="qcard-step">Step 04 · Window functions</p>
+        <h3>Which lines own the gap?</h3>
+        <span class="skill">conditional pivot · RANK() OVER</span>
+      </div>
+      <pre><code class="language-sql">WITH prod_q AS (
+    SELECT
+        p.product_name,
+        d.quarter,
+        SUM(f.net_revenue) - SUM(f.cogs)                  AS gross_margin,
+        100.0 * (SUM(f.net_revenue) - SUM(f.cogs))
+              / SUM(f.net_revenue)                        AS margin_pct
+    FROM fact_sales f
+    JOIN dim_product p ON p.product_id = f.product_id
+    JOIN dim_date d    ON d.date_id    = f.date_id
+    WHERE d.quarter IN ('Q2','Q3')
+    GROUP BY p.product_name, d.quarter
+),
+pivoted AS (
+    SELECT
+        product_name,
+        MAX(CASE WHEN quarter='Q2' THEN margin_pct   END) AS q2_margin_pct,
+        MAX(CASE WHEN quarter='Q3' THEN margin_pct   END) AS q3_margin_pct,
+        MAX(CASE WHEN quarter='Q2' THEN gross_margin END) AS q2_margin,
+        MAX(CASE WHEN quarter='Q3' THEN gross_margin END) AS q3_margin
+    FROM prod_q
+    GROUP BY product_name
+)
+SELECT
+    product_name,
+    ROUND(q2_margin_pct, 1)                       AS q2_margin_pct,
+    ROUND(q3_margin_pct, 1)                       AS q3_margin_pct,
+    ROUND(q3_margin_pct - q2_margin_pct, 1)       AS pct_pts_change,
+    ROUND(q3_margin - q2_margin, 0)               AS margin_change,
+    RANK() OVER (ORDER BY q3_margin - q2_margin)  AS decline_rank
+FROM pivoted
+ORDER BY margin_change
+LIMIT 6;</code></pre>
+      <p class="res-label">Result</p>
+      <div class="results">
+        <table>
+          <thead><tr><th>product_name</th><th class="num">q2_mgn%</th><th class="num">q3_mgn%</th><th class="num">pts Δ</th><th class="num">margin Δ</th><th class="num">rank</th></tr></thead>
+          <tbody>
+            <tr><td>Cold Brew Coffee 750ml</td><td class="num">43.9%</td><td class="num">24.8%</td><td class="num neg">-19.1</td><td class="num neg">-$13,224</td><td class="num">1</td></tr>
+            <tr><td>Laundry Liquid 2L</td><td class="num">45.6%</td><td class="num">45.6%</td><td class="num">0.0</td><td class="num neg">-$11,055</td><td class="num">2</td></tr>
+            <tr><td>Dark Chocolate Bar 100g</td><td class="num">42.4%</td><td class="num">29.8%</td><td class="num neg">-12.6</td><td class="num neg">-$7,083</td><td class="num">3</td></tr>
+            <tr><td>Toothpaste 100ml</td><td class="num">60.7%</td><td class="num">60.7%</td><td class="num">0.0</td><td class="num pos">+$288</td><td class="num">4</td></tr>
+            <tr><td>Hand Wash 250ml</td><td class="num">59.1%</td><td class="num">59.1%</td><td class="num">0.0</td><td class="num pos">+$505</td><td class="num">5</td></tr>
+            <tr><td>Mixed Nuts 200g</td><td class="num">38.5%</td><td class="num">38.5%</td><td class="num">0.0</td><td class="num pos">+$603</td><td class="num">6</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="sowhat"><strong>So what:</strong> Three lines account for the entire $24k gap; the rest are flat. The margin % column already hints they are different problems. Cold Brew and Dark Chocolate both lost rate, but Laundry Liquid held its 45.6% and still shed $11k, which only happens when volume falls.</p>
+    </div>
+
+    <!-- Q5 -->
+    <div class="qcard">
+      <div class="qcard-head">
+        <p class="qcard-step">Step 05 · Price–Volume–Cost bridge</p>
+        <h3>Volume, price or cost?</h3>
+        <span class="skill">bridge logic · per-unit economics</span>
+      </div>
+      <pre><code class="language-sql">WITH base AS (
+    SELECT
+        p.product_name, d.quarter,
+        SUM(f.units_sold)   AS units,
+        SUM(f.net_revenue)  AS net_rev,
+        SUM(f.cogs)         AS cogs
+    FROM fact_sales f
+    JOIN dim_product p ON p.product_id = f.product_id
+    JOIN dim_date d    ON d.date_id    = f.date_id
+    WHERE d.quarter IN ('Q2','Q3')
+    GROUP BY p.product_name, d.quarter
+),
+metrics AS (
+    SELECT
+        product_name,
+        MAX(CASE WHEN quarter='Q2' THEN units END)          AS q2_units,
+        MAX(CASE WHEN quarter='Q3' THEN units END)          AS q3_units,
+        MAX(CASE WHEN quarter='Q2' THEN net_rev/units END)  AS q2_price,
+        MAX(CASE WHEN quarter='Q3' THEN net_rev/units END)  AS q3_price,
+        MAX(CASE WHEN quarter='Q2' THEN cogs/units END)     AS q2_cost,
+        MAX(CASE WHEN quarter='Q3' THEN cogs/units END)     AS q3_cost,
+        MAX(CASE WHEN quarter='Q2' THEN net_rev - cogs END) AS q2_margin,
+        MAX(CASE WHEN quarter='Q3' THEN net_rev - cogs END) AS q3_margin
+    FROM base GROUP BY product_name
+)
+SELECT
+    product_name,
+    ROUND((q3_units - q2_units) * (q2_price - q2_cost), 0) AS volume_effect,
+    ROUND((q3_price - q2_price) * q3_units, 0)             AS price_effect,
+    ROUND(-(q3_cost  - q2_cost)  * q3_units, 0)            AS cost_effect,
+    ROUND(q3_margin - q2_margin, 0)                       AS total_change
+FROM metrics
+ORDER BY total_change
+LIMIT 3;</code></pre>
+      <p class="res-label">Result</p>
+      <div class="results">
+        <table>
+          <thead><tr><th>product_name</th><th class="num">volume</th><th class="num">price</th><th class="num">cost</th><th class="num">total Δ</th></tr></thead>
+          <tbody>
+            <tr><td>Cold Brew Coffee 750ml</td><td class="num pos">+$997</td><td class="num">$0</td><td class="num neg">-$14,222</td><td class="num neg">-$13,224</td></tr>
+            <tr><td>Laundry Liquid 2L</td><td class="num neg">-$11,055</td><td class="num">$0</td><td class="num">$0</td><td class="num neg">-$11,055</td></tr>
+            <tr><td>Dark Chocolate Bar 100g</td><td class="num pos">+$5,376</td><td class="num neg">-$12,459</td><td class="num">$0</td><td class="num neg">-$7,083</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="sowhat"><strong>So what:</strong> The bridge answers the brief line by line. <strong>Cold Brew</strong> is a cost shock, a 34% jump in bean cost stripping $14k, recoverable with a price rise or a supply hedge. <strong>Laundry Liquid</strong> is pure volume, $11k lost to a competitor launch with rate untouched, so it is a demand problem not a margin one. <strong>Dark Chocolate</strong> is self-inflicted, $12.5k of price erosion from promo depth that the extra $5.4k of volume only partly paid back. Three lines, three different fixes, owned by three different teams.</p>
+    </div>
+  </div>
+</section>
+
+<section class="grey">
+  <div class="wrap">
+    <h2>What this demonstrates</h2>
+    <ul class="takeaways">
+      <li><strong>Star schema modelling.</strong> One fact table at transaction grain with conformed dimensions, the same structure I build semantic models on in Power BI.</li>
+      <li><strong>Layered SQL.</strong> Aggregation and joins, CTEs to keep multi-step logic readable, and window functions with conditional pivots to compare periods side by side.</li>
+      <li><strong>A price–volume–cost bridge.</strong> Decomposing a margin movement into its drivers is standard commercial finance work, and writing it in SQL means it runs on the warehouse rather than in a spreadsheet someone has to maintain.</li>
+      <li><strong>Commercial reading.</strong> Every query closes with what the number means for the business and what to do next, which is the part that turns a query result into a decision.</li>
+    </ul>
+    <p class="muted" style="margin-top:24px;">Built on a fictional dataset of ~30,000 rows in SQLite. The same queries run unchanged on BigQuery, Databricks or Fabric warehouse with only minor dialect tweaks.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Nathan Wallis · Data &amp; BI Analyst · <a href="https://nathan-wallis.com">nathan-wallis.com</a></p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+<script>hljs.highlightAll();</script>
+</body>
+</html>

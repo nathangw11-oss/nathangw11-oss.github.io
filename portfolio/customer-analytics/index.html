@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customer Analytics & RFM Segmentation — Nathan Wallis</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --white: #ffffff;
+  --gray-50: #F9F9F9;
+  --gray-100: #F2F2F2;
+  --gray-200: #E5E5E5;
+  --gray-300: #D1D1D1;
+  --gray-400: #ABABAB;
+  --gray-500: #737373;
+  --gray-700: #3D3D3D;
+  --gray-900: #1A1A1A;
+  --green: #2D6A4F;
+  --green-mid: #3A8566;
+  --green-light: #EAF3EE;
+  --green-border: #C2DDD1;
+  --text-primary: #1A1A1A;
+  --text-secondary: #737373;
+  --text-muted: #ABABAB;
+  --border: #E5E5E5;
+  --border-light: #F0F0F0;
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--white);
+  color: var(--text-primary);
+  line-height: 1.6;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* ─── NAV ─── */
+nav {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-name {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 6px;
+}
+
+.nav-link {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 8px;
+  transition: all 0.15s;
+}
+
+.nav-link:hover {
+  color: var(--text-primary);
+  background: var(--gray-50);
+}
+
+.nav-link.active {
+  color: var(--green);
+  background: var(--green-light);
+}
+
+/* ─── HEADER ─── */
+header {
+  padding: 56px 0 48px;
+  border-bottom: 1px solid var(--border);
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  margin-bottom: 28px;
+  transition: color 0.15s;
+}
+
+.back-link:hover { color: var(--green); }
+.back-link svg { width: 13px; height: 13px; }
+
+.header-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+header h1 {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 42px;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--gray-900);
+  margin-bottom: 16px;
+}
+
+header h1 strong { font-weight: 600; }
+
+.header-subtitle {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  max-width: 680px;
+  margin-bottom: 28px;
+}
+
+.header-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  font-size: 12px;
+  color: var(--text-secondary);
+  background: var(--gray-50);
+  border: 1px solid var(--border);
+  padding: 4px 11px;
+  border-radius: 6px;
+  font-weight: 400;
+}
+
+.tag-green {
+  color: var(--green);
+  background: var(--green-light);
+  border-color: var(--green-border);
+  font-weight: 500;
+}
+
+/* ─── SCREENSHOT ─── */
+.hero-screenshot {
+  margin-top: 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--gray-50);
+}
+
+.screenshot-img {
+  width: 100%;
+  display: block;
+}
+
+.screenshot-caption {
+  padding: 12px 16px;
+  font-size: 12px;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+  background: var(--white);
+}
+
+/* ─── CONTENT SECTIONS ─── */
+.content-section {
+  padding: 48px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.content-section:last-of-type {
+  border-bottom: none;
+}
+
+.section-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.prose {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  max-width: 720px;
+}
+
+.prose p + p { margin-top: 16px; }
+
+/* ─── OVERVIEW CALLOUT ─── */
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.stat-card {
+  background: var(--gray-50);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 18px;
+}
+
+.stat-value {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--green);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.stat-label {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* ─── REPORT ITEMS ─── */
+.reports-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.report-item {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.report-item:first-child { padding-top: 0; }
+.report-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+.report-item-header {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+
+.report-number {
+  font-size: 11px;
+  font-weight: 600;
+  font-family: 'Inter Tight', sans-serif;
+  color: var(--green);
+  letter-spacing: 0.08em;
+  flex-shrink: 0;
+}
+
+.report-title {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+
+/* ─── INSIGHT CALLOUT ─── */
+.insight-box {
+  background: var(--green-light);
+  border-left: 3px solid var(--green);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 18px 22px;
+  font-size: 14px;
+  color: var(--green-mid);
+  line-height: 1.7;
+}
+
+.insight-box strong { color: var(--green); font-weight: 600; }
+
+/* ─── TECH LIST ─── */
+.tech-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 720px;
+}
+
+.tech-row {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.tech-row-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  min-width: 130px;
+  flex-shrink: 0;
+}
+
+.tech-row-desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ─── TAGS FOOTER ─── */
+.tags-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  margin-top: 8px;
+}
+
+/* ─── PROJECT NAV ─── */
+.project-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 0;
+  border-top: 1px solid var(--border);
+  gap: 16px;
+}
+
+.project-nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 9px 18px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--gray-50);
+  transition: all 0.15s;
+}
+
+.project-nav-link:hover {
+  border-color: var(--green-border);
+  color: var(--green);
+  background: var(--green-light);
+}
+
+.project-nav-link svg { width: 13px; height: 13px; }
+
+.btn-portfolio {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--white);
+  background: var(--green);
+  border: 1px solid var(--green);
+  padding: 9px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.btn-portfolio:hover {
+  background: var(--green-mid);
+  border-color: var(--green-mid);
+}
+
+.btn-portfolio svg { width: 13px; height: 13px; }
+
+/* ─── FOOTER ─── */
+footer {
+  padding: 32px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border);
+}
+
+.footer-text {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 680px) {
+  .container { padding: 0 20px; }
+  header { padding: 40px 0 36px; }
+  header h1 { font-size: 30px; }
+  .overview-grid { grid-template-columns: 1fr 1fr; }
+  .tech-row { flex-direction: column; gap: 4px; }
+  .tech-row-label { min-width: 0; }
+  .project-nav { flex-direction: column; align-items: stretch; }
+  .project-nav-link, .btn-portfolio { justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <a href="/" class="nav-name">Nathan Wallis</a>
+      <div class="nav-links">
+        <a href="/" class="nav-link">About</a>
+        <a href="/portfolio" class="nav-link active">Portfolio</a>
+        <a href="mailto:nathangw.11@gmail.com" class="nav-link">Contact</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HEADER -->
+<header>
+  <div class="container">
+    <a href="/portfolio" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Back to Portfolio
+    </a>
+    <div class="header-eyebrow">Project Write-up</div>
+    <h1><strong>Customer Analytics</strong> &amp; RFM Segmentation</h1>
+    <p class="header-subtitle">A customer analytics suite built for a fictional fashion loyalty programme, covering member behaviour, retention, lifetime value and RFM segmentation. Built end to end from a SQL data model through to a Power BI report.</p>
+    <div class="header-tags">
+      <span class="tag tag-green">Power BI</span>
+      <span class="tag tag-green">DAX</span>
+      <span class="tag tag-green">SQL</span>
+      <span class="tag">Star Schema</span>
+      <span class="tag">RFM Segmentation</span>
+      <span class="tag">Customer Lifetime Value</span>
+      <span class="tag">Retention</span>
+      <span class="tag">Loyalty Analytics</span>
+      <span class="tag">Customer Behaviour</span>
+    </div>
+  </div>
+</header>
+
+<!-- THE BRIEF -->
+<div class="container">
+  <div class="content-section">
+    <div class="section-label">The Brief</div>
+    <div class="prose">
+      <p>This project was built around Haven, a fictional mid-market fashion and lifestyle retailer running a points-based loyalty programme. The aim was to demonstrate the kind of customer analytics a loyalty or CRM team relies on day to day: understanding who their members are, how they behave, which ones drive the most value, and where the biggest retention risks sit.</p>
+      <p>Rather than start at the dashboard, I built the whole thing properly from the ground up. That meant designing a clean data model, writing the segmentation and customer metrics in SQL, and only then bringing it into Power BI. The result is a report that does not just show numbers, it answers the commercial questions a loyalty manager would actually ask.</p>
+    </div>
+  </div>
+</div>
+
+<!-- AT A GLANCE -->
+<div class="container">
+  <div class="content-section">
+    <div class="section-label">At a Glance</div>
+    <div class="overview-grid">
+      <div class="stat-card">
+        <div class="stat-value">2,000</div>
+        <div class="stat-label">members analysed across 18 months</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">8,378</div>
+        <div class="stat-label">transactions modelled</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">8</div>
+        <div class="stat-label">RFM behavioural segments</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">52%</div>
+        <div class="stat-label">of revenue from Champions alone</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- THE REPORT -->
+<div class="container">
+  <div class="content-section" style="border-bottom: none;">
+    <div class="section-label">The Report</div>
+    <div class="reports-list">
+
+      <!-- 01 -->
+      <div class="report-item">
+        <div class="report-item-header">
+          <span class="report-number">01</span>
+          <h2 class="report-title">Customer Overview</h2>
+        </div>
+        <div class="hero-screenshot">
+          <img src="/images/Haven_Overview.png" alt="Haven Customer Overview Dashboard" class="screenshot-img">
+          <div class="screenshot-caption">Customer Overview</div>
+        </div>
+        <div class="prose">
+          <p>The first page gives a loyalty manager a single read on the health of the member base. It tracks the core customer metrics that matter to a programme: total members, active rate, repeat purchase rate, customer lifetime value and churn, all in one view.</p>
+          <p>Underneath the headline numbers, the page breaks performance down by membership tier, sales channel and age band, alongside a growth trend showing how the member base and monthly active customers have moved over time. It is designed to answer the first question any loyalty team asks: is the base growing, and is it healthy.</p>
+        </div>
+      </div>
+
+      <!-- 02 -->
+      <div class="report-item">
+        <div class="report-item-header">
+          <span class="report-number">02</span>
+          <h2 class="report-title">RFM Segmentation</h2>
+        </div>
+        <div class="hero-screenshot">
+          <img src="/images/Haven_Segmentation.png" alt="Haven RFM Segmentation Dashboard" class="screenshot-img">
+          <div class="screenshot-caption">RFM Segmentation</div>
+        </div>
+        <div class="prose">
+          <p>The second page applies RFM segmentation, a well established framework that scores every member on how recently they purchased, how often they purchase, and how much they spend. Combining those three scores groups the base into clear behavioural segments such as Champions, Loyal, At Risk and Lapsed.</p>
+          <p>The page shows how members are distributed across segments, where the revenue is concentrated, and a full profile of each segment with its recency, frequency, average spend and lifetime value. This is the view that turns a flat customer list into something a marketing team can act on, by telling them exactly who to reward, who to nurture and who to win back.</p>
+        </div>
+        <div class="insight-box">
+          <strong>The headline insight:</strong> Champions make up just 22% of buyers but drive 52% of total revenue, with an average three year lifetime value almost ten times that of the Lapsed segment. At the same time, almost 600 members sit in the At Risk and Lapsed groups, representing the clearest re-engagement opportunity for loyalty marketing spend.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WAS BUILT -->
+<div class="container">
+  <div class="content-section">
+    <div class="section-label">How It Was Built</div>
+    <div class="prose" style="margin-bottom: 28px;">
+      <p>The focus of this project was building it the way it would be built on the job, not just producing a dashboard. Every layer was designed deliberately, from the data model through to the measures.</p>
+    </div>
+    <div class="tech-list">
+      <div class="tech-row">
+        <div class="tech-row-label">Data Model</div>
+        <div class="tech-row-desc">A proper star schema with five dimension tables and three fact tables (sales, redemptions and engagement), connected through single direction relationships. Modelling it this way keeps the report fast and the DAX clean, and member level attributes like segment and lifetime value sit on the member dimension so they can slice every fact.</div>
+      </div>
+      <div class="tech-row">
+        <div class="tech-row-label">SQL</div>
+        <div class="tech-row-desc">The RFM scoring and customer metrics were written in SQL, using window functions to rank members into quintiles for recency, frequency and monetary value before mapping those scores to named commercial segments. The customer lifetime value, retention and participation logic was built the same way.</div>
+      </div>
+      <div class="tech-row">
+        <div class="tech-row-label">Power BI &amp; DAX</div>
+        <div class="tech-row-desc">The report itself was built in Power BI with a set of DAX measures covering revenue, repeat purchase rate, participation, churn and lifetime value. Native cross-filtering lets a user select any tier or segment and have the whole report respond instantly.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Tags -->
+<div class="container">
+  <div class="content-section" style="padding-top: 0; border-bottom: none;">
+    <div class="tags-footer">
+      <span class="tag tag-green">Power BI</span>
+      <span class="tag tag-green">DAX</span>
+      <span class="tag tag-green">SQL</span>
+      <span class="tag">Star Schema</span>
+      <span class="tag">RFM Segmentation</span>
+      <span class="tag">Customer Lifetime Value</span>
+      <span class="tag">Retention</span>
+      <span class="tag">Loyalty Analytics</span>
+      <span class="tag">Customer Behaviour</span>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECT NAV -->
+<div class="container">
+  <div class="project-nav">
+    <a href="/portfolio" class="project-nav-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      All Projects
+    </a>
+    <a href="/portfolio" class="btn-portfolio">
+      View Portfolio
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container" style="width:100%; display:flex; justify-content:space-between; align-items:center;">
+    <span class="footer-text">© 2026 Nathan Wallis · Sydney, AU</span>
+    <span class="footer-text">Customer Analytics &amp; RFM Segmentation</span>
+  </div>
+</footer>
+
+</body>
+</html>

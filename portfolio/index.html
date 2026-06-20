@@ -428,159 +428,63 @@ footer {
   </div>
 </nav>
 
-<!-- HEADER -->
-<header>
-  <div class="container">
-    <div class="header-inner">
+ <div id="portfolio" class="portfolio-divider fade-in">
+
+    <div class="portfolio-divider-inner fade-in">
       <div>
-        <div class="header-eyebrow">Portfolio</div>
-        <h1><strong>Selected</strong> Work</h1>
+        <div class="portfolio-eyebrow">Portfolio</div>
+        <h2 class="portfolio-heading"><strong>Selected</strong> Work</h2>
       </div>
-      <div class="project-count">
-        <strong>8</strong> projects &nbsp;·&nbsp; More coming soon
-      </div>
+      <div class="project-count-badge"><strong>8</strong> projects</div>
     </div>
-    <p class="header-summary">A collection of data visualisation and analytics projects built across commercial, e-commerce and FP&A environments. Each project includes a write-up covering the brief, the approach, and the business impact.</p>
-  </div>
-</header>
+    <p class="portfolio-subtext fade-in">A collection of analytics and data visualisation projects built across commercial, e-commerce, and travel environments. Each project includes a write-up covering the brief, the approach, and the business impact.</p>
 
-<!-- FILTER BAR -->
-<div class="container">
-  <div class="filter-bar">
-    <span class="filter-label">Filter</span>
-    <button class="filter-btn active" onclick="filterProjects('all', this)">All</button>
-    <button class="filter-btn" onclick="filterProjects('Power BI', this)">Power BI</button>
-    <button class="filter-btn" onclick="filterProjects('Excel', this)">Excel</button>
-    <button class="filter-btn" onclick="filterProjects('FP&A', this)">FP&A</button>
-    <button class="filter-btn" onclick="filterProjects('Financial Modelling', this)">Financial Modelling</button>
-    <button class="filter-btn" onclick="filterProjects('Insight', this)">Insight</button>
-  </div>
-</div>
+    <div class="filter-bar fade-in">
+      <span class="filter-label">Filter</span>
+      <button class="filter-btn active" onclick="filterProjects('all', this)">All</button>
+      <button class="filter-btn" onclick="filterProjects('Power BI', this)">Power BI</button>
+      <button class="filter-btn" onclick="filterProjects('SQL', this)">SQL</button>
+      <button class="filter-btn" onclick="filterProjects('Excel', this)">Excel</button>
+      <button class="filter-btn" onclick="filterProjects('Insight', this)">Insight</button>
+    </div>
 
-<!-- PROJECTS -->
-<div class="container">
-  <div class="projects-section">
     <div class="projects-grid" id="projects-grid">
 
-      <!-- PROJECT 1 -->
-      <a href="/portfolio/commercial-trading-reports" class="project-card" data-tags="Power BI,DAX,Commercial Reporting,KPI Tracking">
-        <div class="project-hero">
-          <img src="/images/Booking_Funnel.png" alt="E-commerce Analytics Suite">
-        </div>
+      <a href="/portfolio/commercial-trading-reports" class="project-card fade-in" data-tags="Power BI,DAX,Commercial Reporting,KPI Tracking">
+        <div class="project-hero"><img src="/images/Booking_Funnel.png" alt="E-commerce Analytics Suite"></div>
         <div class="project-body">
-          <div class="project-category">
-            <span class="cat-tag">Power BI</span>
-          </div>
+          <div class="project-category"><span class="cat-tag">Power BI</span></div>
           <div>
             <div class="project-title">E-commerce Analytics Suite</div>
-            <div class="project-subtitle">A Collection of Power BI Reports for Commercial Trading</div>
+            <div class="project-subtitle">Power BI Reports for Commercial Trading</div>
           </div>
-          <p class="project-description">A suite of Power BI reports built to support day-to-day commercial trading decisions across multiple sales channels and regions. Covers revenue performance, margin analysis, KPI tracking and comparative reporting against forecast and prior year.</p>
+          <p class="project-description">A suite of Power BI reports built to support day-to-day commercial trading decisions across multiple sales channels and regions. Covers booking funnel performance, marketing channel KPIs, conversion rate analysis, and partner reporting.</p>
           <div class="project-footer">
             <span class="skill-pill">DAX</span>
-            <span class="skill-pill">Commercial Reporting</span>
-            <span class="skill-pill">KPI Tracking</span>
-            <span class="skill-pill">Multi-channel</span>
+            <span class="skill-pill">Google Analytics</span>
+            <span class="skill-pill">Marketing Analytics</span>
+            <span class="skill-pill">Funnel Analysis</span>
           </div>
         </div>
       </a>
 
-      <!-- PROJECT 2 -->
-      <a href="/portfolio/customer-analytics" class="project-card" data-tags="Power BI,DAX,Data Visualisation,Customer Analytics">
-        <div class="project-hero">
-          <img src="/images/RFM_Segmentation.png" alt="RFM Segmentation">
-        </div>
+      <a href="/portfolio/customer-analytics" class="project-card fade-in" data-tags="Power BI, SQL, Customer Analytics">
+        <div class="project-hero"><img src="/images/RFM_Segmentation.png" alt="CRM Dashboard"></div>
         <div class="project-body">
-          <div class="project-category">
-            <span class="cat-tag">Power BI</span>
-            <span class="cat-tag">SQL</span>
-          </div>
+          <div class="project-category"><span class="cat-tag">Power BI</span></div>
           <div>
             <div class="project-title">CRM Dashboard</div>
             <div class="project-subtitle">Customer Analytics & RFM Segmentation</div>
           </div>
-          <p class="project-description">A customer analytics suite built for a fashion loyalty programme, covering member behaviour, retention, lifetime value and RFM segmentation. Built end to end from a SQL data model through to a Power BI report.</p>
+          <p class="project-description">A customer analytics suite built for a fictional fashion loyalty programme, covering member behaviour, retention, lifetime value and RFM segmentation. Built end to end from a SQL data model through to a Power BI report.</p>
           <div class="project-footer">
-            <span class="skill-pill">Star Schema</span>
-            <span class="skill-pill">DAX</span>
-            <span class="skill-pill">Data Visualisation</span>
             <span class="skill-pill">Customer Analytics</span>
-          </div>
-        </div>
-      </a>
-      
-      <!-- PROJECT 2 -->
-      <a href="/portfolio/performance-dashboard" class="project-card" data-tags="Power BI,DAX,Data Visualisation,Variance Analysis">
-        <div class="project-hero">
-          <img src="/images/Performance_Dashboard.png" alt="Commercial Performance Dashboard">
-        </div>
-        <div class="project-body">
-          <div class="project-category">
-            <span class="cat-tag">Power BI</span>
-          </div>
-          <div>
-            <div class="project-title">Commercial Performance Dashboard</div>
-            <div class="project-subtitle">Power BI E-Commerce Analytics</div>
-          </div>
-          <p class="project-description">An end-to-end commercial performance dashboard tracking revenue, profit, units sold and average transaction value across e-commerce channels. Built with a comparative framework allowing users to benchmark current performance against forecast and prior year, with filters for region, sales channel and product category.</p>
-          <div class="project-footer">
-            <span class="skill-pill">Star Schema</span>
-            <span class="skill-pill">DAX</span>
+            <span class="skill-pill">RFM Segmentation</span>
             <span class="skill-pill">Data Visualisation</span>
-            <span class="skill-pill">Variance Analysis</span>
           </div>
         </div>
       </a>
 
-      <!-- PROJECT 3 -->
-      <a href="/portfolio/scenario-modelling" class="project-card" data-tags="Power BI,FP&A,Scenario Modelling,Budgeting,Financial Modelling">
-        <div class="project-hero">
-          <img src="/images/Scenario_Modelv1.png" alt="Scenario & Sensitivity Model">
-        </div>
-        <div class="project-body">
-          <div class="project-category">
-            <span class="cat-tag">Power BI</span>
-            <span class="cat-tag">FP&A</span>
-          </div>
-          <div>
-            <div class="project-title">Scenario & Sensitivity Model</div>
-            <div class="project-subtitle">Commercial Planning & Budgeting Tool</div>
-          </div>
-          <p class="project-description">A scenario and sensitivity modelling tool built to support commercial planning and budgeting decisions. Allows stakeholders to model best, base and worst case outcomes across key revenue and cost drivers, with outputs visualised in Power BI for easy communication to senior leadership.</p>
-          <div class="project-footer">
-            <span class="skill-pill">Forecasting</span>
-            <span class="skill-pill">Scenario Modelling</span>
-            <span class="skill-pill">Sensitivity Analysis</span>
-            <span class="skill-pill">Budgeting</span>
-          </div>
-        </div>
-      </a>
-
-      <!-- PROJECT 4 -->
-      <a href="/portfolio/three-statement-model" class="project-card" data-tags="Excel,FP&A,Financial Modelling,Forecasting">
-        <div class="project-hero">
-          <img src="/images/3_Statement_Model.png" alt="Three Statement Forecast Model">
-        </div>
-        <div class="project-body">
-          <div class="project-category">
-            <span class="cat-tag">Excel</span>
-            <span class="cat-tag">Financial Planning</span>
-          </div>
-          <div>
-            <div class="project-title">Three Statement Forecast Model</div>
-            <div class="project-subtitle">Integrated 5-Year Financial Model</div>
-          </div>
-          <p class="project-description">A fully integrated financial model built for a multi-channel outdoor retailer, covering five years of historical results and a five-year forecast across the income statement, balance sheet and cash flow statement.</p>
-          <div class="project-footer">
-            <span class="skill-pill">Forecasting</span>
-            <span class="skill-pill">Financial Modelling</span>
-            <span class="skill-pill">FP&A</span>
-            <span class="skill-pill">Retail Finance</span>
-          </div>
-        </div>
-      </a>
-
-                        <!-- PROJECT 5 -->
       <a href="/portfolio/sql-case-study" class="project-card" data-tags="SQL">
         <div class="project-hero">
           <img src="/images/SQL_Case_Study.png" alt="SQL Case Study">
@@ -588,11 +492,10 @@ footer {
         <div class="project-body">
           <div class="project-category">
             <span class="cat-tag">SQL</span>
-            <span class="cat-tag">Star Schema</span>
           </div>
           <div>
             <div class="project-title">SQL Case Study</div>
-            <div class="project-subtitle">Diagnosing a quarterly margin decline at a FMCG company</div>
+            <div class="project-subtitle">Diagnosing a quarterly margin decline</div>
           </div>
           <p class="project-description">A worked SQL analysis on a FMCG dataset, escalating from basic aggregation to a price, volume and cost bridge that pinpoints exactly which product lines moved margin, and why.</p>
           <div class="project-footer">
@@ -604,47 +507,51 @@ footer {
           </div>
         </div>
       </a>
-
       
-                        <!-- PROJECT 5 -->
-      <a href="/portfolio/mining-operations-dashboard" class="project-card" data-tags="Power BI">
-        <div class="project-hero">
-          <img src="/images/Mining_Production_Dashboard.png" alt="Mining Operational Report">
-        </div>
+      <a href="/portfolio/performance-dashboard" class="project-card fade-in" data-tags="Power BI,DAX,Data Visualisation,Variance Analysis">
+        <div class="project-hero"><img src="/images/Performance_Dashboard.png" alt="Commercial Performance Dashboard"></div>
         <div class="project-body">
-          <div class="project-category">
-            <span class="cat-tag">Power BI</span>
-            <span class="cat-tag">Data Visualisation</span>
-          </div>
+          <div class="project-category"><span class="cat-tag">Power BI</span></div>
           <div>
-            <div class="project-title">Mining Operations Dashboard</div>
-            <div class="project-subtitle">Production and Safety Monitoring</div>
+            <div class="project-title">Commercial Performance Dashboard</div>
+            <div class="project-subtitle">Power BI E-Commerce Analytics</div>
           </div>
-          <p class="project-description">A Power BI dashboard for a multi-site mining operation, covering production performance and safety reporting across three mining sites Pilbara, Bowen Basin and Olympic Dam.</p>
+          <p class="project-description">An end-to-end commercial performance dashboard tracking revenue, profit, units sold, and average transaction value across e-commerce channels, with benchmarking against forecast and prior year.</p>
           <div class="project-footer">
-            <span class="skill-pill">Mining Analytics</span>
-            <span class="skill-pill">Operational Reporting</span>
-            <span class="skill-pill">Safety Reporting</span>
+            <span class="skill-pill">Star Schema</span>
+            <span class="skill-pill">DAX</span>
+            <span class="skill-pill">Data Visualisation</span>
             <span class="skill-pill">Variance Analysis</span>
           </div>
         </div>
       </a>
 
-            <!-- PROJECT 6 -->
-      <a href="/portfolio/business-case-model" class="project-card" data-tags="Excel,Business Case,Financial Modelling,Investment Appraisal,Scenario Analysis,FP&A">
-        <div class="project-hero">
-          <img src="/images/Business_Case_Model.png" alt="Business Case Model">
-        </div>
+      <a href="/portfolio/blog-ai-data-analysis" class="project-card fade-in" data-tags="Insight,Data Analysis,AI,Artificial Intelligence">
+        <div class="project-hero"><img src="/images/AI_Blog_Post_Hero.png" alt="AI & The Analyst"></div>
         <div class="project-body">
-          <div class="project-category">
-            <span class="cat-tag">Excel</span>
-            <span class="cat-tag">Financial Modelling</span>
+          <div class="project-category"><span class="cat-tag">Insight</span></div>
+          <div>
+            <div class="project-title">AI &amp; The Analyst</div>
+            <div class="project-subtitle">How AI Is Changing Data Analysis Workflows</div>
           </div>
+          <p class="project-description">Artificial intelligence is rapidly becoming part of everyday data and commercial analysis work. While much of the discussion online focuses on productivity gains, the reality inside analytical teams is more nuanced.</p>
+          <div class="project-footer">
+            <span class="skill-pill">Data Analytics</span>
+            <span class="skill-pill">Artificial Intelligence</span>
+            <span class="skill-pill">Commercial Analysis</span>
+          </div>
+        </div>
+      </a>
+      
+            <a href="/portfolio/business-case-model" class="project-card fade-in" data-tags="Excel,Business Case,Financial Modelling,Investment Appraisal,Scenario Analysis,FP&A">
+        <div class="project-hero"><img src="/images/Business_Case_Model.png" alt="Business Case Model"></div>
+        <div class="project-body">
+          <div class="project-category"><span class="cat-tag">Excel</span></div>
           <div>
             <div class="project-title">Business Case Model</div>
             <div class="project-subtitle">Digital Transformation Investment Appraisal</div>
           </div>
-          <p class="project-description">A dynamic investment appraisal model developed for a fictional government digital transformation initiative, featuring scenario analysis, NPV and IRR, sensitivity testing, and an executive-ready one-page output, structured the way it would be built on the job.</p>
+          <p class="project-description">A dynamic investment appraisal model for a fictional government digital transformation initiative, featuring scenario analysis, NPV and IRR, sensitivity testing, and an executive-ready one-page output.</p>
           <div class="project-footer">
             <span class="skill-pill">Financial Modelling</span>
             <span class="skill-pill">Investment Appraisal</span>
@@ -654,48 +561,38 @@ footer {
         </div>
       </a>
 
-      <!-- PROJECT 7 -->
-      <a href="/portfolio/blog-ai-data-analysis" class="project-card" data-tags="Insight,Data Analysis, AI, Artificial Intelligence">
-        <div class="project-hero">
-          <img src="/images/AI_Blog_Post_Hero.png" alt="AI & The Analyst">
-        </div>
+      <a href="/portfolio/scenario-modelling" class="project-card fade-in" data-tags="Power BI,FP&A,Scenario Modelling,Budgeting,Financial Modelling">
+        <div class="project-hero"><img src="/images/Scenario_Modelv1.png" alt="Scenario & Sensitivity Model"></div>
         <div class="project-body">
-          <div class="project-category">
-            <span class="cat-tag">Insight</span>
-            <span class="cat-tag">Artificial Intelligence</span>
-          </div>
+          <div class="project-category"><span class="cat-tag">Power BI</span></div>
           <div>
-            <div class="project-title">AI & The Analyst</div>
-            <div class="project-subtitle">How AI Is Changing Data Analysis Workflows</div>
+            <div class="project-title">Scenario &amp; Sensitivity Model</div>
+            <div class="project-subtitle">Commercial Planning &amp; Budgeting Tool</div>
           </div>
-          <p class="project-description">Artificial intelligence is rapidly becoming part of everyday data and commercial analysis work. While much of the discussion online focuses on automation and productivity gains, the reality inside analytical teams is more nuanced.</p>
+          <p class="project-description">A scenario and sensitivity modelling tool built to support commercial planning and budgeting decisions, with best, base, and worst case outputs visualised in Power BI for senior stakeholder communication.</p>
           <div class="project-footer">
-            <span class="skill-pill">Data Analytics</span>
-            <span class="skill-pill">Artificial Intelligence</span>
-            <span class="skill-pill">Finance & Commercial Analysts</span>
+            <span class="skill-pill">Forecasting</span>
+            <span class="skill-pill">Scenario Modelling</span>
+            <span class="skill-pill">Sensitivity Analysis</span>
+            <span class="skill-pill">Budgeting</span>
           </div>
         </div>
       </a>
 
-            <!-- PROJECT 8 -->
-      <a href="/portfolio/hospital-analytics" class="project-card" data-tags="Power BI">
-        <div class="project-hero">
-          <img src="/images/Operational_Hospital.png" alt="Operational Hospital Report">
-        </div>
+      <a href="/portfolio/three-statement-model" class="project-card fade-in" data-tags="Excel,FP&A,Financial Modelling,Forecasting">
+        <div class="project-hero"><img src="/images/3_Statement_Model.png" alt="Three Statement Forecast Model"></div>
         <div class="project-body">
-          <div class="project-category">
-            <span class="cat-tag">Power BI</span>
-            <span class="cat-tag">Data Visualisation</span>
-          </div>
+          <div class="project-category"><span class="cat-tag">Excel</span></div>
           <div>
-            <div class="project-title">Hospital Analytics Dashboard</div>
-            <div class="project-subtitle">Commercial and Operational Efficiency</div>
+            <div class="project-title">Three Statement Forecast Model</div>
+            <div class="project-subtitle">Integrated 5-Year Financial Model</div>
           </div>
-          <p class="project-description">A two-page analytics dashboard built for a private hospital environment, covering commercial performance and operational efficiency. Designed to give clinical and operational teams a single view of the metrics that matter most.</p>
+          <p class="project-description">A fully integrated financial model for a multi-channel outdoor retailer, covering five years of historical results and a five-year forecast across the income statement, balance sheet, and cash flow statement.</p>
           <div class="project-footer">
-            <span class="skill-pill">Hospital Analytics</span>
-            <span class="skill-pill">Operational Reporting</span>
-            <span class="skill-pill">KPI Tracking</span>
+            <span class="skill-pill">Forecasting</span>
+            <span class="skill-pill">Financial Modelling</span>
+            <span class="skill-pill">FP&A</span>
+            <span class="skill-pill">Retail Finance</span>
           </div>
         </div>
       </a>
